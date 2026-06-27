@@ -142,9 +142,16 @@
       statusEl.className='status ok'; statusEl.textContent='Published ✓ live in ~1 min';
       btn.disabled=false;
     }).catch(function(err){
-      statusEl.className='status err'; statusEl.textContent='Error: '+err.message;
+      statusEl.className='status err'; statusEl.textContent=friendly(err.message);
       btn.disabled=false;
     });
+  }
+
+  function friendly(m){
+    if(/403/.test(m)) return 'Token can’t write (403). Fix the token: Permissions → Contents → Read and write, Repository access → canvas-medical.';
+    if(/401/.test(m)) return 'Token rejected (401) — it may be expired. Create a new one and re-save.';
+    if(/409/.test(m)) return 'Conflict (409) — try Publish again.';
+    return 'Error: '+m;
   }
 
   // ---- remove one slot (revert to placeholder) ----
@@ -156,7 +163,7 @@
       delete map[slot.id];
       return ghPut('photos.json', b64utf8(JSON.stringify(map,null,2)), 'Remove '+slot.id+' photo', cur?cur.sha:undefined).then(function(){ photos=map; });
     }).then(function(){ statusEl.className='status ok'; statusEl.textContent='Removed ✓'; })
-      .catch(function(err){ statusEl.className='status err'; statusEl.textContent='Error: '+err.message; });
+      .catch(function(err){ statusEl.className='status err'; statusEl.textContent=friendly(err.message); });
   }
 
   // ---- build UI ----
@@ -198,9 +205,19 @@
     st.className='status busy'; st.textContent='Checking…';
     token=v;
     fetch('https://api.github.com/repos/'+OWNER+'/'+REPO,{headers:authHeaders()}).then(function(r){
-      if(!r.ok) throw new Error(r.status===401?'Token rejected (401). Check it has Contents read/write on this repo.':('GitHub said '+r.status));
+      if(r.status===401) throw new Error('Token rejected (401). Re-copy the token — it may be wrong or expired.');
+      if(r.status===404) throw new Error('This token can’t see the repo (404). In the token settings set Repository access → “Only select repositories” → canvas-medical.');
+      if(!r.ok) return r.text().then(function(t){ throw new Error('GitHub said '+r.status+' '+t); });
+      return r.json();
+    }).then(function(data){
+      if(!data || !data.permissions || data.permissions.push!==true){
+        token='';
+        st.className='status err';
+        st.innerHTML='Connected, but this token is <b>read-only</b> — it can’t publish. Edit the token → Permissions → Repository → <b>Contents = Read and write</b> (and Repository access = canvas-medical), then Save again.';
+        return;
+      }
       localStorage.setItem(TKEY, token); setBanner();
-      st.className='status ok'; st.textContent='Connected ✓'; $('#tok').value='';
+      st.className='status ok'; st.textContent='Connected ✓ — write access confirmed.'; $('#tok').value='';
     }).catch(function(e){ token=''; st.className='status err'; st.textContent=e.message; });
   });
   $('#clearTok').addEventListener('click',function(){ localStorage.removeItem(TKEY); token=''; setBanner(); $('#tokStatus').textContent='Token forgotten.'; $('#tokStatus').className='status'; });
