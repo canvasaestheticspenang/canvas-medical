@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-hero="editorial" data-cursor="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANVAS Medical Clinic — Penang</title>
+<meta name="description" content="CANVAS Medical Clinic — Penang's premier medical aesthetic clinic at Gurney Walk, Georgetown. LCP-certified physicians. Injectables, body sculpting, lasers, regenerative therapy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="canonical" href="https://canvas-medical.com/">
+<meta name="theme-color" content="#070707">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/png" href="assets/canvas-mark.png">
+<link rel="apple-touch-icon" href="assets/canvas-mark.png">
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CANVAS Medical Clinic">
+<meta property="og:title" content="CANVAS Medical Clinic — Penang">
+<meta property="og:description" content="Penang's premier medical aesthetic clinic at Gurney Walk, Georgetown. LCP-certified physicians. Injectables, body sculpting, lasers, regenerative therapy.">
+<meta property="og:url" content="https://canvas-medical.com/">
+<meta property="og:image" content="https://canvas-medical.com/assets/hero-model.png">
+<meta property="og:locale" content="en_MY">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CANVAS Medical Clinic — Penang">
+<meta name="twitter:description" content="Penang's premier medical aesthetic clinic — LCP-certified physicians at Gurney Walk, Georgetown.">
+<meta name="twitter:image" content="https://canvas-medical.com/assets/hero-model.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "CANVAS Medical Clinic",
+  "description": "Penang's premier medical aesthetic clinic at Gurney Walk, Georgetown. LCP-certified physicians. Injectables, body sculpting, lasers, regenerative therapy.",
+  "url": "https://canvas-medical.com",
+  "image": "https://canvas-medical.com/assets/hero-model.png",
+  "telephone": "+601128547882",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Gurney Walk, Lot G-6 (GF) & Lot S-1 (2nd Floor), No. 18A, Persiaran Gurney",
+    "addressLocality": "Georgetown",
+    "addressRegion": "Penang",
+    "postalCode": "10250",
+    "addressCountry": "MY"
+  },
+  "openingHours": "Mo-Su 10:00-22:00",
+  "priceRange": "$$$"
+}
+</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="cur" aria-hidden="true"></div>
+<div id="cur-r" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo" aria-label="CANVAS — home"><img src="assets/canvas-logo.png" alt="CANVAS Medical Clinic"></a>
+  <ul class="nav-links">
+    <li><a href="#services">Treatments</a></li>
+    <li><a href="#philosophy">About</a></li>
+    <li><a href="#team">Physicians</a></li>
+    <li><a href="#location">Visit Us</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#book" class="nav-book">Book Now</a>
+    <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <button id="navClose" class="mobile-menu-close" aria-label="Close menu">
+    <span></span><span></span>
+  </button>
+  <a href="#services">Treatments</a>
+  <a href="#philosophy">About</a>
+  <a href="#team">Physicians</a>
+  <a href="#location">Visit Us</a>
+  <a href="#faq">FAQ</a>
+  <a href="#book" class="mm-book">Book a Consultation</a>
+  <div class="mm-meta">Gurney Walk, Georgetown · Penang<br>Daily 10am – 10pm</div>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-photo"><div class="ph ph-bare"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg></div></div>
+  <img class="hero-watermark" src="assets/canvas-mark.png" alt="" aria-hidden="true">
+  <img class="hero-model-img" src="assets/hero-model.png" alt="EMFACE treatment model" aria-hidden="true">
+  <svg class="hero-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="1100" y1="0" x2="1100" y2="900" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="900" stroke-width="1"/>
+    <line x1="0" y1="580" x2="1440" y2="580" stroke-width="1"/>
+    <circle cx="1100" cy="580" r="180" fill="none" stroke-width="1"/>
+    <circle class="acc" cx="1100" cy="580" r="80" fill="none" stroke-width="1"/>
+    <line class="acc" x1="920" y1="580" x2="1280" y2="580" stroke-width="1"/>
+    <line class="acc" x1="1100" y1="400" x2="1100" y2="760" stroke-width="1"/>
+    <text x="1058" y="586" font-family="serif" font-size="14" letter-spacing="4">CANVAS</text>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Canvas Medical Clinic &nbsp;·&nbsp; Gurney Walk, Penang</p>
+      <h1 class="hero-h1" style="width: 600px">Your skin.
+
+Health.
+
+Our canvas.
+</h1>
+      <div class="hero-bottom">
+        <p class="hero-desc" style="width: 600px">Where clinical precision meets modern regenerative medicine &amp; aesthetic artistry. Bespoke medical treatments for those who demand the extraordinary.</p>
+        <div class="hero-btns">
+          <a href="#book" class="btn-fill">Reserve a Consultation</a>
+          <a href="#services" class="btn-line"><span class="bar"></span>Explore Treatments</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-split-img"><div class="ph ph-bare"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg></div></div>
+  </div>
+
+  <div class="hero-badge" aria-hidden="true">
+    <div class="hero-badge-line"></div>
+    <span class="hero-badge-text">Gurney Walk · Georgetown · Penang</span>
+    <div class="hero-badge-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-item">Aesthetic Medicine</div>
+    <div class="ticker-item">Radiofrequency</div>
+    <div class="ticker-item">Laser</div>
+    <div class="ticker-item">Ultrasound</div>
+    <div class="ticker-item">Stem Cell Therapy</div>
+    <div class="ticker-item">Contrast Suites</div>
+    <div class="ticker-item">Injectables</div>
+    <div class="ticker-item">Bio-stimulators</div>
+    <div class="ticker-item">Skinboosters</div>
+    <div class="ticker-item">Regenerative TPE</div>
+    <div class="ticker-item">IV Therapy</div>
+    <div class="ticker-item">Medical Facials</div>
+    <div class="ticker-item">LCP Certified Physicians</div>
+    <div class="ticker-item">Aesthetic Medicine</div>
+    <div class="ticker-item">Radiofrequency</div>
+    <div class="ticker-item">Laser</div>
+    <div class="ticker-item">Ultrasound</div>
+    <div class="ticker-item">Stem Cell Therapy</div>
+    <div class="ticker-item">Contrast Suites</div>
+    <div class="ticker-item">Injectables</div>
+    <div class="ticker-item">Bio-stimulators</div>
+    <div class="ticker-item">Skinboosters</div>
+    <div class="ticker-item">Regenerative TPE</div>
+    <div class="ticker-item">IV Therapy</div>
+    <div class="ticker-item">Medical Facials</div>
+    <div class="ticker-item">LCP Certified Physicians</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <div class="services-head reveal">
+      <div>
+        <div class="sec-label">Our Treatments</div>
+        <h2 class="sec-title">Precision <em>redefined.</em></h2>
+      </div>
+      <p class="services-intro">Each treatment at CANVAS is a bespoke experience — crafted with medical expertise and an artist's eye for balance.</p>
+    </div>
+    <!-- Stacked treatment blocks -->
+    <div class="modality-stack">
+      <div class="mod-block reveal has-model">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 26 Q14 14 20 26 Q26 38 32 26" stroke-width="1"/>
+              <path class="acc" d="M8 18 Q14 6 20 18 Q26 30 32 18" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">01 — Radiofrequency</p>
+            <h3 class="mb-name">Radiofrequency</h3>
+            <p class="mb-sub">Tightening, lifting &amp; skin remodelling — precision RF energy for firmer, smoother skin.</p>
+          </div>
+          <div class="rf-model-wrap" aria-hidden="true">
+            <img class="rf-model" src="assets/rf-model-clean.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">BTL EMFACE</span></span>
+          <span class="mb-item"><span class="nm">EXION Face</span></span>
+          <span class="mb-item"><span class="nm">EXION Clear RF</span></span>
+          <span class="mb-item"><span class="nm">EXION Microneedling RF</span></span>
+          <span class="mb-item"><span class="nm">Jeisys DENSITY</span></span>
+          <span class="mb-item"><span class="nm">X.ERF</span></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-laser">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="20" y1="3" x2="20" y2="37" stroke-width="1"/>
+              <line x1="3" y1="20" x2="37" y2="20" stroke-width="1"/>
+              <circle class="acc" cx="20" cy="20" r="9" stroke-width="1"/>
+              <circle class="acc" cx="20" cy="20" r="3" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">02 — Laser</p>
+            <h3 class="mb-name">Laser</h3>
+            <p class="mb-sub">Resurfacing, pigment correction &amp; tone renewal across skin types.</p>
+          </div>
+          <div class="laser-model-wrap" aria-hidden="true">
+            <img class="laser-model" src="assets/laser-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">PicoStar</span><small>Pico Laser</small></span>
+          <span class="mb-item"><span class="nm">Dermablate</span><small>Cool Laser</small></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-us">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 8 Q24 20 12 32" stroke-width="1"/>
+              <path class="acc" d="M20 8 Q32 20 20 32" stroke-width="1"/>
+              <circle cx="9" cy="20" r="1.6" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">03 — Ultrasound</p>
+            <h3 class="mb-name">Ultrasound</h3>
+            <p class="mb-sub">Deep, focused lifting &amp; non-surgical contouring from within.</p>
+          </div>
+          <div class="us-model-wrap" aria-hidden="true">
+            <img class="us-model" src="assets/us-model-clean.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">Ultherapy</span></span>
+          <span class="mb-item"><span class="nm">LinearZ</span></span>
+          <span class="mb-item"><span class="nm">Ultraformer MPT</span></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-mf">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="20" cy="20" rx="16" ry="10" stroke-width="1"/>
+              <ellipse class="acc" cx="20" cy="20" rx="9" ry="5" stroke-width="1"/>
+              <circle class="acc" cx="20" cy="20" r="2" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">04 — Medical Facials</p>
+            <h3 class="mb-name">Medical Facials</h3>
+            <p class="mb-sub">Clinical-grade peels, resurfacing &amp; bespoke facial protocols for your skin profile.</p>
+          </div>
+          <div class="mf-model-wrap" aria-hidden="true">
+            <img class="mf-model" src="assets/mf-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">Laser Toning</span></span>
+          <span class="mb-item"><span class="nm">Dermalogica</span></span>
+          <span class="mb-item"><span class="nm">PRX-T33</span></span>
+          <span class="mb-item"><span class="nm">NeoStrata</span></span>
+          <span class="mb-item"><span class="nm">iLLON Korea</span></span>
+          <span class="mb-item"><span class="nm">MCCM Peels</span></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-rw">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20 6 C27 16 27 22 20 30 C13 22 13 16 20 6Z" stroke-width="1"/>
+              <path class="acc" d="M20 34 L20 22" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">05 — Regenerative &amp; Wellness</p>
+            <h3 class="mb-name">Regenerative &amp; Wellness</h3>
+            <p class="mb-sub">Renewal &amp; vitality from within — physician-led regenerative protocols.</p>
+          </div>
+          <div class="rw-model-wrap" aria-hidden="true">
+            <img class="rw-model" src="assets/rw-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">Regenerative TPE</span><small>Plasmapheresis</small></span>
+          <span class="mb-item"><span class="nm">IV Drip Therapy</span></span>
+          <span class="mb-item"><span class="nm">NAD+ &amp; NMN Therapy</span></span>
+          <span class="mb-item"><span class="nm">Peptide Treatments</span></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-sc">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="20" cy="14" r="7" stroke-width="1"/>
+              <path class="acc" d="M14 14 Q20 4 26 14" stroke-width="1"/>
+              <path d="M14 20 Q10 32 20 34 Q30 32 26 20" stroke-width="1"/>
+              <line class="acc" x1="20" y1="7" x2="20" y2="4" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">06 — Stem Cell Therapy</p>
+            <h3 class="mb-name">Stem Cell Therapy</h3>
+            <p class="mb-sub">Advanced regenerative medicine harnessing cellular renewal for deep rejuvenation and systemic vitality.</p>
+          </div>
+          <div class="sc-model-wrap" aria-hidden="true">
+            <img class="sc-model" src="assets/sc-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">Stem Cell IV Infusion</span></span>
+          <span class="mb-item"><span class="nm">Mesenchymal Stem Cell Therapy</span></span>
+          <span class="mb-item"><span class="nm">Exosome Therapy</span></span>
+        </div>
+      </div>
+
+    <!-- Injectables index -->
+    <div class="inj-block reveal">
+      <div class="inj-head">
+        <div>
+          <p class="mod-num">07 — Injectables</p>
+          <h3 class="inj-title">Fillers, bio-stimulators &amp; skinboosters.</h3>
+        </div>
+        <p class="inj-sub">A comprehensive formulary of different injectables, biostimulatory dermal fillers and bio-remodelling treatments — matched to your skin by our physicians.</p>
+        <div class="inj-model-wrap" aria-hidden="true">
+          <img class="inj-model" src="assets/inj-model.png" alt="">
+        </div>
+      </div>
+      <div class="inj-grid">
+        <span class="inj-item"><span class="nm">Sculptra</span><span class="tg">PLLA</span></span>
+        <span class="inj-item"><span class="nm">Radiesse</span><span class="tg">CaHA</span></span>
+        <span class="inj-item"><span class="nm">Lanluma</span><span class="tg">PLLA</span></span>
+        <span class="inj-item"><span class="nm">Ellansé</span><span class="tg">PCL</span></span>
+        <span class="inj-item"><span class="nm">Gouri</span><span class="tg">PCL</span></span>
+        <span class="inj-item"><span class="nm">Ultracol</span><span class="tg">PDO</span></span>
+        <span class="inj-item"><span class="nm">Aesthefill</span><span class="tg">PDLLA</span></span>
+        <span class="inj-item"><span class="nm">Novuma</span><span class="tg">CaHA</span></span>
+        <span class="inj-item"><span class="nm">Juvelook 50mg</span><span class="tg">PDLLA</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Lenisna</span><span class="tg">PDLLA</span></span>
+        <span class="inj-item"><span class="nm">Powerfill</span><span class="tg">PDLLA</span></span>
+        <span class="inj-item"><span class="nm">Profhilo</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Profhilo Structura</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Restylane Skinbooster</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">SkinVIVE</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Belotero Revive</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Definisse Hydrobooster</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Neauvia</span><span class="tg">HA</span><span class="tg">CaHA</span></span>
+        <span class="inj-item"><span class="nm">Teosyal Baby Glow</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Jalupro</span><span class="tg">HA</span><span class="tg">AA</span></span>
+        <span class="inj-item"><span class="nm">PB Serum</span><span class="tg">HA</span><span class="tg">Enzymes</span></span>
+        <span class="inj-item"><span class="nm">Luhilo</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Luhilo Snow</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">ProAge</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Produktil</span><span class="tg">HA</span><span class="tg">AA</span></span>
+        <span class="inj-item"><span class="nm">Revok 50</span><span class="tg">HA</span><span class="tg">AA</span></span>
+        <span class="inj-item"><span class="nm">Xelarederm</span><span class="tg">HA</span><span class="tg">SA</span></span>
+        <span class="inj-item"><span class="nm">Karisma</span><span class="tg">HA</span><span class="tg">Collagen</span></span>
+        <span class="inj-item"><span class="nm">Electri</span><span class="tg">HA</span><span class="tg">SA</span></span>
+        <span class="inj-item"><span class="nm">Inbiotec Amber</span><span class="tg">HA</span><span class="tg">SA</span></span>
+        <span class="inj-item"><span class="nm">Linerase</span><span class="tg">AA</span><span class="tg">Collagen</span></span>
+        <span class="inj-item"><span class="nm">Deusaderm</span><span class="tg">Collagen</span></span>
+        <span class="inj-item"><span class="nm">PRP by Cellenis</span><span class="tg">PRP</span></span>
+        <span class="inj-item"><span class="nm">Exoshine</span><span class="tg">Exosomes</span></span>
+        <span class="inj-item"><span class="nm">Cryocord</span><span class="tg">Exosomes</span></span>
+        <span class="inj-item"><span class="nm">U Neuron</span><span class="tg">Exosomes</span></span>
+        <span class="inj-item"><span class="nm">Suiselle</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">NCTF Vials</span><span class="tg">HA</span></span>
+        <span class="inj-item"><span class="nm">Plenhyage</span><span class="tg">PN</span></span>
+        <span class="inj-item"><span class="nm">Rejuran</span><span class="tg">PN</span></span>
+        <span class="inj-item"><span class="nm">Plinest</span><span class="tg">PN</span></span>
+        <span class="inj-item"><span class="nm">Polyphil</span><span class="tg">PN</span></span>
+      </div>
+    </div>
+
+      <div class="mod-block reveal has-model-cs">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="10" width="32" height="22" rx="2" stroke-width="1"/>
+              <rect class="acc" x="10" y="16" width="8" height="10" rx="1" stroke-width="1"/>
+              <rect x="22" y="16" width="8" height="10" rx="1" stroke-width="1"/>
+              <path class="acc" d="M14 10 L14 8 M26 10 L26 8" stroke-width="1"/>
+              <line x1="20" y1="10" x2="20" y2="32" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">08 — Contrast Suites</p>
+            <h3 class="mb-name">Contrast Suites</h3>
+            <p class="mb-sub">Cold &amp; heat contrast therapy to accelerate recovery, reduce inflammation and elevate wellbeing.</p>
+          </div>
+          <div class="cs-model-wrap" aria-hidden="true">
+            <img class="cs-model" src="assets/cs-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">Cool &amp; Ice Plunge</span></span>
+          <span class="mb-item"><span class="nm">Infrared Sauna Suite</span></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-sh">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20 33 C12 27 6 21 6 15 A7 7 0 0 1 20 12 A7 7 0 0 1 34 15 C34 21 28 27 20 33Z" stroke-width="1"/>
+              <path class="acc" d="M15 17 Q20 21 25 17" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">09 — Sexual Health &amp; Enhancements</p>
+            <h3 class="mb-name">Sexual Health &amp; Enhancements</h3>
+            <p class="mb-sub">Discreet, physician-led intimate wellness treatments for confidence, function and rejuvenation.</p>
+          </div>
+          <div class="sh-model-wrap" aria-hidden="true">
+            <img class="sh-model" src="assets/sh-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">Vaginal Tightening</span></span>
+          <span class="mb-item"><span class="nm">Genital Rejuvenation</span></span>
+          <span class="mb-item"><span class="nm">O-Shot</span></span>
+          <span class="mb-item"><span class="nm">P-Shot</span></span>
+          <span class="mb-item"><span class="nm">Penile Enlargement</span></span>
+          <span class="mb-item"><span class="nm">Sexual Function Enhancement</span></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-ba">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 16 L10 16 L10 12 L14 12 L14 20 L26 20 L26 12 L30 12 L30 16 L34 16" stroke-width="1"/>
+              <path class="acc" d="M6 24 L10 24 L10 28 L14 28 L14 20 L26 20 L26 28 L30 28 L30 24 L34 24" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">10 — Body Aesthetics &amp; Functional Medicine</p>
+            <h3 class="mb-name">Body Aesthetics &amp; Functional Medicine</h3>
+            <p class="mb-sub">Muscle building, fat reduction &amp; medically-supervised weight management for a stronger, leaner physique.</p>
+          </div>
+          <div class="ba-model-wrap" aria-hidden="true">
+            <img class="ba-model" src="assets/ba-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">EMSCULPT NEO</span></span>
+          <span class="mb-item"><span class="nm">EMBODY</span></span>
+          <span class="mb-item"><span class="nm">GLP-1 Therapy</span><small>Mounjaro &middot; Wegovy</small></span>
+        </div>
+      </div>
+
+      <div class="mod-block reveal has-model-mw">
+        <div class="mb-info">
+          <div class="mb-info-text">
+            <svg class="mb-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M14 30 Q6 26 6 17 A10 10 0 0 1 26 13 Q34 14 34 22 Q34 29 26 29 L26 33" stroke-width="1"/>
+              <path class="acc" d="M14 19 Q17 16 20 19 Q23 22 26 19" stroke-width="1"/>
+            </svg>
+            <p class="mb-num">11 — Mental Wellness, NeuroRegenerative &amp; Sleep Medicine</p>
+            <h3 class="mb-name">Mental Wellness &amp; Sleep Medicine</h3>
+            <p class="mb-sub">Neuro-regenerative protocols and restorative sleep therapy for mind, mood and cognitive vitality.</p>
+          </div>
+          <div class="mw-model-wrap" aria-hidden="true">
+            <img class="mw-model" src="assets/mw-model.png" alt="">
+          </div>
+        </div>
+        <div class="mb-list">
+          <span class="mb-item"><span class="nm">BTL EXOMIND</span></span>
+          <span class="mb-item"><span class="nm">Sleep Therapy</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- consultation CTA -->
+    <div class="svc-cta reveal">
+      <div>
+        <h3>Not sure where to begin?</h3>
+        <p>Our physicians will assess your goals and design a plan that's entirely yours.</p>
+      </div>
+      <a href="#book" class="btn-fill">Book a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section dark" id="philosophy">
+  <div class="section-inner">
+    <div class="phil-wrap">
+      <div class="phil-box reveal">
+        <div class="phil-corner tl"></div><div class="phil-corner tr"></div>
+        <div class="phil-corner bl"></div><div class="phil-corner br"></div>
+        <blockquote>"Beauty is not a correction — it is an elevation of what was always there."</blockquote>
+        <cite>— The CANVAS Philosophy</cite>
+      </div>
+      <div class="phil-text">
+        <div class="sec-label reveal">Our Philosophy</div>
+        <h2 class="sec-title reveal">The art of looking<br>like <em>yourself.</em></h2>
+        <p class="phil-body reveal">At CANVAS, we believe the most powerful results are the ones no one can quite place. You look rested. Radiant. Effortlessly you. Our physicians are trained in both the science of aesthetics and the subtlety of artistry.</p>
+        <p class="phil-body reveal">Every face is studied. Every treatment is tailored. Nothing is off-the-shelf — because you aren't.</p>
+        <div class="stats-row reveal">
+          <div class="stat"><div class="stat-n">4</div><div class="stat-l">Expert Physicians</div></div>
+          <div class="stat"><div class="stat-n">LCP</div><div class="stat-l">Certified Clinic</div></div>
+          <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Bespoke Approach</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="section-inner">
+    <div class="team-head reveal">
+      <div class="sec-label">Our Physicians</div>
+      <h2 class="sec-title">Meet your <em>specialists.</em></h2>
+    </div>
+    <div class="team-grid">
+      <div class="reveal">
+        <div class="team-portrait"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-name">Dr. Samuel Tong</div><div class="ph-cap">Portrait coming soon</div></div></div>
+        <p class="team-role">Aesthetic Physician</p>
+        <h3 class="team-name">Dr. Samuel Tong</h3>
+        <p class="team-cert">MBBChBAO(NUI,RCSI)  LCP Certified</p>
+        <p class="team-bio">Specialist in facial aesthetics and non-surgical rejuvenation. Known for natural, balanced results tailored to each patient's unique anatomy.</p>
+      </div>
+      <div class="reveal d1">
+        <div class="team-portrait"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-name">Dr. Tan Chin Loon</div><div class="ph-cap">Portrait coming soon</div></div></div>
+        <p class="team-role">Aesthetic Physician</p>
+        <h3 class="team-name">Dr. Tan Chin Loon</h3>
+        <p class="team-cert">MD(UCSI) Dip.Aesthetic Medicine(AAAM)(USA) </p>
+        <p class="team-bio">Expert in advanced injectables, skin biostimulation and anti-ageing protocols. Committed to precision and patient comfort.</p>
+      </div>
+      <div class="reveal d2">
+        <div class="team-portrait"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-name">Dr. Chong Jee Can</div><div class="ph-cap">Portrait coming soon</div></div></div>
+        <p class="team-role">Dermatology Physician</p>
+        <h3 class="team-name">Dr. Chong Jee Can</h3>
+        <p class="team-cert">MBBS MRCPUK MRCP(Edinburgh) </p>
+        <p class="team-bio">Dermatology physician focused on medical skin conditions, laser treatments and advanced dermatological care.</p>
+      </div>
+      <div class="reveal d3">
+        <div class="team-portrait"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-name">Dr. Kang Eik Hong</div><div class="ph-cap">Portrait coming soon</div></div></div>
+        <p class="team-role">Aesthetic Physician</p>
+        <h3 class="team-name">Dr. Kang Eik Hong</h3>
+        <p class="team-cert">MBBS (UTAR) </p>
+        <p class="team-bio">Specialises in facial rejuvenation, body sculpting, IV therapy and comprehensive aesthetic wellness protocols for long-lasting results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="location-wrap">
+    <div class="location-map reveal">
+      <div class="ph ph-bare ph-loc"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg></div>
+      <svg class="location-map-svg" viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="stroke" d="M60 280 Q100 180 200 140 Q300 100 380 120 Q460 140 500 200 Q540 260 520 320 Q500 380 420 400 Q340 420 260 410 Q180 400 120 360 Q80 330 60 280Z" fill="none" stroke-width="1.5"/>
+        <rect class="stroke" x="140" y="190" width="80" height="60" fill="none" stroke-width="1"/>
+        <line class="stroke" x1="0" y1="150" x2="600" y2="150" stroke-width="1"/>
+        <line class="stroke" x1="0" y1="300" x2="600" y2="300" stroke-width="1"/>
+        <line class="stroke" x1="200" y1="0" x2="200" y2="450" stroke-width="1"/>
+        <line class="stroke" x1="400" y1="0" x2="400" y2="450" stroke-width="1"/>
+        <circle class="pin" cx="200" cy="210" r="6"/>
+        <circle class="ring" cx="200" cy="210" r="14" stroke-width="1"/>
+        <circle class="ring" cx="200" cy="210" r="22" stroke-width="1"/>
+        <line class="ring" x1="200" y1="210" x2="200" y2="170" stroke-width="1"/>
+        <text x="216" y="176" font-family="sans-serif" font-size="10" letter-spacing="2">GURNEY WALK</text>
+        <text x="80" y="420" font-family="sans-serif" font-size="9" letter-spacing="3">GEORGETOWN · PENANG · MALAYSIA</text>
+      </svg>
+    </div>
+    <div class="location-info">
+      <div class="sec-label reveal">Find Us</div>
+      <h2 class="sec-title reveal">Located in the<br>heart of <em>Penang.</em></h2>
+      <div class="location-detail reveal">
+        <div class="loc-row">
+          <span class="loc-label">Address</span>
+          <span class="loc-value">Gurney Walk — Lot G-6 (GF) &amp; Lot S-1 (2nd Floor)<br>No. 18A, Persiaran Gurney<br>10250 Georgetown, Penang, Malaysia</span>
+        </div>
+        <div class="loc-row">
+          <span class="loc-label">Hours</span>
+          <span class="loc-value">Open daily · 10:00am – 10:00pm</span>
+        </div>
+        <div class="loc-row">
+          <span class="loc-label">Booking</span>
+          <span class="loc-value">Medical aesthetics · <a href="tel:+601128547882">+60 11-2854 7882</a><br>Aesthetics · <a href="tel:+60189815639">+60 18-981 5639</a></span>
+        </div>
+        <div class="loc-row">
+          <span class="loc-label">Parking</span>
+          <span class="loc-value">Covered parking available at Gurney Walk &amp; Gurney Plaza</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section dark" id="gallery">
+  <div class="section-inner">
+    <div class="gallery-head reveal">
+      <div>
+        <div class="sec-label">Gallery</div>
+        <h2 class="sec-title">The <em>results</em> speak.</h2>
+      </div>
+      <a href="#book" class="btn-line"><span class="bar"></span>Book a Visit</a>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g-item"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-cap">Photo coming soon</div></div><div class="g-label">The Clinic</div></div>
+      <div class="g-item"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-cap">Photo coming soon</div></div><div class="g-label">Injectables</div></div>
+      <div class="g-item"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-cap">Photo coming soon</div></div><div class="g-label">Radiofrequency</div></div>
+      <div class="g-item"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-cap">Photo coming soon</div></div><div class="g-label">Laser</div></div>
+      <div class="g-item"><div class="ph"><svg class="ph-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1"/><line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="1"/><line x1="50" y1="16" x2="50" y2="84" stroke="currentColor" stroke-width="1"/></svg><div class="ph-cap">Photo coming soon</div></div><div class="g-label">Ultrasound</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+  <div class="testi-wrap">
+    <div class="sec-label reveal">Client Stories</div>
+    <h2 class="sec-title reveal">In their <em>own words.</em></h2>
+    <span class="testi-q" aria-hidden="true">"</span>
+    <div class="testi-stage">
+      <div class="testi-item active">
+        <p class="testi-text">I've tried clinics across Penang and KL. CANVAS is the first place where I actually felt truly heard. The results are exceptional — subtle, natural, and completely me.</p>
+        <p class="testi-author">S. Lim</p>
+        <p class="testi-detail">Treatment: Injectables &amp; Skin Boosters · Georgetown</p>
+      </div>
+      <div class="testi-item">
+        <p class="testi-text">Dr. Samuel's eye for detail is extraordinary. I went in with concerns and left with results I hadn't even imagined. Three months later, I still can't stop smiling.</p>
+        <p class="testi-author">A. Tan</p>
+        <p class="testi-detail">Treatment: Skin Boosters &amp; IV Drip · Penang</p>
+      </div>
+      <div class="testi-item">
+        <p class="testi-text">The level of care and clinical knowledge here is unlike anything in Penang. My skin has never looked more luminous. I'm a CANVAS client for life.</p>
+        <p class="testi-author">M. Chen</p>
+        <p class="testi-detail">Treatment: Laser Resurfacing · Georgetown</p>
+      </div>
+    </div>
+    <div class="testi-nav">
+      <button class="testi-arrow" id="testiPrev" aria-label="Previous testimonial">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2L4 7l5 5"/></svg>
+      </button>
+      <div class="dots">
+        <button class="dot active" aria-label="Testimonial 1"></button>
+        <button class="dot" aria-label="Testimonial 2"></button>
+        <button class="dot" aria-label="Testimonial 3"></button>
+      </div>
+      <button class="testi-arrow" id="testiNext" aria-label="Next testimonial">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section dark" id="faq">
+  <div class="section-inner">
+    <div class="faq-wrap">
+      <div>
+        <div class="sec-label reveal">FAQ</div>
+        <h2 class="sec-title reveal">Your questions,<br><em>answered.</em></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false"><span>Do you offer a consultation before treatment?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Every journey at CANVAS begins with an in-depth consultation with one of our physicians. We assess your goals, anatomy and skin health before designing a bespoke treatment plan — with no obligation to proceed.</div>
+        </div>
+        <div class="faq-item reveal d1">
+          <button class="faq-q" aria-expanded="false"><span>Are your physicians LCP certified?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Yes. Our aesthetic physicians hold LCP (Letter of Credentialing and Privileging) certification from the Malaysian Medical Council, the recognised standard for aesthetic practice in Malaysia. Your safety is our non-negotiable standard.</div>
+        </div>
+        <div class="faq-item reveal d2">
+          <button class="faq-q" aria-expanded="false"><span>How natural will my results look?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Natural is our standard. We follow a less-is-more philosophy — our goal is enhancement, not transformation. We want you to look rested, refreshed and radiant, never 'done'.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false"><span>What is Regenerative TPE?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Therapeutic Plasma Exchange (plasmapheresis) is a physician-supervised procedure that filters and renews your blood plasma. As part of a wellness protocol it is used to support cellular vitality and overall wellbeing. Suitability is assessed individually at consultation.</div>
+        </div>
+        <div class="faq-item reveal d1">
+          <button class="faq-q" aria-expanded="false"><span>What is the downtime for treatments?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Most treatments require little to no downtime. Injectables may cause minor swelling for 24–48 hours; laser treatments may require 3–7 days of recovery. Your physician will advise you fully at your consultation.</div>
+        </div>
+        <div class="faq-item reveal d2">
+          <button class="faq-q" aria-expanded="false"><span>Where exactly are you located?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">We are at Gurney Walk — Lot G-6 (Ground Floor) &amp; Lot S-1 (2nd Floor), No. 18A, Persiaran Gurney, 10250 Georgetown, Penang. Covered parking is available at Gurney Walk and the adjacent Gurney Plaza.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false"><span>Are stem cell and regenerative therapies safe?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">All regenerative protocols — stem cell therapy, exosomes, NAD+ and peptides — are physician-led and carried out under strict medical supervision. Eligibility is determined through consultation and medical screening to ensure each therapy is appropriate and safe for you.</div>
+        </div>
+        <div class="faq-item reveal d1">
+          <button class="faq-q" aria-expanded="false"><span>Do you offer medically-supervised weight management?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Yes. Our Body Aesthetics &amp; Functional Medicine programme combines GLP-1 therapy (Mounjaro, Wegovy), EMSCULPT NEO and EMBODY body contouring under physician guidance — a structured, monitored approach to fat reduction, muscle building and long-term metabolic health.</div>
+        </div>
+        <div class="faq-item reveal d2">
+          <button class="faq-q" aria-expanded="false"><span>Are intimate and sexual health treatments confidential?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Absolutely. Sexual health and enhancement treatments are carried out with complete discretion in a private, judgement-free setting. Every consultation is confidential and led by an experienced physician.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false"><span>How do I prepare for my first visit?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Simply arrive with a clean face (for skin treatments) and a list of any medications or supplements you take. Your physician will guide you through the rest. We recommend avoiding blood thinners and alcohol 24 hours before injectable treatments.</div>
+        </div>
+        <div class="faq-item reveal d1">
+          <button class="faq-q" aria-expanded="false"><span>How do I book an appointment?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Complete the consultation form below and we'll continue on WhatsApp to confirm your appointment, or message us directly — +60 11-2854 7882 for medical aesthetics and +60 18-981 5639 for aesthetics. We're open daily, 10am–10pm.</div>
+        </div>
+        <div class="faq-item reveal d2">
+          <button class="faq-q" aria-expanded="false"><span>What do your mental wellness &amp; sleep treatments involve?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Our neuro-regenerative programme combines BTL EXOMIND — a non-invasive treatment that stimulates brain activity — with structured sleep therapy to support mood, focus and restorative rest. Every plan is tailored after a physician consultation.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false"><span>When will I see results, and how long do they last?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">It depends on the treatment. Injectables and skinboosters show gradually over 1–4 weeks; energy-based and regenerative therapies build over a series of sessions. Your physician will set clear expectations and a maintenance schedule at consultation.</div>
+        </div>
+        <div class="faq-item reveal d1">
+          <button class="faq-q" aria-expanded="false"><span>Do you offer treatment packages or payment plans?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-a">Yes. Many of our treatments are best delivered as a course, and we offer curated packages as well as flexible payment options. Ask your physician or our front desk during consultation and we'll tailor a plan to your goals and budget.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book">
+  <div class="book-bg"></div>
+  <div class="book-frame"></div>
+  <div class="bc tl"></div><div class="bc tr"></div>
+  <div class="bc bl"></div><div class="bc br"></div>
+  <div class="book-inner">
+    <p class="book-eye reveal">Begin Your Journey</p>
+    <h2 class="book-title reveal">Reserve your<br><em>consultation.</em></h2>
+    <p class="book-sub reveal">Complete the form and we'll continue on WhatsApp to confirm your appointment at our Gurney Walk clinic.</p>
+    <div id="formWrap" class="reveal">
+      <form id="bookForm" novalidate>
+        <div class="form-grid">
+          <div class="f-field"><label for="firstName">First Name</label><input id="firstName" name="firstName" type="text" placeholder="Your first name" autocomplete="given-name"><span class="f-err">Please enter your name</span></div>
+          <div class="f-field"><label for="lastName">Last Name</label><input id="lastName" name="lastName" type="text" placeholder="Your last name" autocomplete="family-name"></div>
+          <div class="f-field"><label for="email">Email Address</label><input id="email" name="email" type="email" placeholder="your@email.com" autocomplete="email"><span class="f-err">Enter a valid email</span></div>
+          <div class="f-field"><label for="phone">Phone Number</label><input id="phone" name="phone" type="tel" placeholder="+60" autocomplete="tel"><span class="f-err">Enter a valid phone</span></div>
+          <div class="f-field full"><label for="physician">Preferred Physician</label>
+            <select id="physician" name="physician">
+              <option value="">— No preference —</option>
+              <option>Dr. Samuel Tong</option>
+              <option>Dr. Tan Chin Loon</option>
+              <option>Dr. Chong Jee Can</option>
+              <option>Dr. Kang Eik Hong</option>
+            </select>
+          </div>
+          <div class="f-field full"><label for="treatment">Treatment of Interest</label>
+            <select id="treatment" name="treatment">
+              <option value="">— Select a treatment —</option>
+              <option>Radiofrequency</option>
+              <option>Laser</option>
+              <option>Ultrasound (Ultherapy / Ultraformer)</option>
+              <option>Medical Facials</option>
+              <option>Regenerative &amp; Wellness</option>
+              <option>Stem Cell Therapy</option>
+              <option>Contrast Suites (Ice Plunge / Infrared Sauna)</option>
+              <option>Sexual Health &amp; Enhancements</option>
+              <option>Body Aesthetics &amp; Functional Medicine</option>
+              <option>Mental Wellness &amp; Sleep Medicine</option>
+              <option>Injectables &amp; Skinboosters</option>
+              <option>Dermatology Consultation</option>
+              <option>General Consultation</option>
+            </select>
+            <span class="f-err">Please choose a treatment</span>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.516 5.26l-.999 3.648 3.742-.981z"/></svg>
+          Continue on WhatsApp
+        </button>
+        <p class="form-note">No obligation. We typically reply within minutes during clinic hours.</p>
+      </form>
+    </div>
+    <div id="formSuccess" class="form-success">
+      <div class="fs-icon">✓</div>
+      <p>Opening WhatsApp with your details… If it didn't open, message us directly at <a href="tel:+601128547882" style="color:var(--accent-strong)">+60 11-2854 7882</a>.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-block reveal">
+    <div class="contact-logo"><img src="assets/canvas-logo.png" alt="CANVAS Medical Clinic"></div>
+    <p class="contact-tag">Penang's premier medical aesthetic clinic. Where science meets artistry.</p>
+  </div>
+  <div class="c-col reveal d1">
+    <h4>Visit Us</h4>
+    <p>Gurney Walk, Lot G-6 (GF) &amp; Lot S-1 (2nd Floor)</p>
+    <p>No. 18A, Persiaran Gurney</p>
+    <p>10250 Georgetown, Penang</p>
+    <div class="c-gap">
+      <a href="tel:+601128547882">+60 11-2854 7882 · Medical Aesthetics</a>
+      <a href="tel:+60189815639">+60 18-981 5639 · Aesthetics</a>
+    </div>
+  </div>
+  <div class="c-col reveal d2">
+    <h4>Hours</h4>
+    <p>Open daily</p>
+    <p>10:00am – 10:00pm</p>
+    <div class="c-gap">
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="https://wa.me/601128547882" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 CANVAS Medical Clinic · Georgetown, Penang. All rights reserved.</p>
+  <div class="foot-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms &amp; Conditions</a>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a id="fab" class="fab" href="https://wa.me/601128547882" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.516 5.26l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<!-- behaviour -->
+<script src="app.js"></script>
+</body>
+</html>
