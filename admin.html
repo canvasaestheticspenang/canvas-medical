@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CANVAS — Photo Manager</title>
+<style>
+  :root{
+    --bg:#070707; --surface:#0f0f0f; --surface2:#151515; --border:rgba(255,255,255,.12);
+    --text:#ededed; --dim:#9c9c9c; --faint:#6f6f6f; --accent:#cbb487; --ok:#5fb87a; --err:#d9776b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font:15px/1.5 'Jost',-apple-system,BlinkMacSystemFont,sans-serif;padding:28px 18px 80px}
+  .wrap{max-width:920px;margin:0 auto}
+  h1{font-family:Georgia,serif;font-weight:400;font-size:26px;letter-spacing:.04em;margin-bottom:4px}
+  h1 span{color:var(--accent)}
+  .sub{color:var(--dim);font-size:13px;margin-bottom:26px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 18px;margin-bottom:18px}
+  label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+  input[type=password],input[type=text]{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:7px;color:var(--text);padding:11px 12px;font-size:14px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  button{cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:7px;padding:10px 16px;font:inherit;font-size:13px;letter-spacing:.04em;transition:.2s}
+  button:hover{border-color:var(--accent)}
+  button.primary{background:var(--accent);color:#1a1407;border-color:var(--accent);font-weight:500}
+  button.primary:disabled{opacity:.4;cursor:not-allowed}
+  button.link{background:none;border:none;color:var(--accent);padding:4px 0;text-decoration:underline}
+  .hint{font-size:12.5px;color:var(--dim);margin-top:10px;line-height:1.6}
+  .hint a{color:var(--accent)}
+  .status{font-size:13px;margin-top:10px;min-height:18px}
+  .status.ok{color:var(--ok)} .status.err{color:var(--err)} .status.busy{color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .slot{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .slot-head{padding:12px 14px;border-bottom:1px solid var(--border)}
+  .slot-head .nm{font-size:14px}
+  .slot-head .id{font-size:11px;color:var(--faint);letter-spacing:.1em}
+  .drop{position:relative;aspect-ratio:4/3;background:var(--surface2);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--faint);font-size:12px;cursor:pointer;overflow:hidden}
+  .drop.over{outline:2px dashed var(--accent);outline-offset:-6px;color:var(--accent)}
+  .drop img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .drop .tag{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);padding:3px 8px;border-radius:4px;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+  .slot-foot{padding:10px 12px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+  .slot-foot .s{font-size:11.5px;color:var(--dim)}
+  .tiny{font-size:11px;color:var(--faint);padding:6px 0}
+  .banner{border-radius:8px;padding:11px 14px;font-size:13px;margin-bottom:18px;border:1px solid}
+  .banner.warn{background:rgba(217,119,107,.08);border-color:rgba(217,119,107,.4);color:#e8a99f}
+  .banner.good{background:rgba(95,184,122,.08);border-color:rgba(95,184,122,.4);color:#a7d8b6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>CANVAS <span>· Photo Manager</span></h1>
+  <p class="sub">Drag a photo onto any slot → it auto-resizes and publishes to canvas-medical.com. Changes go live in about a minute.</p>
+
+  <div id="tokenWarn" class="banner warn" style="display:none">Paste your GitHub access token below to start. It’s saved only in this browser.</div>
+  <div id="tokenGood" class="banner good" style="display:none">Connected to GitHub ✓ — you can publish photos.</div>
+
+  <!-- TOKEN -->
+  <div class="card">
+    <label for="tok">GitHub access token</label>
+    <input id="tok" type="password" placeholder="github_pat_… (paste once)" autocomplete="off" spellcheck="false">
+    <div class="row" style="margin-top:10px">
+      <button id="saveTok" class="primary">Save &amp; connect</button>
+      <button id="clearTok">Forget token</button>
+    </div>
+    <div id="tokStatus" class="status"></div>
+    <div class="hint">
+      Need a token? <a id="mkToken" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create one here</a> →
+      set <b>Resource owner</b> = your account, <b>Repository access</b> = “Only select repositories” → <b>canvas-medical</b>,
+      and under <b>Permissions → Repository → Contents</b> choose <b>Read and write</b>. Copy the token and paste it above.
+    </div>
+  </div>
+
+  <!-- SLOTS -->
+  <div id="slots" class="grid"></div>
+</div>
+
+<script src="slots.js"></script>
+<script>
+(function(){
+  'use strict';
+  var OWNER='canvasaestheticspenang', REPO='canvas-medical', BRANCH='main';
+  var API='https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/';
+  var TKEY='cm_gh_token';
+  var token = localStorage.getItem(TKEY) || '';
+  var photos = {};
+
+  var $=function(s,el){return (el||document).querySelector(s)};
+  function setBanner(){ $('#tokenWarn').style.display = token?'none':'block'; $('#tokenGood').style.display = token?'block':'none'; }
+  function authHeaders(extra){ var h={Authorization:'Bearer '+token, Accept:'application/vnd.github+json'}; if(extra) for(var k in extra) h[k]=extra[k]; return h; }
+
+  // ---- GitHub helpers ----
+  function ghGet(path){
+    return fetch(API+path+'?ref='+BRANCH+'&t='+Date.now(),{headers:authHeaders(),cache:'no-store'})
+      .then(function(r){ if(r.status===404) return null; if(!r.ok) return r.text().then(function(t){throw new Error(r.status+' '+t)}); return r.json(); });
+  }
+  function ghPut(path, base64, message, sha){
+    var body={message:message, content:base64, branch:BRANCH}; if(sha) body.sha=sha;
+    return fetch(API+path,{method:'PUT',headers:authHeaders({'Content-Type':'application/json'}),body:JSON.stringify(body)})
+      .then(function(r){ if(!r.ok) return r.text().then(function(t){throw new Error(r.status+' '+t)}); return r.json(); });
+  }
+  function b64utf8(str){ return btoa(unescape(encodeURIComponent(str))); }
+  function utf8b64(b64){ return decodeURIComponent(escape(atob(b64.replace(/\s/g,'')))); }
+
+  // ---- image resize (in browser) ----
+  function resize(file, maxPx){
+    return new Promise(function(resolve,reject){
+      var url=URL.createObjectURL(file);
+      var im=new Image();
+      im.onload=function(){
+        var w=im.naturalWidth, h=im.naturalHeight, scale=Math.min(1, maxPx/Math.max(w,h));
+        var cw=Math.round(w*scale), ch=Math.round(h*scale);
+        var c=document.createElement('canvas'); c.width=cw; c.height=ch;
+        var ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,cw,ch); ctx.drawImage(im,0,0,cw,ch);
+        URL.revokeObjectURL(url);
+        c.toBlob(function(blob){
+          var fr=new FileReader();
+          fr.onload=function(){ resolve({dataUrl:fr.result, base64:fr.result.split(',')[1], w:cw, h:ch, bytes:blob.size}); };
+          fr.readAsDataURL(blob);
+        },'image/jpeg',0.85);
+      };
+      im.onerror=function(){ URL.revokeObjectURL(url); reject(new Error('Could not read image')); };
+      im.src=url;
+    });
+  }
+
+  // ---- publish one slot ----
+  function publish(slot, picked, statusEl, btn){
+    if(!token){ statusEl.className='status err'; statusEl.textContent='Save your token first.'; return; }
+    btn.disabled=true; statusEl.className='status busy'; statusEl.textContent='Resizing…';
+    resize(picked, 1500).then(function(out){
+      statusEl.textContent='Uploading image… ('+Math.round(out.bytes/1024)+' KB)';
+      var path='assets/uploads/'+slot.id+'-'+Date.now()+'.jpg';
+      return ghPut(path, out.base64, 'Add photo for '+slot.id+' via admin').then(function(){ return path; });
+    }).then(function(path){
+      statusEl.textContent='Updating site…';
+      return ghGet('photos.json').then(function(cur){
+        var map={}; if(cur && cur.content){ try{ map=JSON.parse(utf8b64(cur.content)); }catch(e){} }
+        map[slot.id]=path;
+        return ghPut('photos.json', b64utf8(JSON.stringify(map,null,2)), 'Set '+slot.id+' photo', cur?cur.sha:undefined).then(function(){ photos=map; });
+      });
+    }).then(function(){
+      statusEl.className='status ok'; statusEl.textContent='Published ✓ live in ~1 min';
+      btn.disabled=false;
+    }).catch(function(err){
+      statusEl.className='status err'; statusEl.textContent='Error: '+err.message;
+      btn.disabled=false;
+    });
+  }
+
+  // ---- remove one slot (revert to placeholder) ----
+  function removePhoto(slot, statusEl){
+    if(!token){ statusEl.className='status err'; statusEl.textContent='Save your token first.'; return; }
+    statusEl.className='status busy'; statusEl.textContent='Removing…';
+    ghGet('photos.json').then(function(cur){
+      var map={}; if(cur && cur.content){ try{ map=JSON.parse(utf8b64(cur.content)); }catch(e){} }
+      delete map[slot.id];
+      return ghPut('photos.json', b64utf8(JSON.stringify(map,null,2)), 'Remove '+slot.id+' photo', cur?cur.sha:undefined).then(function(){ photos=map; });
+    }).then(function(){ statusEl.className='status ok'; statusEl.textContent='Removed ✓'; })
+      .catch(function(err){ statusEl.className='status err'; statusEl.textContent='Error: '+err.message; });
+  }
+
+  // ---- build UI ----
+  function buildSlots(){
+    var host=$('#slots'); host.innerHTML='';
+    (window.CANVAS_SLOTS||[]).forEach(function(slot){
+      var el=document.createElement('div'); el.className='slot';
+      el.innerHTML=
+        '<div class="slot-head"><div class="nm">'+slot.label+'</div><div class="id">'+slot.id+'</div></div>'+
+        '<div class="drop"><span class="dlabel">Drag photo here<br>or click to choose</span>'+
+          (photos[slot.id]?('<img src="'+photos[slot.id]+'?t='+Date.now()+'"><span class="tag">current</span>'):'')+
+        '</div>'+
+        '<div class="slot-foot"><span class="s"></span><div class="row">'+
+          '<button class="rm" style="display:'+(photos[slot.id]?'inline-block':'none')+'">Remove</button>'+
+          '<button class="pub primary" disabled>Publish</button>'+
+        '</div></div>';
+      var drop=$('.drop',el), statusEl=$('.s',el), pubBtn=$('.pub',el), rmBtn=$('.rm',el);
+      var input=document.createElement('input'); input.type='file'; input.accept='image/*'; input.style.display='none'; el.appendChild(input);
+      var picked=null;
+      function preview(file){ picked=file; var u=URL.createObjectURL(file);
+        drop.innerHTML='<img src="'+u+'"><span class="tag">new — not published</span>'; pubBtn.disabled=false;
+        statusEl.className='status'; statusEl.textContent=''; }
+      drop.addEventListener('click',function(){ input.click(); });
+      input.addEventListener('change',function(){ if(input.files[0]) preview(input.files[0]); });
+      drop.addEventListener('dragover',function(e){ e.preventDefault(); drop.classList.add('over'); });
+      drop.addEventListener('dragleave',function(){ drop.classList.remove('over'); });
+      drop.addEventListener('drop',function(e){ e.preventDefault(); drop.classList.remove('over');
+        var f=e.dataTransfer.files[0]; if(f && /^image\//.test(f.type)) preview(f); });
+      pubBtn.addEventListener('click',function(){ if(picked) publish(slot, picked, statusEl, pubBtn); });
+      rmBtn.addEventListener('click',function(){ removePhoto(slot, statusEl); rmBtn.style.display='none'; });
+      host.appendChild(el);
+    });
+  }
+
+  // ---- token UI ----
+  $('#saveTok').addEventListener('click',function(){
+    var v=$('#tok').value.trim(); var st=$('#tokStatus');
+    if(!v){ st.className='status err'; st.textContent='Paste a token first.'; return; }
+    st.className='status busy'; st.textContent='Checking…';
+    token=v;
+    fetch('https://api.github.com/repos/'+OWNER+'/'+REPO,{headers:authHeaders()}).then(function(r){
+      if(!r.ok) throw new Error(r.status===401?'Token rejected (401). Check it has Contents read/write on this repo.':('GitHub said '+r.status));
+      localStorage.setItem(TKEY, token); setBanner();
+      st.className='status ok'; st.textContent='Connected ✓'; $('#tok').value='';
+    }).catch(function(e){ token=''; st.className='status err'; st.textContent=e.message; });
+  });
+  $('#clearTok').addEventListener('click',function(){ localStorage.removeItem(TKEY); token=''; setBanner(); $('#tokStatus').textContent='Token forgotten.'; $('#tokStatus').className='status'; });
+
+  // ---- init: load current photos.json (same origin) ----
+  setBanner();
+  fetch('photos.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():{};})
+    .then(function(m){ photos=m||{}; }).catch(function(){ photos={}; })
+    .finally(function(){ buildSlots(); });
+})();
+</script>
+</body>
+</html>
