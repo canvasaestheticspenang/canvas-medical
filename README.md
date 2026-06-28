@@ -1,6 +1,6 @@
 # CANVAS Medical Clinic — Website
 
-Static marketing site for **CANVAS Medical Clinic**, Gurney Walk, Georgetown, Penang.
+Static marketing site for **CANVAS Medical Clinic**, Gurney Walk, George Town, Penang.
 Served via GitHub Pages at **https://canvas-medical.com**.
 
 ## Structure
