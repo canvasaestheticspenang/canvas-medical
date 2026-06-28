@@ -1,0 +1,150 @@
+name: PR Review & Auto-Merge
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Analyse PR diff
+        id: analyse
+        run: |
+          echo "## PR Stats" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Count changes by type
+          ADDED=$(git diff --diff-filter=A --name-only origin/main...HEAD | wc -l)
+          MODIFIED=$(git diff --diff-filter=M --name-only origin/main...HEAD | wc -l)
+          DELETED=$(git diff --diff-filter=D --name-only origin/main...HEAD | wc -l)
+          TOTAL=$(git diff --shortstat origin/main...HEAD)
+
+          echo "**Changes:** +$ADDED added, ~$MODIFIED modified, -$DELETED deleted" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # File listing
+          echo "**Files changed:**" >> $GITHUB_STEP_SUMMARY
+          git diff --name-status origin/main...HEAD | while read line; do
+            echo "- \`$line\`" >> $GITHUB_STEP_SUMMARY
+          done
+
+          # Check for specific file types
+          CSS_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.css$' || echo 0)
+          HTML_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.html$' || echo 0)
+          JS_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.js$' || echo 0)
+          IMG_COUNT=$(git diff --name-only origin/main...HEAD | grep -cE '\.(jpg|png|webp|gif|svg)$' || echo 0)
+          JSON_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.json$' || echo 0)
+
+          echo "**Breakdown:** CSS: $CSS_COUNT, HTML: $HTML_COUNT, JS: $JS_COUNT, Images: $IMG_COUNT, JSON: $JSON_COUNT" >> $GITHUB_STEP_SUMMARY
+
+          # Log for subsequent steps
+          echo "added=$ADDED" >> $GITHUB_OUTPUT
+          echo "modified=$MODIFIED" >> $GITHUB_OUTPUT
+          echo "deleted=$DELETED" >> $GITHUB_OUTPUT
+          echo "css=$CSS_COUNT" >> $GITHUB_OUTPUT
+          echo "html=$HTML_COUNT" >> $GITHUB_OUTPUT
+          echo "js=$JS_COUNT" >> $GITHUB_OUTPUT
+          echo "images=$IMG_COUNT" >> $GITHUB_OUTPUT
+          echo "json=$JSON_COUNT" >> $GITHUB_OUTPUT
+          echo "total_files=$((ADDED + MODIFIED + DELETED))" >> $GITHUB_OUTPUT
+
+      - name: Check for potential issues
+        id: issues
+        run: |
+          echo "## Potential Issues" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          ISSUES=0
+
+          # Check for large files
+          git diff --name-only origin/main...HEAD | while read f; do
+            if [ -f "$f" ]; then
+              SIZE=$(stat --printf="%s" "$f" 2>/dev/null || echo 0)
+              if [ "$SIZE" -gt 1048576 ]; then
+                ISSUES=$((ISSUES + 1))
+                echo "- ⚠️ **Large file:** \`$f\` ($((SIZE/1024)) KB)" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+          done
+
+          # Check for HTML issues (placeholder images still present)
+          git diff --name-only origin/main...HEAD | grep '\.html$' | while read f; do
+            if [ -f "$f" ] && grep -q 'placeholder\|lorem\|todo\|FIXME\|TODO' "$f" 2>/dev/null; then
+              ISSUES=$((ISSUES + 1))
+              echo "- 🏷️ HTML \`$f\` contains placeholder/todo markers" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          # Check CSS for obvious errors
+          git diff --name-only origin/main...HEAD | grep '\.css$' | while read f; do
+            if [ -f "$f" ]; then
+              # Check for unclosed brackets
+              O=$(grep -c '{' "$f" 2>/dev/null || echo 0)
+              C=$(grep -c '}' "$f" 2>/dev/null || echo 0)
+              if [ "$O" != "$C" ]; then
+                ISSUES=$((ISSUES + 1))
+                echo "- ❌ CSS brace mismatch in \`$f\` ($O open, $C close)" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+          done
+
+          echo "issues=$ISSUES" >> $GITHUB_OUTPUT
+          if [ "$ISSUES" -eq 0 ]; then
+            echo "✅ No issues detected." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Review comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const analyse = ${{ toJSON(steps.analyse.outputs) }};
+            const issues = ${{ toJSON(steps.issues.outputs) }};
+
+            let body = `## 🤖 Hermes Auto-Review
+
+            **Summary:** ${analyse.total_files} file(s) changed (${analyse.added} added, ${analyse.modified} modified, ${analyse.deleted} deleted)
+            | Category | Count |
+            |---|---|
+            | CSS | ${analyse.css} |
+            | HTML | ${analyse.html} |
+            | JS | ${analyse.js} |
+            | Images | ${analyse.images} |
+            | JSON | ${analyse.json} |
+
+            **Issues found:** ${issues.issues}
+            `;
+
+            if (parseInt(issues.issues) > 0) {
+              body += `\n⚠️ **Flagged issues require human review.**`;
+            } else {
+              body += `\n✅ **No issues detected.**`;
+            }
+
+            body += `\n\n---\n*Review by Hermes — canvas-medical.com*`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: body
+            });
+
+      - name: Auto-merge safe PRs
+        if: steps.issues.outputs.issues == '0' && steps.analyse.outputs.total_files <= '10'
+        run: |
+          echo "✅ Safe PR — auto-merging..."
+          gh pr merge ${{ github.event.pull_request.number }} \
+            --squash \
+            --subject "🤖 auto-merge: ${{ github.event.pull_request.title }}" \
+            --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
