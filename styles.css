@@ -196,10 +196,8 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
 .hero-h1 span {
   display:block;
   white-space:nowrap;
-  padding:4px 0 10px;
-  border-bottom:1px solid color-mix(in srgb,var(--accent-strong) 30%,transparent);
+  padding:4px 0;
 }
-.hero-h1 span:last-child { border-bottom:none; padding-bottom:0; }
 .hero-h1 em { font-style:italic; color:var(--accent-strong); }
 .hero-bottom {
   display:flex; align-items:flex-end; justify-content:space-between; gap:48px;
@@ -236,20 +234,6 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
   position:absolute;
   left:50%; top:50%;
   transform:translate(-50%,-50%);
-  width:min(110vw, 1300px); height:auto;
-  opacity:0.06;
-  pointer-events:none;
-  z-index:1;
-  filter:invert(0);
-  animation:fadeIn 1.8s ease .3s both;
-}
-html[data-theme="light"] .hero-watermark { filter:invert(0); opacity:0.05; }
-
-/* hero watermark logo */
-.hero-watermark {
-  position:absolute;
-  left:50%; top:50%;
-  transform:translate(-50%,-50%);
   width:min(55vw, 600px); height:auto;
   opacity:0.06;
   pointer-events:none;
@@ -278,10 +262,22 @@ html[data-theme="light"] .hero-watermark { filter:invert(0); opacity:0.05; }
   .hero-model-img { animation:none; }
 }
 @media (max-width:760px) {
-  .hero-model-img { height:70%; max-width:65%; opacity:.35; }
+  .hero-model-img {
+    height:75%;
+    max-width:52%;
+    bottom:auto;
+    top:50%;
+    transform:translateY(-50%);
+    opacity:.35;
+  }
+  .hero-svg text { display:none; }
 }
 @media (max-width:480px) {
-  .hero-model-img { display:none; }
+  .hero-model-img {
+    height:60%;
+    max-width:65%;
+    opacity:.25;
+  }
 }
 html[data-hero="centered"] #hero { justify-content:center; text-align:center; }
 html[data-hero="centered"] .hero-eyebrow { justify-content:center; }
@@ -547,7 +543,7 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
 @media (max-width:620px) {
   :root { --pad:24px; }
   body { font-size:16px; }
-  #hero { padding:130px var(--pad) 64px; }
+  #hero { padding:88px var(--pad) 64px; }
   .hero-h1 { font-size:clamp(40px,12vw,64px); margin-bottom:36px; }
   .hero-bottom { flex-direction:column; align-items:flex-start; gap:30px; }
   .hero-btns { flex-direction:column; align-items:flex-start; gap:16px; width:100%; }
