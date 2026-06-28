@@ -727,7 +727,7 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 .cs-model-wrap,
 .mw-model-wrap,
 .sc-model-wrap {
-  flex:0 0 42%; aspect-ratio:3/4;
+  flex:0 0 42%; height:240px;
   display:flex; align-items:center; justify-content:flex-end;
   overflow:hidden; pointer-events:none;
 }
