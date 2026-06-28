@@ -164,8 +164,8 @@ nav.scrolled {
 
 /* ============================== HERO ============================== */
 #hero {
-  min-height:100svh; padding:150px var(--pad) 88px;
-  display:flex; flex-direction:column; justify-content:flex-end;
+  min-height:100svh; padding:128px var(--pad) 72px;
+  display:flex; flex-direction:column; justify-content:center;
   position:relative; overflow:hidden;
 }
 .hero-bg {
@@ -188,15 +188,15 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
 }
 .hero-eyebrow::before { content:''; width:26px; height:1px; background:var(--accent-strong); }
 .hero-h1 {
-  font-family:var(--font-display); font-size:clamp(48px,7vw,96px); font-weight:300;
-  line-height:1.02; letter-spacing:-.012em; margin-bottom:48px;
+  font-family:var(--font-display); font-size:clamp(40px,5.2vw,76px); font-weight:300;
+  line-height:1.05; letter-spacing:-.012em; margin-bottom:34px;
   opacity:0; animation:up .9s ease .35s forwards;
-  max-width:760px;
+  max-width:680px;
 }
 .hero-h1 span {
   display:block;
   white-space:nowrap;
-  padding:6px 0 14px;
+  padding:4px 0 10px;
   border-bottom:1px solid color-mix(in srgb,var(--accent-strong) 30%,transparent);
 }
 .hero-h1 span:last-child { border-bottom:none; padding-bottom:0; }
