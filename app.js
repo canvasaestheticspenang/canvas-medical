@@ -4,6 +4,9 @@
 (function () {
   'use strict';
 
+  /* mark document so CSS reveal animations activate */
+  document.documentElement.classList.add('js-loaded');
+
   /* ---------- custom cursor (fine pointers only) ---------- */
   var finePointer = window.matchMedia('(pointer:fine)').matches;
   if (finePointer) {
@@ -71,137 +74,27 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
 
-  /* ---------- RF model — scroll appear/disappear ---------- */
-  var rfModelWrap = document.querySelector('.rf-model-wrap');
-  if (rfModelWrap) {
-    var rfBlock = document.querySelector('.has-model');
-    var rfVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        rfModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    rfVisObs.observe(rfBlock);
-  }
-
-  /* ---------- Stem Cell model — scroll appear/disappear ---------- */
-  var scModelWrap = document.querySelector('.sc-model-wrap');
-  if (scModelWrap) {
-    var scBlock = document.querySelector('.has-model-sc');
-    var scVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        scModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    scVisObs.observe(scBlock);
-  }
-
-  /* ---------- Mental Wellness model — scroll appear/disappear ---------- */
-  var mwModelWrap = document.querySelector('.mw-model-wrap');
-  if (mwModelWrap) {
-    var mwBlock = document.querySelector('.has-model-mw');
-    var mwVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        mwModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    mwVisObs.observe(mwBlock);
-  }
-
-  /* ---------- Contrast Suites model — scroll appear/disappear ---------- */
-  var csModelWrap = document.querySelector('.cs-model-wrap');
-  if (csModelWrap) {
-    var csBlock = document.querySelector('.has-model-cs');
-    var csVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        csModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    csVisObs.observe(csBlock);
-  }
-
-  /* ---------- Body Aesthetics model — scroll appear/disappear ---------- */
-  var baModelWrap = document.querySelector('.ba-model-wrap');
-  if (baModelWrap) {
-    var baBlock = document.querySelector('.has-model-ba');
-    var baVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        baModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    baVisObs.observe(baBlock);
-  }
-
-  /* ---------- Sexual Health model — scroll appear/disappear ---------- */
-  var shModelWrap = document.querySelector('.sh-model-wrap');
-  if (shModelWrap) {
-    var shBlock = document.querySelector('.has-model-sh');
-    var shVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        shModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    shVisObs.observe(shBlock);
-  }
-
-  /* ---------- Regenerative & Wellness model — scroll appear/disappear ---------- */
-  var rwModelWrap = document.querySelector('.rw-model-wrap');
-  if (rwModelWrap) {
-    var rwBlock = document.querySelector('.has-model-rw');
-    var rwVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        rwModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    rwVisObs.observe(rwBlock);
-  }
-
-  /* ---------- Injectables model — scroll appear/disappear ---------- */
-  var injModelWrap = document.querySelector('.inj-model-wrap');
-  if (injModelWrap) {
-    var injBlock = document.querySelector('.inj-block');
-    var injVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        injModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    injVisObs.observe(injBlock);
-  }
-
-  /* ---------- Laser model — scroll appear/disappear ---------- */
-  var laserModelWrap = document.querySelector('.laser-model-wrap');
-  if (laserModelWrap) {
-    var laserBlock = document.querySelector('.has-model-laser');
-    var laserVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        laserModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    laserVisObs.observe(laserBlock);
-  }
-
-  /* ---------- Medical Facials model — scroll appear/disappear ---------- */
-  var mfModelWrap = document.querySelector('.mf-model-wrap');
-  if (mfModelWrap) {
-    var mfBlock = document.querySelector('.has-model-mf');
-    var mfVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        mfModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    mfVisObs.observe(mfBlock);
-  }
-
-  /* ---------- Ultrasound model — scroll appear/disappear ---------- */
-  var usModelWrap = document.querySelector('.us-model-wrap');
-  if (usModelWrap) {
-    var usBlock = document.querySelector('.has-model-us');
-    var usVisObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        usModelWrap.classList.toggle('visible', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    usVisObs.observe(usBlock);
-  }
+  /* ---------- model images — scroll appear/disappear ---------- */
+  [
+    ['.rf-model-wrap',    '.has-model'],
+    ['.sc-model-wrap',    '.has-model-sc'],
+    ['.mw-model-wrap',    '.has-model-mw'],
+    ['.cs-model-wrap',    '.has-model-cs'],
+    ['.ba-model-wrap',    '.has-model-ba'],
+    ['.sh-model-wrap',    '.has-model-sh'],
+    ['.rw-model-wrap',    '.has-model-rw'],
+    ['.inj-model-wrap',   '.inj-block'],
+    ['.laser-model-wrap', '.has-model-laser'],
+    ['.mf-model-wrap',    '.has-model-mf'],
+    ['.us-model-wrap',    '.has-model-us'],
+  ].forEach(function(pair) {
+    var wrap = document.querySelector(pair[0]);
+    var block = document.querySelector(pair[1]);
+    if (!wrap || !block) return;
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { wrap.classList.toggle('visible', e.isIntersecting); });
+    }, { threshold: 0.05 }).observe(block);
+  });
 
   /* ---------- testimonials ---------- */
   var ct = 0;

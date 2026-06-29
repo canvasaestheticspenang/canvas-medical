@@ -450,7 +450,7 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 .book-eye { font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
 .book-title { font-family:var(--font-display); font-size:clamp(40px,5vw,66px); font-weight:300; line-height:1.04; margin-bottom:14px; }
 .book-title em { font-style:italic; color:var(--accent-strong); }
-.book-sub { font-size:13.5px; line-height:1.9; letter-spacing:.02em; color:var(--text-dim); margin-bottom:42px; }
+.book-sub { font-size:13.5px; line-height:1.9; letter-spacing:.02em; color:var(--text-dim); margin-bottom:28px; }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px 16px; margin-bottom:8px; text-align:left; }
 .f-field { display:flex; flex-direction:column; gap:8px; }
 .f-field.full { grid-column:1/-1; }
@@ -505,13 +505,14 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
 @keyframes up { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-.reveal { opacity:0; transform:translateY(24px); transition:opacity .85s ease, transform .85s ease; }
-.reveal.on { opacity:1; transform:translateY(0); }
+.reveal { transition:opacity .85s ease, transform .85s ease; }
+.js-loaded .reveal { opacity:0; transform:translateY(24px); }
+.js-loaded .reveal.on { opacity:1; transform:translateY(0); }
 .d1 { transition-delay:.08s; } .d2 { transition-delay:.16s; } .d3 { transition-delay:.24s; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
-  .reveal { opacity:1 !important; transform:none !important; }
+  .reveal, .js-loaded .reveal, .js-loaded .reveal.on { opacity:1 !important; transform:none !important; }
   .hero-eyebrow, .hero-h1, .hero-bottom, .hero-badge { opacity:1 !important; animation:none !important; }
 }
 
