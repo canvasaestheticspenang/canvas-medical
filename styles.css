@@ -89,14 +89,14 @@ a { color:inherit; }
 .skip-link:focus { top:14px; }
 
 /* ============================== NAV ============================== */
-nav {
+#nav {
   position:fixed; top:0; left:0; right:0; z-index:600;
   padding:22px var(--pad);
   display:flex; align-items:center; justify-content:space-between;
   transition:padding .4s, background .4s, border-color .4s;
   border-bottom:1px solid transparent;
 }
-nav.scrolled {
+#nav.scrolled {
   padding:14px var(--pad);
   background:color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter:blur(22px) saturate(1.1);
@@ -529,7 +529,7 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   #hero { padding:100px var(--pad) 56px; }
   .section { padding:84px var(--pad); }
   #location, #book { padding:92px var(--pad); }
-  nav { padding:18px var(--pad); }
+  #nav { padding:18px var(--pad); }
 }
 @media (max-width:920px) {
   :root { --pad:40px; }
@@ -552,8 +552,8 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
 @media (max-width:620px) {
   :root { --pad:24px; }
   body { font-size:16px; }
-  nav { padding:14px var(--pad); }
-  nav.scrolled { padding:12px var(--pad); }
+  #nav { padding:14px var(--pad); }
+  #nav.scrolled { padding:12px var(--pad); }
   .mobile-menu-close { top:18px; }
   #hero { padding:60px var(--pad) 44px; }
   .hero-h1 { font-size:clamp(40px,12vw,64px); margin-bottom:36px; }
