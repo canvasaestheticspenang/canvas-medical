@@ -383,6 +383,8 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 .loc-value { font-size:13.5px; letter-spacing:.01em; line-height:1.7; color:var(--text); }
 .loc-value a { color:var(--text); text-decoration:none; border-bottom:1px solid var(--border); transition:border-color .3s; }
 .loc-value a:hover { border-color:var(--accent-strong); }
+.loc-value a.loc-directions { display:inline-block; margin-top:12px; color:var(--accent-strong); border-bottom-color:transparent; font-size:12px; letter-spacing:.04em; }
+.loc-value a.loc-directions:hover { border-bottom-color:var(--accent-strong); }
 
 /* ============================== GALLERY ============================== */
 .gallery-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:46px; gap:40px; }
