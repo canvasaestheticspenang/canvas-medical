@@ -969,6 +969,45 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 .tp-faq { max-width:920px; margin:0 auto; }
 .tp-faq .faq-list { margin-top:8px; }
 
+/* physician pill links (treatment-page "care led by" block) */
+.tp-docrow { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+.tp-docrow a {
+  font-size:13px; letter-spacing:.04em; color:var(--text-dim); text-decoration:none;
+  border:1px solid var(--border); border-radius:999px; padding:10px 20px;
+  transition:border-color .3s, color .3s, background .3s;
+}
+.tp-docrow a:hover { border-color:var(--accent-strong); color:var(--text); background:var(--surface); }
+.tp-docrow a.all { color:var(--accent-strong); }
+
+/* trust strip — credentials at a glance */
+.tp-trust {
+  list-style:none; display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  margin-top:30px; border:1px solid var(--border); background:var(--border);
+}
+.tp-trust li { background:var(--surface); padding:24px 18px; text-align:center; }
+.tp-trust strong {
+  display:block; font-family:var(--font-display); font-style:italic; font-weight:400;
+  font-size:20px; color:var(--accent-strong); margin-bottom:6px;
+}
+.tp-trust span { font-size:12px; letter-spacing:.06em; color:var(--text-dim); }
+
+/* Google reviews proof CTA */
+.tp-proof { margin-top:60px; text-align:center; }
+.tp-proof p {
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--text-faint); margin-bottom:12px;
+}
+.tp-proof a {
+  font-family:var(--font-display); font-style:italic; font-size:23px;
+  color:var(--accent-strong); text-decoration:none;
+  border-bottom:1px solid transparent; transition:border-color .3s;
+}
+.tp-proof a:hover { border-color:var(--accent-strong); }
+
+@media (max-width:760px) {
+  .tp-trust { grid-template-columns:repeat(2,1fr); }
+}
+
 @media (max-width:760px) {
   .tp-hero { padding:118px var(--pad) 56px; }
   .tp-body { padding:64px var(--pad); }
