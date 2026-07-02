@@ -2,3 +2,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# Personal vault — do NOT publish
+/Obsidian/
+/axrkr-pjq6e/
+/tools/
+/node_modules/
