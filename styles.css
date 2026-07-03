@@ -88,6 +88,12 @@ a { color:inherit; }
 }
 .skip-link:focus { top:14px; }
 
+.sr-only {
+  position:absolute !important; width:1px !important; height:1px !important;
+  padding:0 !important; margin:-1px !important; overflow:hidden !important;
+  clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important;
+}
+
 /* ============================== NAV ============================== */
 #nav {
   position:fixed; top:0; left:0; right:0; z-index:600;
@@ -521,7 +527,7 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 #contact { padding:88px var(--pad); border-top:1px solid var(--border); display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:60px; background:var(--panel); }
 .contact-logo img { width:160px; height:auto; margin-bottom:18px; filter:invert(var(--invert-logo)); }
 .contact-tag { font-size:15px; line-height:1.85; letter-spacing:.015em; color:var(--text-dim); max-width:280px; }
-.c-col h4 { font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+.c-col h3 { font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
 .c-col p, .c-col a { display:block; font-size:15px; line-height:2; letter-spacing:.015em; color:var(--text-faint); text-decoration:none; transition:color .3s; }
 .c-col a:hover { color:var(--text); }
 .c-gap { margin-top:20px; }
