@@ -1050,3 +1050,15 @@ a.t-card:focus-visible { outline:2px solid var(--accent-strong); outline-offset:
 .inj-toggle::after  { left:8px; top:0; width:1px; height:18px; }
 .inj-block[open] .inj-toggle::after { transform:scaleY(0); }
 .inj-block[open] .inj-summary { margin-bottom:34px; }
+
+/* ============================================================
+   UTILITY CLASSES (replaces repeated inline styles)
+   ============================================================ */
+.team-prof-link { display:inline-block; margin-top:6px; text-decoration:none; }
+.tp-nopb { padding-bottom:0; }
+.tp-nopt { padding-top:0; }
+.tp-faq-h { margin-bottom:38px; }
+.testi-note { text-align:center; font-size:11px; letter-spacing:.08em; opacity:.6; margin-top:-12px; margin-bottom:20px; }
+.testi-note a { color:inherit; text-decoration:underline; }
+.blog-date { color:var(--accent-strong); font-size:13px; letter-spacing:.04em; margin-top:14px; }
+.form-success-link { color:var(--accent-strong); }
