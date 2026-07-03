@@ -1054,7 +1054,8 @@ a.t-card:focus-visible { outline:2px solid var(--accent-strong); outline-offset:
 /* ============================================================
    UTILITY CLASSES (replaces repeated inline styles)
    ============================================================ */
-.team-prof-link { display:inline-block; margin-top:6px; text-decoration:none; }
+.team-prof-link { display:inline-block; margin-top:6px; text-decoration:none; color:var(--accent-strong); font-size:13px; letter-spacing:.04em; transition:opacity .3s; }
+.team-prof-link:hover { opacity:.75; }
 .tp-nopb { padding-bottom:0; }
 .tp-nopt { padding-top:0; }
 .tp-faq-h { margin-bottom:38px; }
