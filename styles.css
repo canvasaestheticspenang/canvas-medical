@@ -871,15 +871,6 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
   .tp-block { margin-bottom:48px; }
 }
 
-/* treatment-guide link strip on the home services section */
-.svc-guides { display:flex; flex-wrap:wrap; gap:12px; margin:38px 0 8px; }
-.svc-guides a {
-  font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim);
-  text-decoration:none; border:1px solid var(--border); border-radius:999px; padding:10px 20px;
-  transition:border-color .3s, color .3s, background .3s;
-}
-.svc-guides a:hover { border-color:var(--accent-strong); color:var(--text); background:var(--surface); }
-
 /* ============================================================
    TREATMENT CARD GRID — anchor reset + injectables collapsible
    ============================================================ */
