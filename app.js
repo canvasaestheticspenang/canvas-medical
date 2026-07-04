@@ -184,7 +184,18 @@
     if (!el) return; var wrap = el.closest('.f-field');
     if (wrap) wrap.classList.toggle('invalid', bad);
   }
+  function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+  function localISO(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+
   if (form) {
+    // limit the date picker to today … +90 days
+    var dateEl = field('prefDate');
+    if (dateEl) {
+      var now = new Date();
+      dateEl.min = localISO(now);
+      var horizon = new Date(now); horizon.setDate(horizon.getDate() + 90);
+      dateEl.max = localISO(horizon);
+    }
     form.querySelectorAll('input,select').forEach(function (el) {
       el.addEventListener('input', function () { markInvalid(el, false); });
       el.addEventListener('change', function () { markInvalid(el, false); });
@@ -193,33 +204,48 @@
       e.preventDefault();
       var fn = field('firstName'), ln = field('lastName'),
           ph = field('phone'), em = field('email'),
-          doc = field('physician'), tr = field('treatment');
-      var ok = true;
-      if (!fn.value.trim()) { markInvalid(fn, true); ok = false; }
-      if (!ph.value.trim() || ph.value.replace(/\D/g, '').length < 7) { markInvalid(ph, true); ok = false; }
-      if (em.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) { markInvalid(em, true); ok = false; }
-      if (!tr.value) { markInvalid(tr, true); ok = false; }
-      if (!ok) return;
+          doc = field('physician'), tr = field('treatment'),
+          dt = field('prefDate'), tm = field('prefTime');
+      var firstBad = null;
+      function bad(el) { markInvalid(el, true); if (!firstBad) firstBad = el; }
+      if (!fn.value.trim()) bad(fn);
+      if (!ph.value.trim() || ph.value.replace(/\D/g, '').length < 7) bad(ph);
+      if (em.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) bad(em);
+      if (!tr.value) bad(tr);
+      if (!dt.value || dt.value < dt.min) bad(dt);
+      if (firstBad) {
+        firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstBad.focus({ preventScroll: true });
+        return;
+      }
 
       var treatment = tr.value;
       var line = MEDICAL_TREATMENTS.indexOf(treatment) !== -1 ? LINES.medical : LINES.aesthetics;
 
+      var niceDate = new Date(dt.value + 'T00:00:00').toLocaleDateString('en-GB',
+        { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+
       var msg = '';
-      msg += 'Hello CANVAS, I would like to request a consultation.\n\n';
-      msg += 'Name: ' + fn.value.trim() + ' ' + ln.value.trim() + '\n';
-      msg += 'Phone: ' + ph.value.trim() + '\n';
-      if (em.value.trim()) msg += 'Email: ' + em.value.trim() + '\n';
-      msg += 'Treatment: ' + treatment + '\n';
-      if (doc.value && doc.value.indexOf('No preference') === -1) msg += 'Preferred physician: ' + doc.value + '\n';
-      msg += '\nSent from canvasmedical website.';
+      msg += 'Hello CANVAS, I’d like to book a consultation.\n\n';
+      msg += '*Name:* ' + (fn.value.trim() + ' ' + ln.value.trim()).trim() + '\n';
+      msg += '*Phone:* ' + ph.value.trim() + '\n';
+      if (em.value.trim()) msg += '*Email:* ' + em.value.trim() + '\n';
+      msg += '*Treatment:* ' + treatment + '\n';
+      if (doc.value && doc.value.indexOf('No preference') === -1) msg += '*Preferred physician:* ' + doc.value + '\n';
+      msg += '*Preferred date:* ' + niceDate + '\n';
+      msg += '*Preferred time:* ' + (tm.value || 'Flexible (10am–10pm)') + '\n';
+      msg += '\nSent from the CANVAS website.';
 
       var url = 'https://wa.me/' + line + '?text=' + encodeURIComponent(msg);
-      window.open(url, '_blank');
 
-      // success state
+      // success state first, so the retry link is ready even if the popup is blocked
+      var retry = document.getElementById('waRetry');
+      if (retry) retry.href = url;
       var success = document.getElementById('formSuccess');
       var wrap = document.getElementById('formWrap');
       if (success && wrap) { wrap.style.display = 'none'; success.classList.add('show'); }
+
+      window.open(url, '_blank');
     });
   }
 })();

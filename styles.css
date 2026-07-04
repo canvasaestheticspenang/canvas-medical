@@ -511,6 +511,10 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 .f-field input::placeholder { color:var(--text-faint); }
 .f-field input:focus, .f-field select:focus { border-bottom-color:var(--accent-strong); }
 .f-field select option { background:var(--panel); color:var(--text); }
+.f-field input[type="date"] { color-scheme:dark; min-height:49px; text-align:left; }
+html[data-theme="light"] .f-field input[type="date"] { color-scheme:light; }
+.f-field input[type="date"]::-webkit-calendar-picker-indicator { opacity:.55; cursor:pointer; }
+.f-field input[type="date"]::-webkit-date-and-time-value { text-align:left; }
 .f-field.invalid input, .f-field.invalid select { border-bottom-color:#d9534f; }
 .f-err { font-size:10px; letter-spacing:.04em; color:#d9534f; min-height:0; opacity:0; transition:opacity .25s; }
 .f-field.invalid .f-err { opacity:1; }
