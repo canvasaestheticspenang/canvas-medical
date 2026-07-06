@@ -7,28 +7,51 @@
   /* mark document so CSS reveal animations activate */
   document.documentElement.classList.add('js-loaded');
 
-  /* ---------- custom cursor (fine pointers only) ---------- */
+  /* ---------- custom cursor (fine pointers only, hero section only) ---------- */
   var finePointer = window.matchMedia('(pointer:fine)').matches;
   if (finePointer) {
     var cur = document.getElementById('cur'),
-        cr  = document.getElementById('cur-r');
-    var mx = 0, my = 0, rx = 0, ry = 0, started = false;
+        cr  = document.getElementById('cur-r'),
+        hero = document.getElementById('hero');
+    var mx = 0, my = 0, rx = 0, ry = 0, started = false, cursorActive = false;
+
+    function enableCursor() {
+      if (cursorActive) return;
+      cursorActive = true;
+      if (cur) cur.style.display = 'block';
+      if (cr) cr.style.display = 'block';
+    }
+    function disableCursor() {
+      cursorActive = false;
+      if (cur) cur.style.display = 'none';
+      if (cr) cr.style.display = 'none';
+    }
+    disableCursor();
+
+    if (hero) {
+      hero.addEventListener('mouseenter', enableCursor);
+      hero.addEventListener('mouseleave', disableCursor);
+    }
+
     document.addEventListener('mousemove', function (e) {
       mx = e.clientX; my = e.clientY;
       if (cur) { cur.style.left = mx + 'px'; cur.style.top = my + 'px'; }
-      if (!started) { started = true; loop(); }
+      if (!started && cursorActive) { started = true; loop(); }
     });
     function loop() {
+      if (!cursorActive) { started = false; return; }
       rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
       if (cr) { cr.style.left = rx + 'px'; cr.style.top = ry + 'px'; }
       requestAnimationFrame(loop);
     }
     document.addEventListener('mouseover', function (e) {
+      if (!cursorActive) return;
       if (e.target.closest('a,button,.dot,.faq-q,input,select,image-slot')) {
         if (cr) { cr.style.width = '48px'; cr.style.height = '48px'; }
       }
     });
     document.addEventListener('mouseout', function (e) {
+      if (!cursorActive) return;
       if (e.target.closest('a,button,.dot,.faq-q,input,select,image-slot')) {
         if (cr) { cr.style.width = '30px'; cr.style.height = '30px'; }
       }
@@ -238,14 +261,26 @@
 
       var url = 'https://wa.me/' + line + '?text=' + encodeURIComponent(msg);
 
-      // success state first, so the retry link is ready even if the popup is blocked
+      // keep the retry link ready in case the popup is blocked
       var retry = document.getElementById('waRetry');
       if (retry) retry.href = url;
+
+      // loading state on the submit button while the WhatsApp handoff opens
+      var submitBtn = form.querySelector('.btn-submit');
+      if (submitBtn) { submitBtn.classList.add('is-loading'); submitBtn.disabled = true; }
+
+      // open within the click gesture so the popup is not blocked
+      window.open(url, '_blank');
+
       var success = document.getElementById('formSuccess');
       var wrap = document.getElementById('formWrap');
-      if (success && wrap) { wrap.style.display = 'none'; success.classList.add('show'); }
-
-      window.open(url, '_blank');
+      function reveal() {
+        if (submitBtn) { submitBtn.classList.remove('is-loading'); submitBtn.disabled = false; }
+        if (success && wrap) { wrap.style.display = 'none'; success.classList.add('show'); }
+      }
+      // brief, motivated feedback; skip the delay when motion is reduced
+      if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) reveal();
+      else setTimeout(reveal, 650);
     });
   }
 })();

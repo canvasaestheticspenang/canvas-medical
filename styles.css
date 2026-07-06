@@ -73,7 +73,8 @@ a { color:inherit; }
 /* ---------- custom cursor (fine pointers only) ---------- */
 #cur, #cur-r { display:none; }
 @media (pointer:fine) {
-  html[data-cursor="on"] body { cursor:none; }
+  html[data-cursor="on"] #hero { cursor:none; }
+  html[data-cursor="on"] #hero * { cursor:none; }
   html[data-cursor="on"] #cur {
     display:block; position:fixed; width:5px; height:5px; background:var(--text);
     border-radius:50%; pointer-events:none; z-index:var(--z-cursor);
@@ -370,7 +371,7 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 /* ============================== SERVICES ============================== */
 .services-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:58px; gap:48px; }
 .services-intro { font-size:16px; line-height:1.85; letter-spacing:.015em; color:var(--text-dim); max-width:400px; flex-shrink:0; }
-.grid-svc { display:grid; grid-template-columns:repeat(4,1fr); border-left:1px solid var(--border); border-top:1px solid var(--border); }
+.grid-svc { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-flow:dense; border-left:1px solid var(--border); border-top:1px solid var(--border); }
 .t-card {
   border-right:1px solid var(--border); border-bottom:1px solid var(--border);
   padding:40px 32px 36px; transition:background .35s, box-shadow .35s; position:relative; overflow:hidden;
@@ -392,6 +393,25 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 .t-link::after { content:'→'; }
 .t-card.cta .t-name { font-size:26px; margin-bottom:16px; }
 .t-card.cta .btn-fill { align-self:flex-start; }
+
+/* Grid rhythm — break the uniform card matrix with two flagship tiles.
+   grid-auto-flow:dense backfills the gaps the spans create. */
+.t-card.feature {
+  grid-column:span 2; grid-row:span 2; padding:48px 44px;
+  background:
+    radial-gradient(120% 120% at 100% 0%, color-mix(in srgb,var(--accent-strong) 9%,transparent), transparent 58%),
+    color-mix(in srgb,var(--accent-strong) 4%,transparent);
+}
+.t-card.feature .t-icon { width:52px; height:52px; margin-bottom:0; }
+.t-card.feature .t-name { font-size:clamp(30px,3vw,42px); margin-top:auto; padding-top:34px; margin-bottom:16px; }
+.t-card.feature .t-desc { font-size:15px; line-height:1.9; max-width:44ch; }
+.t-card.wide { grid-column:span 2; }
+.t-card.wide .t-desc { max-width:56ch; }
+.t-tag {
+  align-self:flex-start; font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--accent-strong); padding:6px 12px; margin-bottom:26px;
+  border:1px solid color-mix(in srgb,var(--accent-strong) 34%,transparent); border-radius:2px;
+}
 
 /* ============================== PHILOSOPHY ============================== */
 .phil-wrap { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
@@ -534,9 +554,21 @@ html[data-theme="light"] .f-field input[type="date"] { color-scheme:light; }
 .f-field.invalid input, .f-field.invalid select { border-bottom-color:#d9534f; }
 .f-err { font-size:10px; letter-spacing:.04em; color:#d9534f; min-height:0; opacity:0; transition:opacity .25s; }
 .f-field.invalid .f-err { opacity:1; }
-.btn-submit { width:100%; margin-top:22px; padding:17px; background:var(--text); color:var(--on-accent); font-family:'Jost',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; border:none; cursor:pointer; transition:opacity .3s, transform .3s, box-shadow .3s; display:flex; align-items:center; justify-content:center; gap:10px; }
+.btn-submit { position:relative; width:100%; margin-top:22px; padding:17px; background:var(--text); color:var(--on-accent); font-family:'Jost',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; border:none; cursor:pointer; transition:opacity .3s, transform .3s, box-shadow .3s; display:flex; align-items:center; justify-content:center; gap:10px; }
 .btn-submit:hover { opacity:.92; transform:translateY(-2px); box-shadow:0 16px 34px -14px rgba(0,0,0,.45); }
+.btn-submit:active { transform:translateY(0); box-shadow:none; }
 .btn-submit svg { width:15px; height:15px; }
+/* loading state — spinner replaces the icon+label while the handoff opens */
+.btn-submit .spinner { display:none; }
+.btn-submit.is-loading { pointer-events:none; opacity:.85; transform:none; box-shadow:none; }
+.btn-submit.is-loading svg, .btn-submit.is-loading .btn-submit-label { visibility:hidden; }
+.btn-submit.is-loading .spinner {
+  display:block; position:absolute; top:50%; left:50%; width:18px; height:18px; margin:-9px 0 0 -9px;
+  border:2px solid color-mix(in srgb,var(--on-accent) 35%,transparent);
+  border-top-color:var(--on-accent); border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
 .form-note { margin-top:16px; font-size:11px; letter-spacing:.03em; color:var(--text-faint); }
 .form-success { display:none; flex-direction:column; align-items:center; gap:18px; padding:30px 0; }
 .form-success.show { display:flex; animation:fadeIn .5s ease; }
@@ -603,6 +635,9 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
 @media (max-width:1180px) {
   :root { --pad:48px; }
   .grid-svc { grid-template-columns:repeat(2,1fr); }
+  /* on two columns the flagship tiles read as full-width bands */
+  .t-card.feature { grid-column:span 2; grid-row:span 1; padding:40px 34px; }
+  .t-card.feature .t-name { padding-top:24px; }
   .team-grid { grid-template-columns:repeat(2,1fr); gap:32px 24px; }
 }
 @media (max-width:1024px) {
@@ -646,6 +681,10 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   .hero-watermark { width:min(64vw,300px); }
   .services-head { flex-direction:column; align-items:flex-start; gap:22px; }
   .grid-svc { grid-template-columns:1fr; }
+  /* single column — collapse the flagship spans back to normal cards */
+  .t-card.feature, .t-card.wide { grid-column:auto; grid-row:auto; }
+  .t-card.feature { padding:40px 32px 36px; }
+  .t-card.feature .t-name { margin-top:0; padding-top:0; }
   .gallery-head { flex-direction:column; align-items:flex-start; gap:20px; }
   .gallery-grid { grid-template-columns:1fr; grid-template-rows:none; }
   .gallery-grid .g-item, .gallery-grid .g-item:first-child { grid-row:auto; grid-column:auto; aspect-ratio:4/3; }
@@ -932,3 +971,22 @@ a.t-card:focus-visible { outline:2px solid var(--accent-strong); outline-offset:
 .testi-note a { color:inherit; text-decoration:underline; }
 .blog-date { color:var(--accent-strong); font-size:13px; letter-spacing:.04em; margin-top:14px; }
 .form-success-link { color:var(--accent-strong); }
+
+/* ============================================================
+   404 — not found (reuses nav / footer / buttons)
+   ============================================================ */
+.err-wrap {
+  min-height:100svh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center;
+  padding:160px var(--pad) 110px; position:relative;
+}
+.err-eyebrow { font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--text-dim); margin-bottom:22px; }
+.err-code { font-family:var(--font-display); font-weight:300; font-size:clamp(96px,20vw,220px); line-height:.9; letter-spacing:.02em; color:var(--accent-strong); }
+.err-title { font-family:var(--font-display); font-weight:300; font-size:clamp(28px,4vw,46px); line-height:1.14; margin:20px 0 18px; }
+.err-body { font-size:16px; line-height:1.85; color:var(--text-dim); max-width:52ch; margin-bottom:36px; }
+.err-links { display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:center; }
+@media (max-width:620px) {
+  .err-wrap { padding:120px var(--pad) 80px; }
+  .err-links { flex-direction:column; gap:16px; width:100%; }
+  .err-links .btn-fill { width:100%; text-align:center; }
+}
