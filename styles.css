@@ -27,23 +27,35 @@
   --on-accent:#0a0a0a;
   --legib:rgba(7,7,7,0.72);
   --shadow:0 30px 80px -40px rgba(0,0,0,0.8);
+
+  /* semantic z-index scale (low → high) — no raw magic numbers elsewhere */
+  --z-fab: 40;         /* floating whatsapp button */
+  --z-nav: 50;         /* sticky header */
+  --z-overlay: 60;     /* full-screen mobile menu */
+  --z-nav-open: 65;    /* header lifted above the open overlay */
+  --z-toggle: 70;      /* hamburger / menu toggle */
+  --z-skip: 80;        /* skip-to-content link */
+  --z-modal: 90;       /* reserved for dialogs */
+  --z-cursor: 100;     /* custom cursor, always on top */
 }
 
 html[data-theme="light"] {
-  --bg:#f5f3ef;
-  --panel:#ece9e3;
-  --surface:#faf8f4;
-  --border:rgba(20,18,15,0.13);
-  --border-soft:rgba(20,18,15,0.07);
-  --text:#1b1a18;
-  --text-dim:#5d5950;
-  --text-faint:#8b867c;
+  /* neutral gallery white — chroma 0. Warmth is carried by the champagne
+     accent + serif type + imagery, never by the body background. */
+  --bg: oklch(0.97 0 0);
+  --panel: oklch(0.94 0 0);
+  --surface: oklch(0.99 0 0);
+  --border:rgba(0,0,0,0.12);
+  --border-soft:rgba(0,0,0,0.06);
+  --text: oklch(0.22 0 0);
+  --text-dim: oklch(0.44 0 0);
+  --text-faint: oklch(0.60 0 0);
   --accent: oklch(0.55 calc(var(--accent-c) * 2.2) var(--accent-h));
   --accent-strong: oklch(0.46 calc(var(--accent-c) * 2.4) var(--accent-h));
   --invert-logo:1;
-  --on-accent:#faf8f4;
-  --legib:rgba(245,243,239,0.88);
-  --shadow:0 30px 70px -45px rgba(60,55,45,0.45);
+  --on-accent: oklch(0.99 0 0);
+  --legib:rgba(255,255,255,0.88);
+  --shadow:0 30px 70px -45px rgba(0,0,0,0.22);
 }
 
 html { scroll-behavior:smooth; }
@@ -64,13 +76,13 @@ a { color:inherit; }
   html[data-cursor="on"] body { cursor:none; }
   html[data-cursor="on"] #cur {
     display:block; position:fixed; width:5px; height:5px; background:var(--text);
-    border-radius:50%; pointer-events:none; z-index:9999;
+    border-radius:50%; pointer-events:none; z-index:var(--z-cursor);
     transform:translate(-50%,-50%); transition:transform .15s; mix-blend-mode:difference;
   }
   html[data-cursor="on"] #cur-r {
     display:block; position:fixed; width:30px; height:30px;
     border:1px solid color-mix(in srgb, var(--text) 28%, transparent); border-radius:50%;
-    pointer-events:none; z-index:9998; transform:translate(-50%,-50%);
+    pointer-events:none; z-index:calc(var(--z-cursor) - 1); transform:translate(-50%,-50%);
     transition:width .3s,height .3s,border-color .3s;
   }
   html[data-cursor="on"] a, html[data-cursor="on"] button,
@@ -82,7 +94,7 @@ a { color:inherit; }
 :focus-visible { outline:2px solid var(--accent-strong); outline-offset:3px; }
 .skip-link {
   position:fixed; top:-60px; left:50%; transform:translateX(-50%);
-  background:var(--text); color:var(--bg); padding:12px 22px; z-index:9000;
+  background:var(--text); color:var(--bg); padding:12px 22px; z-index:var(--z-skip);
   font-size:11px; letter-spacing:.18em; text-transform:uppercase; transition:top .3s;
   text-decoration:none; border-radius:2px;
 }
@@ -96,7 +108,7 @@ a { color:inherit; }
 
 /* ============================== NAV ============================== */
 #nav {
-  position:fixed; top:0; left:0; right:0; z-index:600;
+  position:fixed; top:0; left:0; right:0; z-index:var(--z-nav);
   padding:22px var(--pad);
   display:flex; align-items:center; justify-content:space-between;
   transition:padding .4s, background .4s, border-color .4s;
@@ -152,7 +164,7 @@ html:not([data-theme="light"]) .tt-moon { opacity:1; transform:rotate(0deg) scal
 .nav-book:hover { opacity:.9; transform:translateY(-1px); box-shadow:0 12px 26px -12px rgba(0,0,0,.4); }
 .nav-toggle {
   display:flex; flex-direction:column; gap:5px; background:none; border:none;
-  padding:8px; z-index:700; align-items:center; justify-content:center;
+  padding:8px; z-index:var(--z-toggle); align-items:center; justify-content:center;
   min-width:44px; min-height:44px; cursor:pointer;
 }
 .nav-toggle span { display:block; width:24px; height:1px; background:var(--text); transition:transform .35s, opacity .35s; }
@@ -163,13 +175,13 @@ html:not([data-theme="light"]) .tt-moon { opacity:1; transform:rotate(0deg) scal
 /* lift the nav above the open menu overlay so the morphed toggle stays usable;
    the overlay's own close button becomes redundant there */
 @supports selector(:has(*)) {
-  #nav:has(+ .mobile-menu.open) { z-index:660; }
+  #nav:has(+ .mobile-menu.open) { z-index:var(--z-nav-open); }
   .mobile-menu-close { display:none; }
 }
 
 /* mobile menu overlay */
 .mobile-menu {
-  position:fixed; inset:0; z-index:650; background:var(--bg);
+  position:fixed; inset:0; z-index:var(--z-overlay); background:var(--bg);
   display:flex; flex-direction:column; justify-content:center; align-items:center; gap:8px;
   opacity:0; visibility:hidden; transition:opacity .4s, visibility .4s;
 }
@@ -349,7 +361,11 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 .sec-label { font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--text-dim); margin-bottom:16px; display:flex; align-items:center; gap:14px; }
 .sec-label::before { content:''; width:20px; height:1px; background:var(--accent-strong); flex-shrink:0; }
 .sec-title { font-family:var(--font-display); font-size:clamp(36px,4.4vw,58px); font-weight:300; line-height:1.12; letter-spacing:.02em; }
+/* Signature emphasis — reserved for anchor sections (philosophy, book CTA). */
 .sec-title em { font-style:italic; color:var(--accent-strong); }
+/* Quieter emphasis for the remaining headers: upright, heavier serif weight,
+   accent colour. Breaks the uniform italic-serif reflex while keeping voice. */
+.sec-title .hl { font-style:normal; font-weight:400; color:var(--accent-strong); }
 
 /* ============================== SERVICES ============================== */
 .services-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:58px; gap:48px; }
@@ -546,7 +562,7 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   position:fixed;
   right:calc(24px + env(safe-area-inset-right, 0px));
   bottom:calc(24px + env(safe-area-inset-bottom, 0px));
-  z-index:550;
+  z-index:var(--z-fab);
   width:56px; height:56px; border-radius:50%; background:#25D366; color:#fff;
   display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
   text-decoration:none; transition:transform .3s; transform:translateY(120px);
@@ -685,7 +701,13 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
     radial-gradient(120% 120% at 50% 32%, color-mix(in srgb,var(--accent-strong) 9%,transparent), transparent 62%),
     var(--surface);
 }
-.ph-mark { width:62px; height:62px; color:var(--accent-strong); opacity:.5; flex:none; }
+/* soft champagne monogram in place of the old crosshair — reads as an
+   intentional toned surface block, not a "photo coming soon" placeholder. */
+.ph-mono {
+  font-family:var(--font-display); font-weight:400; font-style:italic;
+  font-size:clamp(52px,8vw,88px); line-height:1; letter-spacing:.02em;
+  color:var(--accent-strong); opacity:.18; flex:none;
+}
 .ph-name {
   font-family:var(--font-display); font-weight:300; font-size:clamp(18px,2vw,23px);
   line-height:1.1; letter-spacing:.01em; color:var(--text-dim);
@@ -694,9 +716,9 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   font-family:'Jost', sans-serif; font-size:10px; letter-spacing:.22em;
   text-transform:uppercase; color:var(--text-faint);
 }
-/* decorative-only placeholders (hero backdrop, location under map svg) */
+/* decorative-only placeholders (hero backdrop) carry no monogram */
 .ph-bare { background:transparent; }
-.ph-bare .ph-mark { opacity:.6; }
+.ph-bare .ph-mono { display:none; }
 .ph-loc { opacity:.5; }
 
 /* uploaded slot photos (replace placeholders, fill their container) */
