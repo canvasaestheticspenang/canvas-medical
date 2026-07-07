@@ -127,7 +127,7 @@ a { color:inherit; }
 .nav-logo img { width:172px; height:auto; filter:invert(var(--invert-logo)); transition:filter .5s; }
 .nav-links {
   position:absolute; left:50%; transform:translateX(-50%);
-  display:none; gap:38px; list-style:none;
+  display:flex; gap:38px; list-style:none;
 }
 .nav-links a {
   font-size:13px; letter-spacing:.18em; text-transform:uppercase;
@@ -166,7 +166,7 @@ html:not([data-theme="light"]) .tt-moon { opacity:1; transform:rotate(0deg) scal
 }
 .nav-book:hover { opacity:.9; transform:translateY(-1px); box-shadow:0 12px 26px -12px rgba(0,0,0,.4); }
 .nav-toggle {
-  display:flex; flex-direction:column; gap:5px; background:none; border:none;
+  display:none; flex-direction:column; gap:5px; background:none; border:none;
   padding:8px; z-index:var(--z-toggle); align-items:center; justify-content:center;
   min-width:44px; min-height:44px; cursor:pointer;
 }
@@ -214,7 +214,9 @@ html:not([data-theme="light"]) .tt-moon { opacity:1; transform:rotate(0deg) scal
 
 /* ============================== HERO ============================== */
 #hero {
-  min-height:100svh; padding:128px var(--pad) 72px;
+  /* cap the height so unusually tall viewports don't strand the content
+     in a sea of whitespace */
+  min-height:min(100svh, 1100px); padding:128px var(--pad) 72px;
   display:flex; flex-direction:column; justify-content:center;
   position:relative; overflow:hidden;
 }
@@ -247,10 +249,12 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
 .hero-inner { position:relative; width:100%; max-width:var(--maxw); margin:0 auto; z-index:2; }
 .hero-eyebrow {
   font-size:13px; letter-spacing:.32em; text-transform:uppercase; color:var(--text-dim);
-  margin-bottom:22px; display:flex; align-items:center; gap:12px;
+  margin-bottom:22px; display:flex; flex-wrap:wrap; align-items:flex-start; gap:8px 12px;
   opacity:0; animation:up .8s ease .2s forwards;
 }
-.hero-eyebrow::before { content:''; width:26px; height:1px; background:var(--accent-strong); }
+/* dash stays optically centred on the first line even when the text wraps */
+.hero-eyebrow::before { content:''; flex-shrink:0; width:26px; height:1px; margin-top:.8em; background:var(--accent-strong); }
+.hero-eyebrow .ey { white-space:nowrap; }
 .hero-h1 {
   font-family:var(--font-display); font-size:clamp(40px,5.2vw,76px); font-weight:300;
   line-height:1.08; letter-spacing:.01em; margin-bottom:34px;
@@ -269,7 +273,8 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
 .hero-h1 span:nth-of-type(4) { animation-delay:.62s; }
 .hero-h1 em { font-style:italic; color:var(--accent-strong); }
 .hero-bottom {
-  display:flex; align-items:flex-end; justify-content:space-between; gap:48px;
+  /* stacked: keeps the CTAs in the text column, clear of the portrait */
+  display:flex; flex-direction:column; align-items:flex-start; gap:32px;
   opacity:0; animation:up .9s ease .5s forwards;
 }
 .hero-desc { font-size:17px; line-height:1.85; letter-spacing:.015em; color:var(--text-dim); max-width:520px; }
@@ -303,7 +308,7 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
 .btn-line:hover span.bar { width:42px; }
 
 .hero-badge {
-  position:absolute; top:50%; right:0; transform:translateY(-50%);
+  position:absolute; top:50%; right:26px; transform:translateY(-50%);
   display:flex; flex-direction:column; align-items:center; gap:14px;
   opacity:0; animation:fadeIn 1s ease .8s forwards;
 }
@@ -344,8 +349,16 @@ html[data-theme="light"] .hero-watermark { filter:invert(0); --hero-wm-op:.05; }
 @media (prefers-reduced-motion:reduce) {
   .hero-model-img { animation:none; }
 }
-@media (max-width:1180px) { .hero-model-img { height:88%; max-width:46%; --hero-model-op:.55; } }
-@media (max-width:920px)  { .hero-model-img { height:78%; max-width:44%; --hero-model-op:.42; } }
+/* mid tiers: fade the model's left edge where it nears the text instead of
+   dimming the whole photo — keeps it legible without looking washed out */
+@media (max-width:1180px) {
+  .hero-model-img {
+    height:88%; max-width:46%; --hero-model-op:.9;
+    -webkit-mask-image:linear-gradient(to right, transparent, #000 32%);
+    mask-image:linear-gradient(to right, transparent, #000 32%);
+  }
+}
+@media (max-width:920px)  { .hero-model-img { height:78%; max-width:44%; --hero-model-op:.75; } }
 @media (max-width:760px) {
   .hero-model-img {
     height:60%;
@@ -353,16 +366,11 @@ html[data-theme="light"] .hero-watermark { filter:invert(0); --hero-wm-op:.05; }
     bottom:0;
     top:auto;
     transform:none;
-    --hero-model-op:.30;
+    --hero-model-op:.55;
   }
-  .hero-svg text { display:none; }
-}
-@media (max-width:480px) {
-  .hero-model-img {
-    height:50%;
-    max-width:50%;
-    --hero-model-op:.40;
-  }
+  /* the architectural grid lands arbitrarily on tall/narrow viewports and
+     reads as a glitch cutting through the copy — drop it on mobile */
+  .hero-svg { display:none; }
 }
 html[data-hero="centered"] #hero { justify-content:center; text-align:center; }
 html[data-hero="centered"] .hero-eyebrow { justify-content:center; }
@@ -699,6 +707,11 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
    ============================================================ */
 @media (max-width:1180px) {
   :root { --pad:48px; }
+  /* centred links would collide with the logo below this width — collapse to menu */
+  .nav-links { display:none; }
+  .nav-toggle { display:flex; }
+  /* the svg monogram label clips at the viewport edge on narrower screens */
+  .hero-svg text { display:none; }
   .grid-svc { grid-template-columns:repeat(2,1fr); }
   /* on two columns the flagship tiles read as full-width bands */
   .t-card.feature { grid-column:span 2; grid-row:span 1; padding:40px 34px; }
@@ -735,8 +748,10 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   body { font-size:16px; }
   #nav { padding:14px var(--pad); }
   #nav.scrolled { padding:12px var(--pad); }
+  .nav-logo img { width:146px; }
   .mobile-menu-close { top:18px; }
-  #hero { padding:60px var(--pad) 44px; }
+  #hero { padding:96px var(--pad) 0; }
+  .hero-eyebrow { font-size:11px; letter-spacing:.28em; }
   .hero-h1 { font-size:clamp(40px,12vw,64px); margin-bottom:36px; }
   .hero-bottom { flex-direction:column; align-items:flex-start; gap:30px; }
   .hero-btns { flex-direction:column; align-items:flex-start; gap:16px; width:100%; }
@@ -744,6 +759,16 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   .hero-badge { display:none; }
   .hero-desc { max-width:none; }
   .hero-watermark { width:min(64vw,300px); }
+  /* the portrait joins the normal flow below the CTAs — nothing overlaps
+     the copy or buttons, and it grounds the hero on the ticker line */
+  .hero-inner { order:1; }
+  .hero-model-img {
+    position:static; order:2; align-self:flex-end;
+    height:auto; width:min(310px,80%); max-width:none;
+    margin:34px calc(var(--pad) * -1) 0 auto;
+    --hero-model-op:1;
+    -webkit-mask-image:none; mask-image:none;
+  }
   .services-head { flex-direction:column; align-items:flex-start; gap:22px; }
   .grid-svc { grid-template-columns:1fr; }
   /* single column — collapse the flagship spans back to normal cards */
