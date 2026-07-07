@@ -5,13 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>CANVAS — Photo Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#070707; --surface:#0f0f0f; --surface2:#151515; --border:rgba(255,255,255,.12);
     --text:#ededed; --dim:#9c9c9c; --faint:#6f6f6f; --accent:#cbb487; --ok:#5fb87a; --err:#d9776b;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font:15px/1.5 'Jost',-apple-system,BlinkMacSystemFont,sans-serif;padding:28px 18px 80px}
+  @keyframes pageIn{from{opacity:0}to{opacity:1}}
+  body{background:var(--bg);color:var(--text);font:15px/1.5 'Jost',-apple-system,BlinkMacSystemFont,sans-serif;padding:28px 18px 80px;animation:pageIn .45s ease both}
+  @media (prefers-reduced-motion:reduce){body{animation:none}}
   .wrap{max-width:920px;margin:0 auto}
   h1{font-family:Georgia,serif;font-weight:400;font-size:26px;letter-spacing:.04em;margin-bottom:4px}
   h1 span{color:var(--accent)}
@@ -22,6 +27,8 @@
   .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   button{cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:7px;padding:10px 16px;font:inherit;font-size:13px;letter-spacing:.04em;transition:.2s}
   button:hover{border-color:var(--accent)}
+  button:active{transform:scale(.97)}
+  button:focus-visible,input:focus-visible,.drop:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   button.primary{background:var(--accent);color:#1a1407;border-color:var(--accent);font-weight:500}
   button.primary:disabled{opacity:.4;cursor:not-allowed}
   button.link{background:none;border:none;color:var(--accent);padding:4px 0;text-decoration:underline}

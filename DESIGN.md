@@ -79,10 +79,16 @@ Warmth is carried by the accent + serif typography + imagery, **never** by the b
 ## Motion
 - **Dials:** VARIANCE=7, MOTION_INTENSITY=6, VISUAL_DENSITY=3
 - Scroll reveals use `IntersectionObserver` (not raw scroll handlers)
-- Ease-out curves only — no bounce, no elastic
+- Ease-out curves only — no bounce, no elastic; signature ease is `cubic-bezier(.22,1,.36,1)`
 - `prefers-reduced-motion` respected on all animations
 - Motion is motivated: hierarchy, storytelling, state feedback — never decoration
-- Reveal staggering: `.reveal-stagger` for list children, `.reveal` for standalone
+- Reveal staggering: `.reveal-stagger` for list children (70ms steps via `--si`
+  index set by app.js), `.reveal` for standalone
+- Page load: body fade-in (`pageIn`), hero lines rise sequentially, treatment-page
+  hero (`.tp-crumb → h1 → .tp-lead → .tp-hero-btns`) staggers on load
+- Ambient: `heroDrift` champagne aura on `#hero` and `.tp-hero` (transform-only, GPU)
+- Hover: card lifts (`.t-card`, `.tp-card` — transform + shadow), CTA sheen sweep
+  (`.btn-fill`, `.nav-book`, `.btn-submit`), footer link underlines, gallery zoom
 
 ## Interaction States
 Every interactive element must define:
