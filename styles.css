@@ -321,7 +321,7 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
   position:absolute;
   left:50%; top:50%;
   transform:translate(-50%,-50%);
-  width:min(55vw, 600px); height:auto;
+  width:clamp(180px, 45vw, 560px); height:auto;
   opacity:var(--hero-wm-op,.06);
   pointer-events:none;
   z-index:1;
@@ -758,7 +758,7 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   .hero-btns .btn-fill { width:100%; text-align:center; }
   .hero-badge { display:none; }
   .hero-desc { max-width:none; }
-  .hero-watermark { width:min(64vw,300px); }
+  .hero-watermark { width:clamp(140px, 52vw, 300px); }
   /* the portrait joins the normal flow below the CTAs — nothing overlaps
      the copy or buttons, and it grounds the hero on the ticker line */
   .hero-inner { order:1; }
