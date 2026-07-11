@@ -317,18 +317,18 @@ html[data-theme="light"] .hero-photo { opacity:.22; }
 .hero-badge-line { width:1px; height:54px; background:linear-gradient(to bottom,transparent,var(--accent-strong),transparent); }
 .hero-badge-text { font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--text-faint); writing-mode:vertical-rl; }
 
-/* hero watermark logo — anchored behind the headline (child of .hero-h1) so it
-   keeps the same size + position relative to the text at every viewport width.
-   Sized as a % of the headline block and centred on it; never viewport-centred. */
+/* hero watermark logo — centred on the hero viewport, oversized so it fills
+   the stage behind headline and portrait rather than reading as a small glyph */
 @keyframes heroWmIn { from { opacity:0 } to { opacity:var(--hero-wm-op,.06) } }
 .hero-watermark {
   position:absolute;
   top:50%; left:50%;
   transform:translate(-50%,-50%);
-  width:clamp(200px, 56%, 380px); height:auto;
+  width:clamp(340px, 58vw, 900px); height:auto;
+  max-width:none;
   opacity:var(--hero-wm-op,.06);
   pointer-events:none;
-  z-index:0;
+  z-index:1;
   filter:invert(0);
   animation:heroWmIn 1.8s ease .3s both;
 }
@@ -768,7 +768,7 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   .hero-btns .btn-fill { width:100%; text-align:center; }
   .hero-badge { display:none; }
   .hero-desc { max-width:none; }
-  .hero-watermark { width:clamp(140px, 52vw, 300px); }
+  .hero-watermark { width:clamp(320px, 96vw, 520px); }
   /* the portrait joins the normal flow below the CTAs — nothing overlaps
      the copy or buttons, and it grounds the hero on the ticker line */
   .hero-inner { order:1; }
