@@ -188,6 +188,16 @@
     });
   });
 
+  /* ---------- treatment cards: click / tap opens the description ---------- */
+  document.querySelectorAll('.svc-card').forEach(function (card) {
+    var btn = card.querySelector('.svc-toggle');
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return; /* Reserve & Details navigate as normal */
+      var open = card.classList.toggle('open');
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
   /* ---------- smooth anchor scroll ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
