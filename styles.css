@@ -457,6 +457,10 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
   color:color-mix(in srgb, var(--text) 6%, transparent);
   user-select:none;
 }
+.svc-photo {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+}
 
 /* legibility veil over the photography — follows the theme ground */
 .svc-scrim {
@@ -466,6 +470,14 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
     color-mix(in srgb, var(--bg) 8%, transparent) 45%,
     color-mix(in srgb, var(--bg) 24%, transparent));
   transition:opacity .6s ease;
+}
+/* real photography is busier than the placeholder panels — deepen the veil
+   so the centred title, description and buttons stay comfortably readable */
+.svc-card[data-photo] .svc-scrim {
+  background:linear-gradient(to top,
+    color-mix(in srgb, var(--bg) 78%, transparent) 12%,
+    color-mix(in srgb, var(--bg) 52%, transparent) 50%,
+    color-mix(in srgb, var(--bg) 62%, transparent));
 }
 
 .svc-inner {
@@ -522,6 +534,9 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
 .svc-card.open .svc-media { transform:scale(1.05); }
 .svc-card:hover .svc-scrim,
 .svc-card.open .svc-scrim { opacity:.75; }
+/* photo cards keep the full veil — the open description needs it most */
+.svc-card[data-photo]:hover .svc-scrim,
+.svc-card[data-photo].open .svc-scrim { opacity:1; }
 .svc-cta:focus-visible, .svc-details:focus-visible,
 .svc-toggle:focus-visible { outline:2px solid var(--accent-strong); outline-offset:3px; }
 @media (prefers-reduced-motion:reduce) {
