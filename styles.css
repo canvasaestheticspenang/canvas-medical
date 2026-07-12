@@ -435,7 +435,6 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
   background:var(--panel);
   border:1px solid var(--border-soft);
   transition:box-shadow .5s ease;
-  cursor:pointer;
 }
 .svc-card:hover { box-shadow:var(--shadow); }
 .svc-card.wide { grid-column:1/-1; aspect-ratio:21/8; }
@@ -481,14 +480,9 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
   font-size:clamp(23px, 2.3vw, 33px); line-height:1.32;
   letter-spacing:.15em; text-transform:uppercase; text-wrap:balance;
 }
-/* the title doubles as the keyboard-accessible click target */
-.svc-toggle {
-  font:inherit; letter-spacing:inherit; text-transform:inherit; color:inherit;
-  background:none; border:none; padding:0; cursor:pointer; text-wrap:inherit;
-}
 
-/* description + details slide open when the card is clicked or tapped
-   (the .open class is toggled in app.js) */
+/* description + details slide open between title and reserve on hover /
+   keyboard focus; always open on touch screens */
 .svc-reveal {
   display:grid; grid-template-rows:0fr; width:100%;
   transition:grid-template-rows .65s cubic-bezier(.22,1,.36,1);
@@ -499,8 +493,10 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
   opacity:0; transform:translateY(10px);
   transition:opacity .45s ease, transform .6s cubic-bezier(.22,1,.36,1);
 }
-.svc-card.open .svc-reveal { grid-template-rows:1fr; }
-.svc-card.open .svc-reveal-in { opacity:1; transform:translateY(0); transition-delay:.1s; }
+.svc-card:hover .svc-reveal,
+.svc-card:focus-within .svc-reveal { grid-template-rows:1fr; }
+.svc-card:hover .svc-reveal-in,
+.svc-card:focus-within .svc-reveal-in { opacity:1; transform:translateY(0); transition-delay:.1s; }
 
 .svc-desc { font-size:15px; line-height:1.75; letter-spacing:.01em; max-width:46ch; color:var(--text-dim); }
 .svc-details {
@@ -521,11 +517,15 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
 .svc-cta:hover, .svc-cta:focus-visible { background:var(--text); color:var(--on-accent); border-color:var(--text); }
 
 .svc-card:hover .svc-media,
-.svc-card.open .svc-media { transform:scale(1.05); }
+.svc-card:focus-within .svc-media { transform:scale(1.05); }
 .svc-card:hover .svc-scrim,
-.svc-card.open .svc-scrim { opacity:.75; }
-.svc-cta:focus-visible, .svc-details:focus-visible,
-.svc-toggle:focus-visible { outline:2px solid var(--accent-strong); outline-offset:3px; }
+.svc-card:focus-within .svc-scrim { opacity:.75; }
+.svc-cta:focus-visible, .svc-details:focus-visible { outline:2px solid var(--accent-strong); outline-offset:3px; }
+
+@media (hover:none) {
+  .svc-reveal { grid-template-rows:1fr; }
+  .svc-reveal-in { opacity:1; transform:none; }
+}
 @media (prefers-reduced-motion:reduce) {
   .svc-media, .svc-scrim, .svc-cta, .svc-reveal, .svc-reveal-in, .svc-details .bar { transition:none; }
 }
