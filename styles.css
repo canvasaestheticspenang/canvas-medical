@@ -424,52 +424,120 @@ html[data-hero="split"] .hero-h1 { margin-bottom:40px; }
 /* ============================== SERVICES ============================== */
 .services-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:58px; gap:48px; }
 .services-intro { font-size:16px; line-height:1.85; letter-spacing:.015em; color:var(--text-dim); max-width:400px; flex-shrink:0; }
-.grid-svc { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-flow:dense; border-left:1px solid var(--border); border-top:1px solid var(--border); }
-.t-card {
-  border-right:1px solid var(--border); border-bottom:1px solid var(--border);
-  padding:40px 32px 36px; position:relative; overflow:hidden;
-  transition:background .35s, box-shadow .35s, transform .45s cubic-bezier(.22,1,.36,1);
-  display:flex; flex-direction:column;
-}
-.t-card:hover {
-  background:var(--surface);
-  transform:translateY(-5px); z-index:1;
-  box-shadow:0 26px 50px -28px rgba(0,0,0,.35),
-    inset 0 0 0 1px color-mix(in srgb,var(--accent-strong) 28%,transparent);
-}
-.t-icon { transition:transform .45s cubic-bezier(.22,1,.36,1); }
-.t-card:hover .t-icon { transform:translateY(-3px); }
-.t-card.cta { justify-content:center; background:color-mix(in srgb,var(--accent-strong) 7%,transparent); }
-.t-icon { width:38px; height:38px; margin-bottom:26px; }
-.t-icon * { stroke:var(--text-dim); }
-.t-icon .acc { stroke:var(--accent-strong); }
-.t-num { font-size:11px; letter-spacing:.14em; color:var(--text-faint); margin-bottom:10px; }
-.t-name { font-family:var(--font-display); font-size:23px; font-weight:300; margin-bottom:12px; line-height:1.1; }
-.t-desc { font-size:13px; line-height:1.85; letter-spacing:.01em; color:var(--text-dim); margin-bottom:22px; flex-grow:1; }
-.t-link { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-strong); text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:gap .3s; align-self:flex-start; }
-.t-card:hover .t-link { gap:14px; }
-.t-link::after { content:'→'; }
-.t-card.cta .t-name { font-size:26px; margin-bottom:16px; }
-.t-card.cta .btn-fill { align-self:flex-start; }
+.svc-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
 
-/* Grid rhythm — break the uniform card matrix with two flagship tiles.
-   grid-auto-flow:dense backfills the gaps the spans create. */
-.t-card.feature {
-  grid-column:span 2; grid-row:span 2; padding:48px 44px;
-  background:
-    radial-gradient(120% 120% at 100% 0%, color-mix(in srgb,var(--accent-strong) 9%,transparent), transparent 58%),
-    color-mix(in srgb,var(--accent-strong) 4%,transparent);
+/* Treatment cards — full-bleed imagery behind a centred serif title, an
+   outlined reserve action, and a hover-revealed description. The tinted
+   panels + ghosted initials are placeholders until photography lands. */
+.svc-card {
+  position:relative; overflow:hidden; isolation:isolate;
+  aspect-ratio:1/1.02; border-radius:10px;
+  background:var(--panel);
+  border:1px solid var(--border-soft);
+  transition:box-shadow .5s ease;
 }
-.t-card.feature .t-icon { width:52px; height:52px; margin-bottom:0; }
-.t-card.feature .t-name { font-size:clamp(30px,3vw,42px); margin-top:auto; padding-top:34px; margin-bottom:16px; }
-.t-card.feature .t-desc { font-size:15px; line-height:1.9; max-width:44ch; }
-.t-card.wide { grid-column:span 2; }
-.t-card.wide .t-desc { max-width:56ch; }
-.t-tag {
-  align-self:flex-start; font-size:10px; letter-spacing:.22em; text-transform:uppercase;
-  color:var(--accent-strong); padding:6px 12px; margin-bottom:26px;
-  border:1px solid color-mix(in srgb,var(--accent-strong) 34%,transparent); border-radius:2px;
+.svc-card:hover { box-shadow:var(--shadow); }
+.svc-card.wide { grid-column:1/-1; aspect-ratio:21/8; }
+
+.svc-media {
+  position:absolute; inset:0; z-index:0;
+  display:flex; align-items:center; justify-content:center;
+  transition:transform 1.4s cubic-bezier(.22,1,.36,1);
 }
+/* three placeholder lighting moods so the grid doesn't read flat */
+.svc-media.m-a { background:radial-gradient(90% 75% at 28% 22%, #2b241d 0%, #17120e 52%, #0d0a08 100%); }
+.svc-media.m-b { background:radial-gradient(85% 70% at 72% 30%, #292019 0%, #151009 55%, #0c0908 100%); }
+.svc-media.m-c { background:radial-gradient(95% 85% at 50% 78%, #262019 0%, #140f0b 50%, #0b0908 100%); }
+html[data-theme="light"] .svc-media.m-a { background:radial-gradient(90% 75% at 28% 22%, #f2efe9 0%, #e8e5df 52%, #ddd9d2 100%); }
+html[data-theme="light"] .svc-media.m-b { background:radial-gradient(85% 70% at 72% 30%, #f1ede6 0%, #e6e2da 55%, #dbd7cf 100%); }
+html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 50% 78%, #f3f0eb 0%, #e9e6e0 50%, #dedad3 100%); }
+.svc-ghost {
+  font-family:var(--font-display); font-weight:300;
+  font-size:clamp(180px, 26vw, 380px); line-height:1;
+  color:color-mix(in srgb, var(--text) 6%, transparent);
+  user-select:none;
+}
+.svc-card.wide .svc-ghost { font-size:clamp(160px, 18vw, 280px); }
+
+/* legibility veil over the photography — follows the theme ground */
+.svc-scrim {
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(to top,
+    color-mix(in srgb, var(--bg) 45%, transparent),
+    color-mix(in srgb, var(--bg) 8%, transparent) 45%,
+    color-mix(in srgb, var(--bg) 24%, transparent));
+  transition:opacity .6s ease;
+}
+
+.svc-inner {
+  position:relative; z-index:2; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:19px; padding:44px; text-align:center;
+  /* 19px either side of the collapsed reveal = 38px title-to-button at rest */
+}
+.svc-title {
+  font-family:var(--font-display); font-weight:300;
+  font-size:clamp(23px, 2.3vw, 33px); line-height:1.32;
+  letter-spacing:.15em; text-transform:uppercase; text-wrap:balance;
+}
+
+/* description + details slide open between title and reserve on hover /
+   keyboard focus; always open on touch screens */
+.svc-reveal {
+  display:grid; grid-template-rows:0fr; width:100%;
+  transition:grid-template-rows .65s cubic-bezier(.22,1,.36,1);
+}
+.svc-reveal-in {
+  overflow:hidden; min-height:0;
+  display:flex; flex-direction:column; align-items:center; gap:20px;
+  opacity:0; transform:translateY(10px);
+  transition:opacity .45s ease, transform .6s cubic-bezier(.22,1,.36,1);
+}
+.svc-card:hover .svc-reveal,
+.svc-card:focus-within .svc-reveal { grid-template-rows:1fr; }
+.svc-card:hover .svc-reveal-in,
+.svc-card:focus-within .svc-reveal-in { opacity:1; transform:translateY(0); transition-delay:.1s; }
+
+.svc-desc { font-size:15px; line-height:1.75; letter-spacing:.01em; max-width:46ch; color:var(--text-dim); }
+.svc-details {
+  display:inline-flex; align-items:center; gap:12px;
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--text); text-decoration:none; padding:4px 0;
+}
+.svc-details .bar { display:inline-block; width:26px; height:1px; background:currentColor; transition:width .3s ease; }
+.svc-details:hover .bar { width:42px; }
+
+.svc-cta {
+  font-size:11px; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--text); text-decoration:none; text-align:center;
+  padding:15px 0; width:min(440px, 76%);
+  border:1px solid color-mix(in srgb, var(--text) 42%, transparent);
+  transition:background .35s ease, color .35s ease, border-color .35s ease;
+}
+.svc-cta:hover, .svc-cta:focus-visible { background:var(--text); color:var(--on-accent); border-color:var(--text); }
+
+.svc-card:hover .svc-media,
+.svc-card:focus-within .svc-media { transform:scale(1.05); }
+.svc-card:hover .svc-scrim,
+.svc-card:focus-within .svc-scrim { opacity:.75; }
+.svc-cta:focus-visible, .svc-details:focus-visible { outline:2px solid var(--accent-strong); outline-offset:3px; }
+
+@media (hover:none) {
+  .svc-reveal { grid-template-rows:1fr; }
+  .svc-reveal-in { opacity:1; transform:none; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .svc-media, .svc-scrim, .svc-cta, .svc-reveal, .svc-reveal-in, .svc-details .bar { transition:none; }
+}
+
+/* consultation prompt closing the grid */
+.svc-consult {
+  margin-top:64px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+}
+.svc-consult h3 { font-family:var(--font-display); font-size:clamp(26px,2.6vw,34px); font-weight:300; }
+.svc-consult p { color:var(--text-dim); font-size:15.5px; max-width:52ch; }
+.svc-consult .btn-fill { margin-top:6px; }
 
 /* ============================== PHILOSOPHY ============================== */
 .phil-wrap { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
@@ -720,10 +788,6 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   .nav-toggle { display:flex; }
   /* the svg monogram label clips at the viewport edge on narrower screens */
   .hero-svg text { display:none; }
-  .grid-svc { grid-template-columns:repeat(2,1fr); }
-  /* on two columns the flagship tiles read as full-width bands */
-  .t-card.feature { grid-column:span 2; grid-row:span 1; padding:40px 34px; }
-  .t-card.feature .t-name { padding-top:24px; }
   .team-grid { grid-template-columns:repeat(2,1fr); gap:32px 24px; }
 }
 @media (max-width:1024px) {
@@ -780,11 +844,9 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
     -webkit-mask-image:none; mask-image:none;
   }
   .services-head { flex-direction:column; align-items:flex-start; gap:22px; }
-  .grid-svc { grid-template-columns:1fr; }
-  /* single column — collapse the flagship spans back to normal cards */
-  .t-card.feature, .t-card.wide { grid-column:auto; grid-row:auto; }
-  .t-card.feature { padding:40px 32px 36px; }
-  .t-card.feature .t-name { margin-top:0; padding-top:0; }
+  .svc-grid { grid-template-columns:1fr; gap:18px; }
+  .svc-card, .svc-card.wide { aspect-ratio:4/4.4; }
+  .svc-inner { padding:32px 26px; }
   .gallery-head { flex-direction:column; align-items:flex-start; gap:20px; }
   .gallery-grid { grid-template-columns:1fr; grid-template-rows:none; }
   .gallery-grid .g-item, .gallery-grid .g-item:first-child { grid-row:auto; grid-column:auto; aspect-ratio:4/3; }
@@ -1063,8 +1125,6 @@ a.tp-card { display:block; text-decoration:none; color:inherit; }
 /* ============================================================
    TREATMENT CARD GRID — anchor reset + injectables collapsible
    ============================================================ */
-a.t-card { text-decoration:none; color:inherit; cursor:pointer; }
-a.t-card:focus-visible { outline:2px solid var(--accent-strong); outline-offset:-2px; }
 
 .inj-block summary.inj-summary {
   list-style:none; cursor:pointer; display:flex; align-items:center;
