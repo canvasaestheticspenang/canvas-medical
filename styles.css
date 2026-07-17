@@ -487,7 +487,7 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
   /* 19px either side of the collapsed reveal = 38px title-to-button at rest */
 }
 .svc-title {
-  font-family:var(--font-display); font-weight:300;
+  font-family:var(--font-display); font-weight:600;
   font-size:clamp(23px, 2.3vw, 33px); line-height:1.32;
   letter-spacing:.15em; text-transform:uppercase; text-wrap:balance;
 }
