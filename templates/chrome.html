@@ -1,0 +1,99 @@
+<!-- Canonical shared page chrome. Rendered onto every page by tools/update-chrome.py.
+     Placeholders: {home} path to the homepage ("" on index itself, "/" on 404),
+     {assets} path prefix for site-relative links, {logo_href}, plus constants
+     from data/site.json. Edit here, then run the tool — never edit these blocks
+     in individual pages. -->
+
+<!-- block:nav -->
+<nav id="nav">
+  <a href="{logo_href}" class="nav-logo" aria-label="CANVAS — home"><img src="{assets}assets/canvas-logo.png" alt="CANVAS Medical Clinic" width="150" height="31"></a>
+  <ul class="nav-links">
+    <li><a href="{home}#services">Treatments</a></li>
+    <li><a href="{home}#philosophy">About</a></li>
+    <li><a href="{home}#team">Physicians</a></li>
+    <li><a href="{home}#location">Visit Us</a></li>
+    <li><a href="{home}#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button id="themeToggle" class="theme-toggle" aria-label="Switch colour theme">
+      <svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.8M12 18.7v2.8M2.5 12h2.8M18.7 12h2.8M5.3 5.3l2 2M16.7 16.7l2 2M18.7 5.3l-2 2M7.3 16.7l-2 2"/></svg>
+      <svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M20.2 14.2A8.2 8.2 0 019.8 3.8a8.2 8.2 0 108.4 10.4z"/></svg>
+    </button>
+    <a href="{home}#book" class="nav-book">Book Now</a>
+    <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<!-- endblock -->
+
+<!-- block:menu -->
+<div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <button id="navClose" class="mobile-menu-close" aria-label="Close menu"><span></span><span></span></button>
+  <a href="{home}#services">Treatments</a>
+  <a href="{home}#philosophy">About</a>
+  <a href="{home}#team">Physicians</a>
+  <a href="{home}#location">Visit Us</a>
+  <a href="{home}#faq">FAQ</a>
+  <a href="{home}#book" class="mm-book">Book a Consultation</a>
+  <div class="mm-meta">Gurney Walk, George Town · Penang<br>Daily {hours_text}</div>
+</div>
+<!-- endblock -->
+
+<!-- block:contact -->
+<section id="contact">
+  <div class="contact-block reveal">
+    <div class="contact-logo"><img src="{assets}assets/canvas-logo.png" alt="CANVAS Medical Clinic" width="150" height="31" loading="lazy"></div>
+    <p class="contact-tag">{tagline}</p>
+  </div>
+  <div class="c-col reveal d1">
+    <h3>Visit Us</h3>
+    <p>Gurney Walk, Lot G-6 (GF) &amp; Lot S-1 (2nd Floor)</p>
+    <p>No. 18A, Persiaran Gurney</p>
+    <p>10250 George Town, Penang</p>
+    <div class="c-gap">
+      <a href="tel:{phone_med_tel}">{phone_med_display} · {phone_med_label}</a>
+      <a href="tel:{phone_aes_tel}">{phone_aes_display} · {phone_aes_label}</a>
+    </div>
+  </div>
+  <div class="c-col reveal d2">
+    <h3>Hours</h3>
+    <p>Open daily</p>
+    <p>{hours_text}</p>
+    <div class="c-gap">
+      <h3>Follow</h3>
+      <a href="{instagram}" target="_blank" rel="noopener">Instagram</a>
+      <a href="{whatsapp}" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+<!-- endblock -->
+
+<!-- block:footer -->
+<footer>
+  <p>© {year} CANVAS Medical Clinic · George Town, Penang. All rights reserved.</p>
+  <div class="foot-links">
+    <a href="{assets}index.html">Home</a>
+    <a href="{assets}blog/">Journal</a>
+    <a href="{assets}privacy-policy.html">Privacy Policy</a>
+    <a href="{assets}terms.html">Terms &amp; Conditions</a>
+  </div>
+</footer>
+<!-- endblock -->
+
+<!-- block:fab -->
+<a id="fab" class="fab" href="{whatsapp}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <img src="{assets}assets/canvas-v-mark.png" alt="" width="26" height="29" loading="lazy">
+</a>
+<!-- endblock -->
+
+<!-- block:gtag -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', '{ga_id}');
+</script>
+<!-- endblock -->
