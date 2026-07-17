@@ -461,6 +461,7 @@ html[data-theme="light"] .svc-media.m-c { background:radial-gradient(95% 85% at 
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; object-position:center;
 }
+.svc-photo-muted { filter:saturate(.45) brightness(.9) contrast(.92); }
 
 /* legibility veil over the photography — follows the theme ground */
 .svc-scrim {
