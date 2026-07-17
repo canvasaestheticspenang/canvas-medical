@@ -1,0 +1,32 @@
+{
+  "_comment": "SINGLE SOURCE OF TRUTH for clinic-wide constants. After editing, run: python3 tools/update-site.py — it propagates these values into every page's text and structured data. Physician roster lives in data/physicians.json.",
+  "name": "CANVAS Medical Clinic",
+  "domain": "https://canvas-medical.com",
+  "tagline": "An advanced medical rejuvenation &amp; aesthetics clinic in Penang. Where science meets artistry.",
+  "phones": {
+    "medical": { "display": "+60 11-2854 7882", "tel": "+601128547882", "label": "Medical Aesthetics" },
+    "aesthetics": { "display": "+60 18-981 5639", "tel": "+60189815639", "label": "Aesthetics" }
+  },
+  "whatsapp": "https://wa.me/601128547882",
+  "address": {
+    "street": "Gurney Walk, Lot G-6 (GF) & Lot S-1 (2nd Floor), No. 18A, Persiaran Gurney",
+    "locality": "George Town",
+    "region": "Pulau Pinang",
+    "postcode": "10250",
+    "country": "MY"
+  },
+  "geo": { "lat": 5.4382, "lng": 100.3095 },
+  "hours": {
+    "text": "10am – 10pm",
+    "text_daily": "Open daily 10am–10pm",
+    "opens": "10:00",
+    "closes": "22:00",
+    "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  },
+  "ga_id": "G-ZZTS438D2E",
+  "socials": {
+    "instagram": "https://www.instagram.com/canvas_aesthetics.my",
+    "facebook": "https://www.facebook.com/share/1An1gcyPPq/"
+  },
+  "reviews_url": "https://share.google/aAzzkjQpfABvSScYU"
+}
