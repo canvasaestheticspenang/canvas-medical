@@ -1,5 +1,5 @@
 {
-  "_comment": "SINGLE SOURCE OF TRUTH for clinic-wide constants. After editing, run: python3 tools/update-site.py — it propagates these values into every page's text and structured data. Physician roster lives in data/physicians.json.",
+  "_comment": "SINGLE SOURCE OF TRUTH for clinic-wide constants. After editing, run: python3 scripts/update-site.py — it propagates these values into every page's text and structured data. Physician roster lives in data/physicians.json.",
   "name": "CANVAS Medical Clinic",
   "domain": "https://canvas-medical.com",
   "tagline": "An advanced medical rejuvenation &amp; aesthetics clinic in Penang. Where science meets artistry.",

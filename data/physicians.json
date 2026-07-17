@@ -1,5 +1,5 @@
 {
-  "_comment": "SINGLE SOURCE OF TRUTH for CANVAS physicians. Display order = array order. After editing, run: python3 tools/update-physicians.py — it regenerates the homepage team grid and physician count, the physician schema graph, doctors/index.html cards and ItemList, and the physician link row on every treatment page. Individual profile pages under doctors/<slug>/ are authored separately.",
+  "_comment": "SINGLE SOURCE OF TRUTH for CANVAS physicians. Display order = array order. After editing, run: python3 scripts/update-physicians.py — it regenerates the homepage team grid and physician count, the physician schema graph, doctors/index.html cards and ItemList, and the physician link row on every treatment page. Individual profile pages under doctors/<slug>/ are authored separately.",
   "physicians": [
     {
       "slug": "samuel-tong",
