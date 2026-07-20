@@ -299,4 +299,21 @@
       else setTimeout(reveal, 650);
     });
   }
+
+  /* ---------- decorative hero visual on treatment/article pages ---------- */
+  /* fills the empty right side of the .tp-hero with a champagne "energy
+     field". Skipped when a real product image (.tp-hero-media) is present,
+     so per-page imagery can override the motif without markup churn. */
+  (function () {
+    var th = document.querySelector('.tp-hero');
+    if (!th || th.querySelector('.tp-hero-media') || th.querySelector('.tp-hero-orb')) return;
+    var orb = document.createElement('div');
+    orb.className = 'tp-hero-orb';
+    orb.setAttribute('aria-hidden', 'true');
+    orb.innerHTML =
+      '<span class="orb-halo"></span><span class="orb-ring r1"></span>' +
+      '<span class="orb-ring r2"></span><span class="orb-ring r3"></span>' +
+      '<span class="orb-core"></span>';
+    th.appendChild(orb);
+  })();
 })();

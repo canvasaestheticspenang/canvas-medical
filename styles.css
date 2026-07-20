@@ -790,6 +790,8 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   .hero-eyebrow, .hero-h1, .hero-h1 span, .hero-bottom, .hero-badge { opacity:1 !important; animation:none !important; }
   .tp-crumb, .tp-hero h1, .tp-lead, .tp-hero-btns { opacity:1 !important; animation:none !important; }
   .hero-bg::after, .tp-hero::before { animation:none !important; }
+  .tp-hero-orb > span { animation:none !important; }
+  .tp-hero-orb .orb-ring { opacity:.4; width:64%; }
   body { animation:none !important; opacity:1 !important; }
 }
 
@@ -1014,6 +1016,56 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 .tp-hero-watermark {
   position:absolute; right:-40px; bottom:-60px; width:min(38vw,460px);
   opacity:.05; filter:invert(var(--invert-logo)); pointer-events:none; z-index:1;
+}
+
+/* decorative animated hero visual — a champagne "energy field" filling the
+   right of treatment/article heroes. Injected by app.js into any .tp-hero
+   that has no real product image (.tp-hero-media). */
+.tp-hero-orb {
+  position:absolute; z-index:1; pointer-events:none;
+  right:clamp(-40px,5vw,140px); top:50%; transform:translateY(-50%);
+  width:min(34vw,440px); aspect-ratio:1;
+  display:grid; place-items:center;
+}
+.tp-hero-orb > span { grid-area:1/1; border-radius:50%; }
+.tp-hero-orb .orb-halo {
+  width:98%; aspect-ratio:1;
+  background:radial-gradient(circle, color-mix(in srgb,var(--accent-strong) 11%,transparent), transparent 66%);
+  animation:orbBreath 8s cubic-bezier(.4,0,.6,1) infinite alternate-reverse;
+}
+.tp-hero-orb .orb-core {
+  width:40%; aspect-ratio:1; filter:blur(1px);
+  background:radial-gradient(circle at 38% 34%, color-mix(in srgb,var(--accent-strong) 46%,transparent), color-mix(in srgb,var(--accent-strong) 9%,transparent) 60%, transparent 72%);
+  animation:orbBreath 8s cubic-bezier(.4,0,.6,1) infinite alternate;
+}
+.tp-hero-orb .orb-ring {
+  width:28%; aspect-ratio:1; opacity:0;
+  border:1px solid color-mix(in srgb,var(--accent-strong) 34%,transparent);
+  animation:orbWave 7.5s cubic-bezier(.22,1,.36,1) infinite;
+}
+.tp-hero-orb .r2 { animation-delay:2.5s; }
+.tp-hero-orb .r3 { animation-delay:5s; }
+@keyframes orbWave {
+  0%   { width:26%; opacity:0; }
+  16%  { opacity:.6; }
+  100% { width:100%; opacity:0; }
+}
+@keyframes orbBreath {
+  from { transform:scale(.9); opacity:.7; }
+  to   { transform:scale(1.06); opacity:1; }
+}
+/* optional real product image, dropped in per page to replace the motif */
+.tp-hero-media {
+  position:absolute; z-index:1; pointer-events:none;
+  right:clamp(-10px,3vw,90px); top:50%; transform:translateY(-50%);
+  width:min(32vw,430px); height:auto; object-fit:contain;
+  filter:drop-shadow(0 26px 54px rgba(0,0,0,.16));
+}
+@media (max-width:900px) {
+  .tp-hero-orb, .tp-hero-media { opacity:.42; right:-14%; width:58%; }
+}
+@media (max-width:600px) {
+  .tp-hero-orb, .tp-hero-media { display:none; }
 }
 
 .tp-body { padding:96px var(--pad); }
