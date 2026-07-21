@@ -1061,6 +1061,8 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
   width:min(32vw,430px); height:auto; object-fit:contain;
   filter:drop-shadow(0 26px 54px rgba(0,0,0,.16));
 }
+/* tall floor-standing devices: cap height so they sit inside the hero */
+.tp-hero-media-tall { width:auto; height:min(88vh,820px); max-width:52vw; right:clamp(-20px,3vw,90px); }
 @media (max-width:900px) {
   .tp-hero-orb, .tp-hero-media { opacity:.42; right:-14%; width:58%; }
 }
