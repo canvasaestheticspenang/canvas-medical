@@ -316,4 +316,31 @@
       '<span class="orb-core"></span>';
     th.appendChild(orb);
   })();
+
+  /* ---------- hero visual drifts away and fades on scroll ---------- */
+  /* the device image / orb eases down-right and fades as you scroll past the
+     hero, then returns cleanly at the top. Skipped for reduced-motion. */
+  (function () {
+    var vis = document.querySelector('.tp-hero-media, .tp-hero-orb');
+    var hero = document.querySelector('.tp-hero');
+    if (!vis || !hero) return;
+    if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var ticking = false;
+    function apply() {
+      ticking = false;
+      var y = window.pageYOffset || 0;
+      // at the top, hand control back to the CSS entrance animation
+      if (y < 4) { vis.style.removeProperty('opacity'); vis.style.removeProperty('transform'); return; }
+      var p = Math.min(y / (hero.offsetHeight * 0.85 || 500), 1);
+      // !important so the scroll state beats the entrance animation's forwards fill
+      vis.style.setProperty('opacity', String(1 - p), 'important');
+      vis.style.setProperty('transform',
+        'translateY(calc(-50% + ' + (p * 50).toFixed(1) + 'px)) ' +
+        'translateX(' + (p * 40).toFixed(1) + 'px) scale(' + (1 - p * 0.06).toFixed(3) + ')',
+        'important');
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+  })();
 })();

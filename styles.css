@@ -792,6 +792,7 @@ footer p { font-size:11px; letter-spacing:.06em; color:var(--text-faint); }
   .hero-bg::after, .tp-hero::before { animation:none !important; }
   .tp-hero-orb > span { animation:none !important; }
   .tp-hero-orb .orb-ring { opacity:.4; width:64%; }
+  .tp-hero-media { animation:none !important; opacity:1 !important; }
   body { animation:none !important; opacity:1 !important; }
 }
 
@@ -1060,6 +1061,11 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
   right:clamp(-10px,3vw,90px); top:50%; transform:translateY(-50%);
   width:min(32vw,430px); height:auto; object-fit:contain;
   filter:drop-shadow(0 26px 54px rgba(0,0,0,.16));
+  opacity:0; animation:mediaIn 1.2s cubic-bezier(.22,1,.36,1) .5s forwards;
+}
+@keyframes mediaIn {
+  from { opacity:0; transform:translateY(-50%) translateX(70px); }
+  to   { opacity:1; transform:translateY(-50%) translateX(0); }
 }
 /* tall floor-standing devices: cap height so they sit inside the hero */
 .tp-hero-media-tall { width:auto; height:min(88vh,820px); max-width:52vw; right:clamp(-20px,3vw,90px); }
