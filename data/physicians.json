@@ -5,21 +5,21 @@
       "slug": "tan-chin-loon",
       "name": "Dr. Tan Chin Loon",
       "short": "Dr. Tan Chin Loon",
-      "role": "Aesthetic Physician",
+      "role": "Consultant Aesthetic Physician",
       "specialty": "MedicalAesthetic",
       "cert": "MD(UCSI) Dip.Aesthetic Medicine(AAAM)(USA)",
       "bio": "Expert in advanced injectables, skin biostimulation and anti-ageing protocols. Committed to precision and patient comfort.",
-      "hub_desc": "Aesthetic Physician · MD(UCSI), Dip. Aesthetic Medicine (AAAM, USA). Advanced injectables and anti-ageing."
+      "hub_desc": "Consultant Aesthetic Physician · MD(UCSI), Dip. Aesthetic Medicine (AAAM, USA). Advanced injectables and anti-ageing."
     },
     {
       "slug": "samuel-tong",
       "name": "Dr. Samuel Tong",
       "short": "Dr. Samuel Tong",
-      "role": "Aesthetic Physician",
+      "role": "Consultant Aesthetic Physician",
       "specialty": "MedicalAesthetic",
       "cert": "MBBChBAO(NUI,RCSI) LCP Certified",
       "bio": "Specialist in facial aesthetics and non-surgical rejuvenation. Known for natural, balanced results tailored to each patient's unique anatomy.",
-      "hub_desc": "Aesthetic Physician · MBBChBAO(NUI, RCSI), LCP Certified. Facial aesthetics and non-surgical rejuvenation."
+      "hub_desc": "Consultant Aesthetic Physician · MBBChBAO(NUI, RCSI), LCP Certified. Facial aesthetics and non-surgical rejuvenation."
     },
     {
       "slug": "nicole-tham",
@@ -65,11 +65,11 @@
       "slug": "chong-jee-can",
       "name": "Dr. Chong Jee Can",
       "short": "Dr. Chong Jee Can",
-      "role": "Dermatology Physician",
+      "role": "Dermatology Resident",
       "specialty": "Dermatology",
       "cert": "MBBS MRCPUK MRCP(Edinburgh)",
-      "bio": "Dermatology physician focused on medical skin conditions, laser treatments and advanced dermatological care.",
-      "hub_desc": "Dermatology Physician · MBBS, MRCP(UK), MRCP(Edinburgh). Medical skin conditions and laser care."
+      "bio": "Dermatology resident focused on medical skin conditions and laser-based skin treatments.",
+      "hub_desc": "Dermatology Resident · MBBS, MRCP(UK), MRCP(Edinburgh). Medical skin conditions and laser care."
     },
     {
       "slug": "tan-jin-zhi",
