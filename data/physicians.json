@@ -2,16 +2,6 @@
   "_comment": "SINGLE SOURCE OF TRUTH for CANVAS physicians. Display order = array order. After editing, run: python3 scripts/update-physicians.py — it regenerates the homepage team grid and physician count, the physician schema graph, doctors/index.html cards and ItemList, and the physician link row on every treatment page. Individual profile pages under doctors/<slug>/ are authored separately.",
   "physicians": [
     {
-      "slug": "samuel-tong",
-      "name": "Dr. Samuel Tong",
-      "short": "Dr. Samuel Tong",
-      "role": "Aesthetic Physician",
-      "specialty": "MedicalAesthetic",
-      "cert": "MBBChBAO(NUI,RCSI) LCP Certified",
-      "bio": "Specialist in facial aesthetics and non-surgical rejuvenation. Known for natural, balanced results tailored to each patient's unique anatomy.",
-      "hub_desc": "Aesthetic Physician · MBBChBAO(NUI, RCSI), LCP Certified. Facial aesthetics and non-surgical rejuvenation."
-    },
-    {
       "slug": "tan-chin-loon",
       "name": "Dr. Tan Chin Loon",
       "short": "Dr. Tan Chin Loon",
@@ -22,6 +12,16 @@
       "hub_desc": "Aesthetic Physician · MD(UCSI), Dip. Aesthetic Medicine (AAAM, USA). Advanced injectables and anti-ageing."
     },
     {
+      "slug": "samuel-tong",
+      "name": "Dr. Samuel Tong",
+      "short": "Dr. Samuel Tong",
+      "role": "Aesthetic Physician",
+      "specialty": "MedicalAesthetic",
+      "cert": "MBBChBAO(NUI,RCSI) LCP Certified",
+      "bio": "Specialist in facial aesthetics and non-surgical rejuvenation. Known for natural, balanced results tailored to each patient's unique anatomy.",
+      "hub_desc": "Aesthetic Physician · MBBChBAO(NUI, RCSI), LCP Certified. Facial aesthetics and non-surgical rejuvenation."
+    },
+    {
       "slug": "nicole-tham",
       "name": "Dr. Nicole Tham Hooi Ming",
       "short": "Dr. Nicole Tham",
@@ -30,6 +30,26 @@
       "cert": "MBBS(IMU)",
       "bio": "Aesthetic physician with a gentle, detail-led approach to injectables, skin health and facial harmony — focused on natural results and patient comfort.",
       "hub_desc": "Aesthetic Physician · MBBS(IMU). Natural-looking injectables, skin health and facial harmony."
+    },
+    {
+      "slug": "andre-mooy",
+      "name": "Dr. Andre Mooy Kai En",
+      "short": "Dr. Andre Mooy",
+      "role": "Aesthetic Physician",
+      "specialty": "MedicalAesthetic",
+      "cert": "MBBS(AIMST) Dip.Derm(AFPM) MAC",
+      "bio": "Aesthetic physician practising the full range of injectables and skin-quality treatments, with a dermatology diploma that brings a skin-health perspective to natural facial rejuvenation.",
+      "hub_desc": "Aesthetic Physician · MBBS(AIMST), Dip.Derm(AFPM), MAC. Full-range aesthetics with a skin-health and dermatology perspective."
+    },
+    {
+      "slug": "annabelle-ng",
+      "name": "Dr. Annabelle Ng Ee Ming",
+      "short": "Dr. Annabelle Ng",
+      "role": "Aesthetic Physician",
+      "specialty": "MedicalAesthetic",
+      "cert": "MBBS(AIMST)",
+      "bio": "Aesthetic physician pairing careful assessment with tailored treatment plans — balanced, natural-looking rejuvenation on sensible timelines.",
+      "hub_desc": "Aesthetic Physician · MBBS(AIMST). Tailored treatment plans and balanced, natural rejuvenation."
     },
     {
       "slug": "kang-eik-hong",
@@ -50,26 +70,6 @@
       "cert": "MBBS MRCPUK MRCP(Edinburgh)",
       "bio": "Dermatology physician focused on medical skin conditions, laser treatments and advanced dermatological care.",
       "hub_desc": "Dermatology Physician · MBBS, MRCP(UK), MRCP(Edinburgh). Medical skin conditions and laser care."
-    },
-    {
-      "slug": "annabelle-ng",
-      "name": "Dr. Annabelle Ng Ee Ming",
-      "short": "Dr. Annabelle Ng",
-      "role": "Aesthetic Physician",
-      "specialty": "MedicalAesthetic",
-      "cert": "MBBS(AIMST)",
-      "bio": "Aesthetic physician pairing careful assessment with tailored treatment plans — balanced, natural-looking rejuvenation on sensible timelines.",
-      "hub_desc": "Aesthetic Physician · MBBS(AIMST). Tailored treatment plans and balanced, natural rejuvenation."
-    },
-    {
-      "slug": "andre-mooy",
-      "name": "Dr. Andre Mooy Kai En",
-      "short": "Dr. Andre Mooy",
-      "role": "Aesthetic Physician",
-      "specialty": "MedicalAesthetic",
-      "cert": "MBBS(AIMST) Dip.Derm(AFPM) MAC",
-      "bio": "Aesthetic physician practising the full range of injectables and skin-quality treatments, with a dermatology diploma that brings a skin-health perspective to natural facial rejuvenation.",
-      "hub_desc": "Aesthetic Physician · MBBS(AIMST), Dip.Derm(AFPM), MAC. Full-range aesthetics with a skin-health and dermatology perspective."
     },
     {
       "slug": "tan-jin-zhi",
