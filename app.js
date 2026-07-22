@@ -334,9 +334,13 @@
       var p = Math.min(y / (hero.offsetHeight * 0.85 || 500), 1);
       // !important so the scroll state beats the entrance animation's forwards fill
       vis.style.setProperty('opacity', String(1 - p), 'important');
+      // the orb is vertically centred (keep -50%); the media is bottom-anchored
+      var ty = vis.classList.contains('tp-hero-orb')
+        ? 'calc(-50% + ' + (p * 40).toFixed(1) + 'px)'
+        : (p * 60).toFixed(1) + 'px';
       vis.style.setProperty('transform',
-        'translateY(calc(-50% + ' + (p * 50).toFixed(1) + 'px)) ' +
-        'translateX(' + (p * 40).toFixed(1) + 'px) scale(' + (1 - p * 0.06).toFixed(3) + ')',
+        'translateY(' + ty + ') ' +
+        'translateX(' + (p * 34).toFixed(1) + 'px) scale(' + (1 - p * 0.05).toFixed(3) + ')',
         'important');
     }
     window.addEventListener('scroll', function () {

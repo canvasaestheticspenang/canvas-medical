@@ -1058,14 +1058,14 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 /* optional real product image, dropped in per page to replace the motif */
 .tp-hero-media {
   position:absolute; z-index:1; pointer-events:none;
-  right:clamp(-10px,3vw,90px); top:50%; transform:translateY(-50%);
+  right:clamp(-10px,3vw,90px); bottom:0;
   width:min(32vw,430px); height:auto; object-fit:contain;
-  filter:drop-shadow(0 26px 54px rgba(0,0,0,.16));
+  filter:drop-shadow(0 10px 34px rgba(0,0,0,.14));
   opacity:0; animation:mediaIn 1.2s cubic-bezier(.22,1,.36,1) .5s forwards;
 }
 @keyframes mediaIn {
-  from { opacity:0; transform:translateY(-50%) translateX(70px); }
-  to   { opacity:1; transform:translateY(-50%) translateX(0); }
+  from { opacity:0; transform:translateX(70px); }
+  to   { opacity:1; transform:translateX(0); }
 }
 /* tall floor-standing devices: cap height so they sit inside the hero */
 .tp-hero-media-tall { width:min(30vw,430px); height:auto; right:clamp(-10px,3vw,80px); }
