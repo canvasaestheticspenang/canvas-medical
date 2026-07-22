@@ -1068,8 +1068,8 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
   to   { opacity:1; transform:translateX(0); }
 }
 /* tall floor-standing devices: cap height so they sit inside the hero */
-.tp-hero-media-tall { width:min(30vw,430px); height:auto; right:clamp(-10px,3vw,80px); }
-@media (max-width:1080px) {
+.tp-hero-media-tall { height:min(78vh,700px); width:auto; right:clamp(-80px, calc((100vw - 1180px) * 0.7 - 76px), 140px); }
+@media (max-width:1160px) {
   /* keep the abstract orb as faint atmosphere, but hide detailed device
      photos below desktop so hero text stays clean and unobstructed */
   .tp-hero-orb { opacity:.3; right:-12%; width:56%; }
