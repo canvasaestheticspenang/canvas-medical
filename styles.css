@@ -1069,6 +1069,8 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 }
 /* tall floor-standing devices: cap height so they sit inside the hero */
 .tp-hero-media-tall { height:min(78vh,700px); width:auto; right:clamp(-80px, calc((100vw - 1180px) * 0.7 - 76px), 140px); }
+/* pull a tall device further in from the right edge so it doesn't hug the side */
+.tp-hero-media-inset { right:clamp(0px, calc((100vw - 1180px) * 0.7 + 20px), 250px); }
 @media (max-width:1160px) {
   /* keep the abstract orb as faint atmosphere, but hide detailed device
      photos below desktop so hero text stays clean and unobstructed */
