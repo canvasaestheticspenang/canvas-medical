@@ -1091,6 +1091,35 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
   .tp-who-split .tp-who-img { width:62%; margin:10px auto 0; }
 }
 
+/* clickable spotlight band — promotes a focused sub-treatment to its own page */
+a.tp-spotlight {
+  display:flex; align-items:center; gap:28px; text-decoration:none; color:inherit;
+  border:1px solid var(--border); background:var(--panel);
+  padding:clamp(26px,3.4vw,40px) clamp(26px,3.6vw,46px);
+  transition:border-color .35s, background .35s, transform .35s;
+}
+a.tp-spotlight:hover { border-color:var(--accent-strong); background:var(--surface); transform:translateY(-2px); }
+.tp-spotlight-body { flex:1 1 auto; min-width:0; }
+.tp-spotlight-label {
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--accent-strong); margin-bottom:12px;
+}
+.tp-spotlight h3 {
+  font-family:var(--font-display); font-weight:300; font-size:clamp(23px,2.8vw,32px);
+  line-height:1.12; margin-bottom:12px;
+}
+.tp-spotlight h3 em { font-style:italic; color:var(--accent-strong); }
+.tp-spotlight p { color:var(--text-dim); line-height:1.75; max-width:560px; margin:0; }
+.tp-spotlight-cta {
+  flex:0 0 auto; display:inline-flex; align-items:center; gap:9px;
+  font-size:13px; letter-spacing:.06em; color:var(--accent-strong); white-space:nowrap;
+}
+.tp-spotlight-cta .arw { transition:transform .35s; }
+a.tp-spotlight:hover .tp-spotlight-cta .arw { transform:translateX(5px); }
+@media (max-width:680px) {
+  a.tp-spotlight { flex-direction:column; align-items:flex-start; gap:18px; }
+}
+
 /* in-content editorial photo figures within treatment articles */
 .tp-figure { margin:44px 0 12px; }
 .tp-figure img { display:block; width:88%; max-width:640px; height:auto; margin:0 auto; filter:drop-shadow(0 24px 42px rgba(0,0,0,.16)); }
