@@ -1071,6 +1071,8 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 .tp-hero-media-tall { height:min(78vh,700px); width:auto; right:clamp(-80px, calc((100vw - 1180px) * 0.7 - 76px), 140px); }
 /* larger portrait model — rises to sit alongside the hero headline */
 .tp-hero-media-lg { width:min(44vw,565px); }
+/* product shot cropped at its right edge — sits flush against the hero border */
+.tp-hero-media-edge { right:0; width:min(48vw,640px); }
 /* pull a tall device further in from the right edge so it doesn't hug the side */
 .tp-hero-media-inset { right:clamp(0px, calc((100vw - 1180px) * 0.7 + 20px), 250px); }
 @media (max-width:1160px) {
