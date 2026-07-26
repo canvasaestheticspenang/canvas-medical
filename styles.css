@@ -1073,6 +1073,14 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 .tp-hero-media-lg { width:min(44vw,565px); }
 /* product shot cropped at its right edge — sits flush against the hero border */
 .tp-hero-media-edge { right:0; width:min(48vw,640px); }
+/* wide landscape product box — sits centred in the clear right area,
+   clear of the hero text; fades in (no slide, to keep vertical centring) */
+.tp-hero-media-wide {
+  width:min(40vw,500px); bottom:auto; top:50%;
+  right:clamp(-10px,4vw,80px); transform:translateY(-50%);
+  animation:mediaFade 1.2s ease .5s forwards;
+}
+@keyframes mediaFade { from{opacity:0} to{opacity:1} }
 /* pull a tall device further in from the right edge so it doesn't hug the side */
 .tp-hero-media-inset { right:clamp(0px, calc((100vw - 1180px) * 0.7 + 20px), 250px); }
 @media (max-width:1160px) {
