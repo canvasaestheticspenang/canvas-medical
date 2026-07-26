@@ -1073,6 +1073,9 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 .tp-hero-media-lg { width:min(44vw,565px); }
 /* product shot cropped at its right edge — sits flush against the hero border */
 .tp-hero-media-edge { right:0; width:min(48vw,640px); }
+/* very narrow tall devices — pull further in so they sit toward the
+   centre of the clear right area instead of hugging the edge */
+.tp-hero-media-mid { right:clamp(160px, 22vw, 380px); }
 /* wide landscape product box — sits centred in the clear right area,
    clear of the hero text; fades in (no slide, to keep vertical centring) */
 .tp-hero-media-wide {
