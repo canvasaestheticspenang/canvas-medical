@@ -334,8 +334,10 @@
       var p = Math.min(y / (hero.offsetHeight * 0.85 || 500), 1);
       // !important so the scroll state beats the entrance animation's forwards fill
       vis.style.setProperty('opacity', String(1 - p), 'important');
-      // the orb is vertically centred (keep -50%); the media is bottom-anchored
-      var ty = vis.classList.contains('tp-hero-orb')
+      // vertically-centred visuals (the orb and the wide landscape product
+      // shot) keep the -50% offset; other media is bottom-anchored
+      var centred = vis.classList.contains('tp-hero-orb') || vis.classList.contains('tp-hero-media-wide');
+      var ty = centred
         ? 'calc(-50% + ' + (p * 40).toFixed(1) + 'px)'
         : (p * 60).toFixed(1) + 'px';
       vis.style.setProperty('transform',
