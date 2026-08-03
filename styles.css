@@ -1096,7 +1096,7 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 .tp-hero-duo { position:absolute; inset:0; z-index:1; pointer-events:none; }
 .tp-hero-duo .tp-hero-media { position:absolute; right:auto; bottom:0; width:auto; }
 .tp-hero-duo .duo-model { right:clamp(-10px,2vw,30px); height:min(64vh,580px); z-index:1; }
-.tp-hero-duo .duo-device { right:clamp(120px,13vw,240px); height:min(58vh,520px); z-index:2; }
+.tp-hero-duo .duo-device { right:clamp(170px,17vw,300px); height:min(58vh,520px); z-index:2; }
 @media (max-width:1160px) {
   /* keep the abstract orb as faint atmosphere, but hide detailed device
      photos below desktop so hero text stays clean and unobstructed */
