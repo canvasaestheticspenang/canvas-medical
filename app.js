@@ -175,6 +175,28 @@
     resetTimer();
   }
 
+  /* ---------- protocols carousel ---------- */
+  var protoTrack = document.getElementById('protoTrack');
+  var protoPrev = document.getElementById('protoPrev');
+  var protoNext = document.getElementById('protoNext');
+  if (protoTrack && protoPrev && protoNext) {
+    function protoStep() {
+      var card = protoTrack.querySelector('.proto-card');
+      if (!card) return 320;
+      var gap = parseFloat(getComputedStyle(protoTrack).columnGap) || 24;
+      return card.getBoundingClientRect().width + gap;
+    }
+    function updateProtoNav() {
+      protoPrev.disabled = protoTrack.scrollLeft <= 4;
+      protoNext.disabled = protoTrack.scrollLeft >= protoTrack.scrollWidth - protoTrack.clientWidth - 4;
+    }
+    protoNext.addEventListener('click', function () { protoTrack.scrollBy({ left: protoStep(), behavior: 'smooth' }); });
+    protoPrev.addEventListener('click', function () { protoTrack.scrollBy({ left: -protoStep(), behavior: 'smooth' }); });
+    protoTrack.addEventListener('scroll', updateProtoNav);
+    window.addEventListener('resize', updateProtoNav);
+    updateProtoNav();
+  }
+
   /* ---------- FAQ ---------- */
   document.querySelectorAll('.faq-q').forEach(function (q) {
     q.addEventListener('click', function () {
