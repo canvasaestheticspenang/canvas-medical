@@ -11,9 +11,9 @@ window.CANVAS_SLOTS = [
   { id: 'team-2',        label: 'Dr. Tan Chin Loon',             selector: '.team-grid > div:nth-child(2) .ph' },
   { id: 'team-3',        label: 'Dr. Chong Jee Can',             selector: '.team-grid > div:nth-child(3) .ph' },
   { id: 'team-4',        label: 'Dr. Kang Eik Hong',             selector: '.team-grid > div:nth-child(4) .ph' },
-  { id: 'gallery-1',     label: 'Gallery — The Clinic',          selector: '.gallery-grid .g-item:nth-child(1) .ph' },
-  { id: 'gallery-2',     label: 'Gallery — Injectables',         selector: '.gallery-grid .g-item:nth-child(2) .ph' },
-  { id: 'gallery-3',     label: 'Gallery — Radiofrequency',      selector: '.gallery-grid .g-item:nth-child(3) .ph' },
-  { id: 'gallery-4',     label: 'Gallery — Laser',               selector: '.gallery-grid .g-item:nth-child(4) .ph' },
-  { id: 'gallery-5',     label: 'Gallery — Ultrasound',          selector: '.gallery-grid .g-item:nth-child(5) .ph' }
+  { id: 'gallery-1',     label: 'Gallery — photo 1 (large tile)', selector: '.gallery-grid .g-item:nth-child(1) .ph' },
+  { id: 'gallery-2',     label: 'Gallery — photo 2',             selector: '.gallery-grid .g-item:nth-child(2) .ph' },
+  { id: 'gallery-3',     label: 'Gallery — photo 3',             selector: '.gallery-grid .g-item:nth-child(3) .ph' },
+  { id: 'gallery-4',     label: 'Gallery — photo 4',             selector: '.gallery-grid .g-item:nth-child(4) .ph' },
+  { id: 'gallery-5',     label: 'Gallery — photo 5',             selector: '.gallery-grid .g-item:nth-child(5) .ph' }
 ];
