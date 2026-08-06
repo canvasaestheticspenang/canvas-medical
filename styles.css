@@ -1086,17 +1086,6 @@ html[data-theme="dark"] .location-map iframe { filter:grayscale(.2) contrast(1.0
 @keyframes mediaFade { from{opacity:0} to{opacity:1} }
 /* pull a tall device further in from the right edge so it doesn't hug the side */
 .tp-hero-media-inset { right:clamp(0px, calc((100vw - 1180px) * 0.7 + 20px), 250px); }
-/* two images sharing one hero (device + ambassador photo) — each keeps
-   .tp-hero-media for its shadow/fade-in/hide rules, but positions itself
-   within this shared box so the device can sit just in front of the
-   model, overlapping her, rather than needing its own clear lane. Both
-   are sized tall enough that their top edge lands level with the hero
-   title, bottom-anchored to the hero's base like every other device shot
-   on the site. */
-.tp-hero-duo { position:absolute; inset:0; z-index:1; pointer-events:none; }
-.tp-hero-duo .tp-hero-media { position:absolute; right:auto; bottom:0; width:auto; }
-.tp-hero-duo .duo-model { right:clamp(-10px,2vw,30px); height:min(64vh,580px); z-index:1; }
-.tp-hero-duo .duo-device { right:clamp(145px, calc((100vw - 1200px) * 1 + 145px), 435px); height:min(63vh,568px); z-index:2; }
 @media (max-width:1160px) {
   /* keep the abstract orb as faint atmosphere, but hide detailed device
      photos below desktop so hero text stays clean and unobstructed */
