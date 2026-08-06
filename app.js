@@ -116,6 +116,43 @@
     try { localStorage.setItem('canvas-theme', next); } catch (err) {}
   });
 
+  /* ---------- gallery carousel ---------- */
+  var galTrack = document.getElementById('galleryTrack');
+  if (galTrack) {
+    /* shuffle card order on every load — data-slot attributes (not
+       position) are what admin.html/photos.js key off, so reordering
+       here never breaks a future photo swap */
+    var galCards = Array.prototype.slice.call(galTrack.children);
+    for (var gi = galCards.length - 1; gi > 0; gi--) {
+      var gj = Math.floor(Math.random() * (gi + 1));
+      var tmp = galCards[gi]; galCards[gi] = galCards[gj]; galCards[gj] = tmp;
+    }
+    galCards.forEach(function (card) { galTrack.appendChild(card); });
+
+    function galStep() {
+      var card = galTrack.querySelector('.g-item');
+      return card ? card.getBoundingClientRect().width + 14 : galTrack.clientWidth;
+    }
+    function galAtEnd() { return galTrack.scrollLeft + galTrack.clientWidth >= galTrack.scrollWidth - 4; }
+    function galNext() {
+      if (galAtEnd()) galTrack.scrollTo({ left: 0, behavior: 'smooth' });
+      else galTrack.scrollBy({ left: galStep(), behavior: 'smooth' });
+    }
+    function galPrev() {
+      if (galTrack.scrollLeft <= 4) galTrack.scrollTo({ left: galTrack.scrollWidth, behavior: 'smooth' });
+      else galTrack.scrollBy({ left: -galStep(), behavior: 'smooth' });
+    }
+    var galBtnNext = document.getElementById('galNext');
+    var galBtnPrev = document.getElementById('galPrev');
+    var galTimer;
+    function galReset() { clearInterval(galTimer); galTimer = setInterval(galNext, 4200); }
+    if (galBtnNext) galBtnNext.addEventListener('click', function () { galNext(); galReset(); });
+    if (galBtnPrev) galBtnPrev.addEventListener('click', function () { galPrev(); galReset(); });
+    galTrack.addEventListener('mouseenter', function () { clearInterval(galTimer); });
+    galTrack.addEventListener('mouseleave', galReset);
+    galReset();
+  }
+
   /* ---------- testimonials ---------- */
   var ct = 0;
   var ti = document.querySelectorAll('.testi-item');

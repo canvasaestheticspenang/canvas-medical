@@ -11,14 +11,16 @@ window.CANVAS_SLOTS = [
   { id: 'team-2',        label: 'Dr. Tan Chin Loon',             selector: '.team-grid > div:nth-child(2) .ph' },
   { id: 'team-3',        label: 'Dr. Chong Jee Can',             selector: '.team-grid > div:nth-child(3) .ph' },
   { id: 'team-4',        label: 'Dr. Kang Eik Hong',             selector: '.team-grid > div:nth-child(4) .ph' },
-  { id: 'gallery-1',     label: 'Gallery — photo 1',             selector: '.gallery-grid .g-item:nth-child(1) .ph' },
-  { id: 'gallery-2',     label: 'Gallery — photo 2',             selector: '.gallery-grid .g-item:nth-child(2) .ph' },
-  { id: 'gallery-3',     label: 'Gallery — photo 3',             selector: '.gallery-grid .g-item:nth-child(3) .ph' },
-  { id: 'gallery-4',     label: 'Gallery — photo 4',             selector: '.gallery-grid .g-item:nth-child(4) .ph' },
-  { id: 'gallery-5',     label: 'Gallery — photo 5',             selector: '.gallery-grid .g-item:nth-child(5) .ph' },
-  { id: 'gallery-6',     label: 'Gallery — photo 6',             selector: '.gallery-grid .g-item:nth-child(6) .ph' },
-  { id: 'gallery-7',     label: 'Gallery — photo 7',             selector: '.gallery-grid .g-item:nth-child(7) .ph' },
-  { id: 'gallery-8',     label: 'Gallery — photo 8',             selector: '.gallery-grid .g-item:nth-child(8) .ph' },
-  { id: 'gallery-9',     label: 'Gallery — photo 9',             selector: '.gallery-grid .g-item:nth-child(9) .ph' },
-  { id: 'gallery-10',    label: 'Gallery — photo 10',            selector: '.gallery-grid .g-item:nth-child(10) .ph' }
+  /* gallery uses data-slot attributes, not position — the carousel
+     shuffles card order on every load, so nth-child isn't stable */
+  { id: 'gallery-1',     label: 'Gallery — photo 1',             selector: '.g-item[data-slot="gallery-1"] .ph' },
+  { id: 'gallery-2',     label: 'Gallery — photo 2',             selector: '.g-item[data-slot="gallery-2"] .ph' },
+  { id: 'gallery-3',     label: 'Gallery — photo 3',             selector: '.g-item[data-slot="gallery-3"] .ph' },
+  { id: 'gallery-4',     label: 'Gallery — photo 4',             selector: '.g-item[data-slot="gallery-4"] .ph' },
+  { id: 'gallery-5',     label: 'Gallery — photo 5',             selector: '.g-item[data-slot="gallery-5"] .ph' },
+  { id: 'gallery-6',     label: 'Gallery — photo 6',             selector: '.g-item[data-slot="gallery-6"] .ph' },
+  { id: 'gallery-7',     label: 'Gallery — photo 7',             selector: '.g-item[data-slot="gallery-7"] .ph' },
+  { id: 'gallery-8',     label: 'Gallery — photo 8',             selector: '.g-item[data-slot="gallery-8"] .ph' },
+  { id: 'gallery-9',     label: 'Gallery — photo 9',             selector: '.g-item[data-slot="gallery-9"] .ph' },
+  { id: 'gallery-10',    label: 'Gallery — photo 10',            selector: '.g-item[data-slot="gallery-10"] .ph' }
 ];
