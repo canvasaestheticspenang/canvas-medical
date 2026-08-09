@@ -22,5 +22,10 @@ window.CANVAS_SLOTS = [
   { id: 'gallery-7',     label: 'Gallery — photo 7',             selector: '.g-item[data-slot="gallery-7"] .ph' },
   { id: 'gallery-8',     label: 'Gallery — photo 8',             selector: '.g-item[data-slot="gallery-8"] .ph' },
   { id: 'gallery-9',     label: 'Gallery — photo 9',             selector: '.g-item[data-slot="gallery-9"] .ph' },
-  { id: 'gallery-10',    label: 'Gallery — photo 10',            selector: '.g-item[data-slot="gallery-10"] .ph' }
+  { id: 'gallery-10',    label: 'Gallery — photo 10',            selector: '.g-item[data-slot="gallery-10"] .ph' },
+  { id: 'gallery-11',    label: 'Gallery — photo 11',            selector: '.g-item[data-slot="gallery-11"] .ph' },
+  { id: 'gallery-12',    label: 'Gallery — photo 12',            selector: '.g-item[data-slot="gallery-12"] .ph' },
+  { id: 'gallery-13',    label: 'Gallery — photo 13',            selector: '.g-item[data-slot="gallery-13"] .ph' },
+  { id: 'gallery-14',    label: 'Gallery — photo 14',            selector: '.g-item[data-slot="gallery-14"] .ph' },
+  { id: 'gallery-15',    label: 'Gallery — photo 15',            selector: '.g-item[data-slot="gallery-15"] .ph' }
 ];
