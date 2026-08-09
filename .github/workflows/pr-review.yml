@@ -38,12 +38,15 @@ jobs:
             echo "- \`$line\`" >> $GITHUB_STEP_SUMMARY
           done
 
-          # Check for specific file types
-          CSS_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.css$' || echo 0)
-          HTML_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.html$' || echo 0)
-          JS_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.js$' || echo 0)
-          IMG_COUNT=$(git diff --name-only origin/main...HEAD | grep -cE '\.(jpg|png|webp|gif|svg)$' || echo 0)
-          JSON_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.json$' || echo 0)
+          # Check for specific file types. grep -c already prints 0 on no
+          # match, it just exits 1 — so use "|| true" to keep the shell's -e
+          # happy rather than "|| echo 0", which appends a second 0 and makes
+          # the value two lines, corrupting the later $GITHUB_OUTPUT write.
+          CSS_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.css$' || true)
+          HTML_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.html$' || true)
+          JS_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.js$' || true)
+          IMG_COUNT=$(git diff --name-only origin/main...HEAD | grep -cE '\.(jpg|png|webp|gif|svg)$' || true)
+          JSON_COUNT=$(git diff --name-only origin/main...HEAD | grep -c '\.json$' || true)
 
           echo "**Breakdown:** CSS: $CSS_COUNT, HTML: $HTML_COUNT, JS: $JS_COUNT, Images: $IMG_COUNT, JSON: $JSON_COUNT" >> $GITHUB_STEP_SUMMARY
 
@@ -88,8 +91,8 @@ jobs:
           git diff --name-only origin/main...HEAD | grep '\.css$' | while read f; do
             if [ -f "$f" ]; then
               # Check for unclosed brackets
-              O=$(grep -c '{' "$f" 2>/dev/null || echo 0)
-              C=$(grep -c '}' "$f" 2>/dev/null || echo 0)
+              O=$(grep -c '{' "$f" 2>/dev/null || true)
+              C=$(grep -c '}' "$f" 2>/dev/null || true)
               if [ "$O" != "$C" ]; then
                 ISSUES=$((ISSUES + 1))
                 echo "- ❌ CSS brace mismatch in \`$f\` ($O open, $C close)" >> $GITHUB_STEP_SUMMARY
