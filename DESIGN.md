@@ -99,6 +99,14 @@ Every interactive element must define:
 - **Error** — `.invalid` class on `.f-field` (forms)
 - **Success** — `.show` on `.form-success` block
 
+## Hero Variants (`data-hero` on `<html>`)
+| Variant | Composition |
+|---------|-------------|
+| `editorial` | Left-aligned text column, portrait bleeding off the right edge, vertical location badge |
+| `centered` | Centered text column, no full-frame media plane |
+| `split` | Two-column grid, image panel right |
+| `immersive` (current) | Remedy Place-style placement: one centered column (eyebrow → headline → copy → CTAs) mid-frame over a full-frame media plane. The portrait is oversized, grayscale and ghosted (op .13 dark / .15 light) behind a soft `--bg` veil that keeps the copy at AA contrast. Entrance staggers headline lines, copy, buttons (~.5s/.7s/1.05s). ≤620px the portrait joins the flow below the CTAs, centered. |
+
 ## Component Kit
 
 ### `.t-card`
