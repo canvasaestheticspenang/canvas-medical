@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treatment Selection Sheet — The Atelier</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,400;0,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN: "THE ATELIER"
+   Concept: Luxury private clinic dossier —
+   horizontal entry rows like a Michelin wine list,
+   Roman numeral chapter openers, hairline gold rules,
+   Bodoni Moda × Jost typography, subtle textile textures.
+═══════════════════════════════════════════════════ */
+
+:root {
+  --bg:      #0A0907;
+  --sur:     #111009;
+  --sur2:    #17140F;
+  --ink:     #EDE8DF;
+  --ink2:    #98928A;
+  --ink3:    #48443E;
+  --gold:    #C4A456;
+  --gold-d:  #8A7030;
+  --gold-l:  #E8D4A0;
+  --bdr:     rgba(196,164,86,0.13);
+  --bdr-s:   rgba(196,164,86,0.32);
+  /* category jewel tones */
+  --en:  #5B8FA8; /* steel    — energy   */
+  --in:  #8A5B9A; /* amethyst — inject   */
+  --ph:  #5B8A80; /* jade     — physician*/
+  --sc:  #8A7B5B; /* cognac   — scalp    */
+  --bd:  #5B8A6A; /* forest   — body     */
+  --it:  #8A5B6A; /* rose     — intimate */
+  --iv:  #6A8A5B; /* olive    — IV       */
+  --st:  #5B6A8A; /* indigo   — stem     */
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 8.5pt;
+  line-height: 1.5;
+  /* warm grain */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+}
+
+/* ── PRINT ── */
+@media print {
+  body { background:#FAF8F4; color:#1A1814; background-image:none; font-size:7.8pt; }
+  .no-print { display:none!important; }
+  .folio { box-shadow:none; margin:0!important; padding:11mm 13mm 15mm; page-break-after:always; background:#FAF8F4; }
+  .folio:last-of-type { page-break-after:auto; }
+  .folio::before,.folio::after { border-color:rgba(140,100,40,0.3)!important; }
+  .mh-line { background:rgba(140,100,40,0.3)!important; }
+  .mh-diamond { color:rgba(140,100,40,0.5)!important; }
+  .mh-name { color:#1A1814!important; }
+  .mh-sub { color:#6A6050!important; }
+  .doc-label strong { color:#1A1814!important; }
+  .doc-label span { color:#6A6050!important; }
+  .meta-bar { background:#F0EBE2!important; border-color:rgba(140,100,40,0.3)!important; }
+  .mf { border-color:rgba(140,100,40,0.2)!important; }
+  .mf label { color:#8A7030!important; }
+  .mf .ml { border-color:rgba(140,100,40,0.25)!important; }
+  .chap { background:#F0EBE2!important; border-color:rgba(140,100,40,0.2)!important; }
+  .chap-num { color:rgba(140,100,40,0.12)!important; }
+  .chap-title { color:#1A1814!important; }
+  .chap-pill { color:#6A6050!important; border-color:rgba(140,100,40,0.2)!important; }
+  .entry { border-color:rgba(140,100,40,0.15)!important; }
+  .entry:hover { background:transparent!important; }
+  .e-sep { background:rgba(140,100,40,0.2)!important; }
+  .e-name { color:#1A1814!important; }
+  .e-tech { color:#6A6050!important; }
+  .e-desc { color:#3A3028!important; }
+  .price { color:#8A7030!important; }
+  .tag { border-color:rgba(140,100,40,0.2)!important; color:#5A5048!important; background:#F5F0E8!important; }
+  .tag.dr { color:#2A5070!important; background:#EDF3F8!important; border-color:rgba(44,120,160,0.3)!important; }
+  .tag.fl { color:#7A2A2A!important; background:#FBF0F0!important; border-color:rgba(160,44,44,0.3)!important; }
+  .cb { border-color:#AAA!important; background:#FFF!important; }
+  .entry.sel .cb { background:#8A7030!important; }
+  .tx-table th { color:#FAF8F4!important; }
+  .tx-table td { color:#3A3028!important; border-color:rgba(140,100,40,0.12)!important; }
+  .tx-table td.pn { color:#1A1814!important; }
+  .tx-table td.pr { color:#8A7030!important; }
+  .sig-bar { border-color:rgba(140,100,40,0.2)!important; }
+  .sl { border-color:#6A6050!important; color:#6A6050!important; }
+  .ftr { border-color:rgba(140,100,40,0.2)!important; color:#8A7030!important; }
+  .ftr span { color:#6A6050!important; }
+  .zone-row { border-color:rgba(140,100,40,0.2)!important; }
+  .zi { color:#3A3028!important; }
+  .nb { background:rgba(140,100,40,0.85)!important; color:#FAF8F4!important; }
+  .sec-rule { background:rgba(140,100,40,0.2)!important; }
+  .inset { border-color:rgba(140,100,40,0.2)!important; background:#F5F0E8!important; }
+  .fl-label { color:#6A6050!important; }
+  .fl-line { border-color:rgba(140,100,40,0.25)!important; }
+  .notes { border-color:rgba(140,100,40,0.2)!important; color:#9A9088!important; background:#F5F0E8!important; }
+  .sr-hd { background:#F0EBE2!important; color:#8A7030!important; border-color:rgba(140,100,40,0.2)!important; }
+  .sr-bd { color:#9A9088!important; }
+  @page { size:A4; margin:8mm; }
+  .entry { break-inside:avoid; }
+  .chap { break-after:avoid; }
+}
+
+/* ── CONTROLS ── */
+.controls {
+  max-width:228mm; margin:0 auto 14px;
+  display:flex; gap:10px; justify-content:flex-end;
+  padding:18px 6px 0;
+}
+.btn {
+  font-family:'Jost',sans-serif; font-size:7pt; font-weight:500;
+  letter-spacing:0.2em; text-transform:uppercase;
+  padding:7px 20px; border:1px solid var(--bdr-s);
+  background:transparent; color:var(--gold); cursor:pointer;
+  transition:all .18s;
+}
+.btn:hover { background:var(--gold); color:var(--bg); border-color:var(--gold); }
+.btn.solid { background:var(--gold); color:var(--bg); }
+.btn.solid:hover { background:var(--gold-l); }
+
+/* ── FOLIO (print page) ── */
+.folio {
+  max-width:228mm; margin:0 auto 32px;
+  background:var(--sur);
+  box-shadow:0 2px 80px rgba(0,0,0,.8), 0 0 0 1px var(--bdr);
+  padding:28px 34px 36px;
+  position:relative;
+}
+/* corner frame lines */
+.folio::before {
+  content:'';
+  position:absolute; inset:8px;
+  border:1px solid var(--bdr);
+  pointer-events:none;
+}
+.folio::after {
+  content:'';
+  position:absolute; top:14px; left:14px; right:14px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-d) 20%,var(--gold) 50%,var(--gold-d) 80%,transparent);
+}
+
+/* ══════════════════════════════════
+   MASTHEAD
+══════════════════════════════════ */
+.masthead {
+  display:flex; align-items:center; gap:18px;
+  padding:24px 0 20px; margin-bottom:14px;
+  border-bottom:1px solid var(--bdr);
+}
+.mh-lines { flex:1; display:flex; flex-direction:column; gap:5px; }
+.mh-line { height:1px; background:linear-gradient(90deg,transparent,var(--bdr-s)); }
+.mh-line.b { background:linear-gradient(90deg,var(--bdr-s),transparent); }
+.mh-center { text-align:center; flex-shrink:0; }
+.mh-diamond {
+  font-size:9pt; color:var(--gold); display:block;
+  letter-spacing:.15em; margin-bottom:6px; opacity:.7;
+}
+.mh-name {
+  font-family:'Bodoni Moda',serif; font-size:22pt; font-weight:400;
+  letter-spacing:.1em; color:var(--ink); line-height:1;
+  display:block; white-space:nowrap;
+}
+.mh-sub {
+  font-size:6pt; font-weight:400; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--gold); display:block;
+  margin-top:5px;
+}
+
+/* ── document meta row ── */
+.doc-row {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  margin-bottom:14px;
+}
+.doc-label strong {
+  font-family:'Bodoni Moda',serif; font-style:italic;
+  font-size:12pt; font-weight:400; color:var(--ink);
+  letter-spacing:.04em; display:block;
+}
+.doc-label span {
+  font-size:6.5pt; color:var(--ink3); letter-spacing:.06em;
+  line-height:1.9;
+}
+.doc-ref {
+  text-align:right; font-size:6.5pt;
+  color:var(--ink3); line-height:1.9;
+  letter-spacing:.06em;
+}
+
+/* ── meta fields ── */
+.meta-bar {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;
+  border:1px solid var(--bdr); background:var(--sur2);
+  margin-bottom:18px;
+}
+.mf { padding:5px 9px; border-right:1px solid var(--bdr); }
+.mf:last-child { border-right:none; }
+.mf label { display:block; font-size:5.5pt; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
+.mf .ml { display:block; border-bottom:1px solid var(--bdr-s); height:15px; }
+.mf .fz { font-size:8pt; color:var(--ink2); letter-spacing:.06em; }
+
+/* ══════════════════════════════════
+   CHAPTER OPENER
+══════════════════════════════════ */
+.sec-rule { height:1px; background:linear-gradient(90deg,var(--gold-d),transparent); margin-bottom:0; }
+
+.chap {
+  display:flex; align-items:center; gap:0;
+  padding:0 0 0 0; margin:16px 0 0;
+  background:var(--sur2);
+  border-top:1px solid var(--bdr);
+  border-bottom:1px solid var(--bdr);
+  position:relative; overflow:hidden;
+}
+/* per-category left accent */
+.chap::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+}
+.c-en .chap::before { background:var(--en); }
+.c-in .chap::before { background:var(--in); }
+.c-ph .chap::before { background:var(--ph); }
+.c-sc .chap::before { background:var(--sc); }
+.c-bd .chap::before { background:var(--bd); }
+.c-it .chap::before { background:var(--it); }
+.c-iv .chap::before { background:var(--iv); }
+.c-st .chap::before { background:var(--st); }
+
+.chap-num {
+  font-family:'Bodoni Moda',serif; font-size:52pt; font-weight:700;
+  line-height:1; padding:4px 16px 4px 20px;
+  flex-shrink:0; user-select:none;
+  letter-spacing:-.02em;
+}
+.c-en .chap-num { color:var(--en); }
+.c-in .chap-num { color:var(--in); }
+.c-ph .chap-num { color:var(--ph); }
+.c-sc .chap-num { color:var(--sc); }
+.c-bd .chap-num { color:var(--bd); }
+.c-it .chap-num { color:var(--it); }
+.c-iv .chap-num { color:var(--iv); }
+.c-st .chap-num { color:var(--st); }
+
+.chap-vr { width:1px; height:48px; background:var(--bdr); flex-shrink:0; }
+
+.chap-body { padding:10px 16px; flex:1; }
+.chap-title {
+  font-family:'Bodoni Moda',serif; font-size:12.5pt; font-weight:400;
+  color:var(--ink); letter-spacing:.02em; display:block;
+}
+.chap-pill {
+  font-size:6pt; font-weight:400; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink3);
+  display:inline-block; margin-top:4px;
+  border:1px solid var(--bdr); padding:2px 8px;
+}
+
+/* ══════════════════════════════════
+   TREATMENT ENTRY ROW
+══════════════════════════════════ */
+.entries { margin-top:0; }
+
+.entry {
+  display:grid;
+  grid-template-columns: 58px 1px 164px 1fr auto 20px;
+  gap:0 11px;
+  align-items:center;
+  padding:9px 0;
+  border-bottom:1px solid var(--bdr);
+  cursor:pointer;
+  position:relative;
+  transition:background .15s;
+}
+.entry:first-child { border-top:1px solid var(--bdr); }
+.entry:hover { background:rgba(196,164,86,.03); }
+.entry.sel { background:rgba(196,164,86,.06); }
+.entry.sel .cb { background:var(--gold); border-color:var(--gold); }
+
+/* category left micro-stripe on hover */
+.entry::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
+  opacity:0; transition:opacity .15s;
+}
+.c-en .entry::before { background:var(--en); }
+.c-in .entry::before { background:var(--in); }
+.c-ph .entry::before { background:var(--ph); }
+.c-sc .entry::before { background:var(--sc); }
+.c-bd .entry::before { background:var(--bd); }
+.c-it .entry::before { background:var(--it); }
+.c-iv .entry::before { background:var(--iv); }
+.c-st .entry::before { background:var(--st); }
+.entry:hover::before, .entry.sel::before { opacity:1; }
+
+/* ── art cell ── */
+.e-art { width:58px; height:40px; overflow:hidden; flex-shrink:0; }
+.e-art svg { width:100%; height:100%; display:block; }
+
+/* ── separator ── */
+.e-sep { width:1px; height:36px; background:var(--bdr); flex-shrink:0; align-self:center; }
+
+/* ── name cell ── */
+.e-id { display:flex; flex-direction:column; gap:2px; padding-right:4px; }
+.e-name {
+  font-family:'Bodoni Moda',serif; font-size:9.5pt; font-weight:400;
+  color:var(--ink); line-height:1.2;
+}
+.e-name.nb-wrap { display:flex; align-items:center; gap:5px; }
+.nb {
+  font-family:'Jost',sans-serif; font-size:5pt; font-weight:600;
+  letter-spacing:.15em; text-transform:uppercase;
+  background:var(--gold); color:var(--bg);
+  padding:2px 5px; flex-shrink:0;
+}
+.e-tech {
+  font-size:6pt; font-weight:400; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink3);
+}
+
+/* ── description cell ── */
+.e-desc { font-size:7.2pt; color:var(--ink2); line-height:1.45; }
+
+/* ── meta cell (tags + price) ── */
+.e-meta { text-align:right; display:flex; flex-direction:column; gap:4px; align-items:flex-end; padding-left:6px; }
+.e-tags { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:3px; }
+.tag {
+  font-size:5.5pt; letter-spacing:.1em; text-transform:uppercase;
+  padding:1px 5px; border:1px solid var(--bdr); color:var(--ink3);
+  background:rgba(255,255,255,.02); white-space:nowrap;
+}
+.tag.dr { border-color:rgba(91,143,168,.4); color:var(--en); }
+.tag.fl { border-color:rgba(138,91,106,.4); color:var(--it); }
+.price {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:9pt; color:var(--gold); white-space:nowrap;
+}
+
+/* ── checkbox cell ── */
+.cb {
+  width:13px; height:13px; border:1.5px solid var(--ink3);
+  flex-shrink:0; transition:all .15s; background:transparent;
+}
+.entry:hover .cb { border-color:var(--gold); }
+
+/* ══════════════════════════════════
+   SUB-TABLES (injectable products)
+══════════════════════════════════ */
+.tbl-wrap { margin-top:10px; }
+.tbl-label {
+  font-size:6pt; font-weight:500; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--gold);
+  padding:6px 0 5px; border-top:1px solid var(--bdr);
+  margin-top:8px; display:block;
+}
+.two-tbl { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+
+table.tx {
+  width:100%; border-collapse:collapse;
+  font-size:7.5pt; border:1px solid var(--bdr);
+}
+table.tx thead tr.th-hd th {
+  padding:5px 8px; font-size:6pt; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-l);
+  text-align:left; font-weight:400; font-family:'Jost',sans-serif;
+}
+table.tx thead tr.th-sub th {
+  padding:4px 8px; font-size:5.5pt; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink3);
+  background:rgba(255,255,255,.02);
+  border-bottom:1px solid var(--bdr);
+  font-weight:400; text-align:left;
+}
+table.tx tbody tr { transition:background .1s; cursor:pointer; }
+table.tx tbody tr:hover td { background:rgba(196,164,86,.04); }
+table.tx tbody tr.sel td { background:rgba(196,164,86,.08); }
+table.tx td {
+  padding:5px 8px; border-bottom:1px solid rgba(196,164,86,.07);
+  color:var(--ink2);
+}
+table.tx tbody tr:last-child td { border-bottom:none; }
+table.tx td.pn {
+  font-family:'Bodoni Moda',serif; font-size:9pt;
+  font-weight:400; color:var(--ink);
+}
+table.tx td.pr {
+  text-align:right; color:var(--gold);
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-size:9pt;
+  white-space:nowrap;
+}
+table.tx td.un { color:var(--ink3); font-size:6.8pt; }
+table.tx td.nf { width:20%; }
+table.tx td.nf .nl { display:block; border-bottom:1px solid var(--bdr-s); height:13px; }
+table.tx td:first-child { width:18px; text-align:center; }
+
+/* ══════════════════════════════════
+   MISC COMPONENTS
+══════════════════════════════════ */
+.zone-row {
+  display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+  padding:6px 10px; border:1px solid var(--bdr);
+  background:var(--sur2); margin-top:6px;
+}
+.zl { font-size:5.5pt; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+.zi { display:flex; align-items:center; gap:5px; color:var(--ink2); font-size:7.5pt; }
+
+.sr {
+  display:grid; grid-template-columns:120px 1fr;
+  border:1px solid var(--bdr); overflow:hidden; margin-top:6px;
+}
+.sr-hd {
+  padding:5px 9px; background:var(--sur2); border-right:1px solid var(--bdr);
+  font-size:5.8pt; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); display:flex; align-items:center;
+}
+.sr-bd { padding:5px 10px; font-size:7pt; color:var(--ink3); font-style:italic; display:flex; align-items:center; }
+
+.notes {
+  border:1px solid var(--bdr); padding:7px 10px;
+  min-height:36px; font-size:7pt; color:var(--ink3);
+  font-style:italic; background:var(--sur2); margin-top:6px;
+}
+
+.inset {
+  border:1px solid var(--bdr); padding:10px 12px;
+  background:var(--sur2);
+}
+.fl-label { font-size:5.5pt; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:2px; display:block; }
+.fl-line { display:block; border-bottom:1px solid var(--bdr-s); height:14px; width:100%; margin-bottom:6px; }
+
+.sig-bar {
+  display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px;
+  margin-top:14px; padding-top:12px; border-top:1px solid var(--bdr);
+}
+.sl {
+  padding-top:22px; border-top:1px solid var(--ink3);
+  font-size:6pt; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink3); text-align:center;
+}
+
+.ftr {
+  margin-top:14px; padding-top:8px;
+  border-top:1px solid var(--bdr);
+  display:flex; justify-content:space-between;
+  font-size:6pt; color:var(--gold); letter-spacing:.12em; text-transform:uppercase;
+}
+.ftr span { color:var(--ink3); text-transform:none; letter-spacing:.04em; }
+
+/* section texture overlays — subtle per-category */
+.c-en .entries { background-image:repeating-linear-gradient(45deg,transparent 0,transparent 8px,rgba(91,143,168,.025) 8px,rgba(91,143,168,.025) 9px); }
+.c-in .entries { background-image:radial-gradient(rgba(138,91,154,.04) 1px,transparent 1px); background-size:12px 12px; }
+.c-bd .entries { background-image:repeating-linear-gradient(90deg,transparent 0,transparent 10px,rgba(91,138,106,.025) 10px,rgba(91,138,106,.025) 11px); }
+.c-iv .entries { background-image:repeating-linear-gradient(0deg,transparent 0,transparent 9px,rgba(106,138,91,.025) 9px,rgba(106,138,91,.025) 10px); }
+.c-st .entries { background-image:radial-gradient(rgba(91,106,138,.04) 1px,transparent 1px); background-size:10px 10px; }
+
+/* ══════════════════════════════════
+   LAYOUT UTILS
+══════════════════════════════════ */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.cat-block { margin-bottom:4px; }
+
+/* ══════════════════════════════════
+   SECTION ART — shared mini SVG defs
+══════════════════════════════════ */
+</style>
+</head>
+<body>
+
+<div class="controls no-print">
+  <button class="btn" onclick="window.print()">Print · PDF</button>
+  <button class="btn solid" onclick="resetAll()">↺ Reset</button>
+</div>
+
+<!-- ███████████████████████████████████████████
+     FOLIO 1 — FACIAL AESTHETICS
+███████████████████████████████████████████ -->
+<div class="folio">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="mh-lines">
+      <div class="mh-line"></div>
+      <div class="mh-line" style="opacity:.5"></div>
+    </div>
+    <div class="mh-center">
+      <span class="mh-diamond">◆ ◇ ◆</span>
+      <span class="mh-name">CANVAS MEDICAL CLINIC</span>
+      <span class="mh-sub">Aesthetic &amp; Wellness · Penang Island</span>
+    </div>
+    <div class="mh-lines">
+      <div class="mh-line b"></div>
+      <div class="mh-line b" style="opacity:.5"></div>
+    </div>
+  </div>
+
+  <!-- DOC ROW -->
+  <div class="doc-row">
+    <div class="doc-label">
+      <strong>Treatment Selection Sheet</strong>
+      <span>SOP Ref: TS-01 &nbsp;·&nbsp; Ver 3.0 &nbsp;·&nbsp; Page 1 of 3</span>
+    </div>
+    <div class="doc-ref">
+      Date ___________________<br>
+      Visit No _________ &nbsp;·&nbsp; Consultant _______________________<br>
+      Doctor _______________________
+    </div>
+  </div>
+
+  <!-- META -->
+  <div class="meta-bar">
+    <div class="mf"><label>Client Name</label><span class="ml"></span></div>
+    <div class="mf"><label>Client ID</label><span class="ml"></span></div>
+    <div class="mf"><label>Fitzpatrick</label><span class="fz">I &nbsp;II &nbsp;III &nbsp;IV &nbsp;V &nbsp;VI</span></div>
+    <div class="mf"><label>Visit Type</label><span class="fz">New &nbsp;·&nbsp; Return &nbsp;·&nbsp; F/U</span></div>
+    <div class="mf"><label>Doctor Sign-Off</label><span class="ml"></span></div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CHAPTER I — LASER & ENERGY DEVICES
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-en">
+    <div class="chap">
+      <div class="chap-num">I</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">Laser &amp; Energy Devices — Physician Procedures &amp; Medifacials</span>
+        <span class="chap-pill">Doctor / consultant administered · Fitzpatrick-dependent · Device + session logged below</span>
+      </div>
+    </div>
+
+    <div class="entries">
+
+      <span class="tbl-label" style="border-top:none; margin-top:0;">Physician Devices Procedure — Doctor Administered</span>
+
+      <!-- RF Microneedling (EXION) -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#100818"/>
+          <g opacity=".65">
+          <line x1="12" y1="4"  x2="12" y2="20" stroke="#C4A456" stroke-width=".8"/><circle cx="12" cy="20" r="1.5" fill="#C4A456"/>
+          <line x1="22" y1="4"  x2="22" y2="24" stroke="#C4A456" stroke-width=".8"/><circle cx="22" cy="24" r="1.5" fill="#C4A456"/>
+          <line x1="32" y1="4"  x2="32" y2="18" stroke="#C4A456" stroke-width=".8"/><circle cx="32" cy="18" r="1.5" fill="#C4A456"/>
+          <line x1="42" y1="4"  x2="42" y2="22" stroke="#C4A456" stroke-width=".8"/><circle cx="42" cy="22" r="1.5" fill="#C4A456"/>
+          </g>
+          <path d="M6 30 Q18 26 29 32 Q40 38 52 30" stroke="#8A5B9A" stroke-width="1.5" fill="none" opacity=".7"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Radiofrequency Microneedling</span>
+          <span class="e-tech">EXION · RF Microneedling</span>
+        </div>
+        <div class="e-desc">RF microneedling for lifting, scar revision, pore tightening and deep skin rejuvenation. Device, energy level and session number logged below.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Lifting</span><span class="tag">Scars</span><span class="tag">Pores</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 2,200 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- RF Micro-Ablative (EXION) -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#080E18"/>
+          <g opacity=".6">
+          <circle cx="10" cy="10" r="2" fill="#5B8FA8"/><circle cx="20" cy="10" r="2" fill="#5B8FA8"/><circle cx="30" cy="10" r="2" fill="#5B8FA8"/><circle cx="40" cy="10" r="2" fill="#5B8FA8"/><circle cx="50" cy="10" r="2" fill="#5B8FA8"/>
+          <circle cx="10" cy="20" r="2" fill="#C4A456" opacity=".9"/><circle cx="20" cy="20" r="2" fill="#C4A456" opacity=".9"/><circle cx="30" cy="20" r="2" fill="#C4A456" opacity=".9"/><circle cx="40" cy="20" r="2" fill="#C4A456" opacity=".9"/><circle cx="50" cy="20" r="2" fill="#C4A456" opacity=".9"/>
+          <circle cx="10" cy="30" r="2" fill="#5B8FA8"/><circle cx="20" cy="30" r="2" fill="#5B8FA8"/><circle cx="30" cy="30" r="2" fill="#5B8FA8"/><circle cx="40" cy="30" r="2" fill="#5B8FA8"/><circle cx="50" cy="30" r="2" fill="#5B8FA8"/>
+          </g>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Radiofrequency Micro-Ablative</span>
+          <span class="e-tech">EXION · RF Micro-Ablative</span>
+        </div>
+        <div class="e-desc">Micro-ablative RF for controlled resurfacing, pore refinement and textural improvement. Full face or focused zones.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Resurfacing</span><span class="tag">Pores</span><span class="tag">Texture</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 2,200 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- RF Treatment (XERF/ThermageFLX/Density) -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1428"/>
+          <ellipse cx="29" cy="24" rx="7"  ry="5"  stroke="#C4A456" stroke-width="1.2" fill="none" opacity=".9"/>
+          <ellipse cx="29" cy="24" rx="15" ry="10" stroke="#C4A456" stroke-width=".7" fill="none" opacity=".55"/>
+          <ellipse cx="29" cy="24" rx="24" ry="16" stroke="#C4A456" stroke-width=".4" fill="none" opacity=".25"/>
+          <line x1="29" y1="4" x2="29" y2="17" stroke="#C4A456" stroke-width="1" opacity=".7"/>
+          <polygon points="29,5 26,12 32,12" fill="#C4A456" opacity=".7"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Radiofrequency Treatment</span>
+          <span class="e-tech">XERF · Thermage FLX · RF Density</span>
+        </div>
+        <div class="e-desc">Monopolar / high-power RF tightening and collagen remodelling — platform selected per skin concern and zone. Full face or focused zone: temples, eyes, jawline, neck.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Tightening</span><span class="tag">Collagen</span><span class="tag">Jawline</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 6,500–7,000 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- RF Treatment — EMFACE -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0C1820"/>
+          <path d="M4 20 Q14 8 24 20 Q34 32 44 20 Q50 12 54 16" stroke="#5B8FA8" stroke-width="1.2" fill="none" opacity=".8"/>
+          <path d="M4 26 Q14 14 24 26 Q34 38 44 26 Q50 18 54 22" stroke="#5B8FA8" stroke-width=".7" fill="none" opacity=".4"/>
+          <rect x="22" y="8" width="2.5" height="24" rx="1" fill="#C4A456" opacity=".7"/>
+          <rect x="28" y="12" width="2.5" height="16" rx="1" fill="#C4A456" opacity=".5"/>
+          <rect x="34" y="8" width="2.5" height="24" rx="1" fill="#C4A456" opacity=".7"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Radiofrequency Treatment — EMFACE</span>
+          <span class="e-tech">BTL EMFACE · syncRF + HIFES</span>
+        </div>
+        <div class="e-desc">Simultaneous RF skin tightening and high-intensity facial electromagnetic stimulation. Lifts brows, midface and jowl without needles. Zero downtime.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Lifting</span><span class="tag">Muscle stim</span><span class="tag">No downtime</span></div>
+          <div class="price">RM 2,500 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- MFUS/HIFU -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#08141E"/>
+          <circle cx="29" cy="20" r="5"  stroke="#C4A456" stroke-width="1.2" fill="none" opacity=".9"/>
+          <circle cx="29" cy="20" r="11" stroke="#C4A456" stroke-width=".7" fill="none" opacity=".55"/>
+          <circle cx="29" cy="20" r="18" stroke="#C4A456" stroke-width=".5" fill="none" opacity=".28"/>
+          <circle cx="29" cy="20" r="3"  fill="#C4A456" opacity=".8"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">MFUS / HIFU</span>
+          <span class="e-tech">Ultherapy PRIME · LINEARZ · Ultraformer</span>
+        </div>
+        <div class="e-desc">Deep SMAS-layer lifting and collagen stimulation via micro- or macro-focused ultrasound. Face, neck, brow and décolletage. Results develop over 2–3 months.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">SMAS lifting</span><span class="tag">Collagen</span><span class="tag">Neck</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 7,200 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- Er:YAG resurfacing -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#120A1A"/>
+          <rect x="10" y="8"  width="38" height="5" rx="1" fill="#8A5B9A" opacity=".5"/>
+          <rect x="10" y="15" width="38" height="5" rx="1" fill="#6A3D7A" opacity=".4"/>
+          <rect x="10" y="22" width="38" height="5" rx="1" fill="#4A2558" opacity=".35"/>
+          <rect x="10" y="29" width="38" height="5" rx="1" fill="#2A1038" opacity=".25"/>
+          <line x1="29" y1="2" x2="29" y2="8"  stroke="#C4A456" stroke-width="1.5" opacity=".9"/>
+          <polygon points="29,3 26,9 32,9" fill="#C4A456" opacity=".8"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Er:YAG Resurfacing Laser</span>
+          <span class="e-tech">FOTONA · DERMABLATE Asclepion</span>
+        </div>
+        <div class="e-desc">Precise erbium ablative resurfacing for acne scars, deep wrinkles and lesions. Minimal collateral thermal damage. Suitable for Fitzpatrick III–VI.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Ablative</span><span class="tag">Scars</span><span class="tag fl">Downtime</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 900 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- Nd:YAG -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#08101E"/>
+          <circle cx="29" cy="20" r="12" stroke="#C4A456" stroke-width=".9" fill="none" opacity=".6"/>
+          <circle cx="29" cy="20" r="6"  stroke="#C4A456" stroke-width=".6" fill="none" opacity=".5"/>
+          <circle cx="29" cy="20" r="2"  fill="#C4A456" opacity=".9"/>
+          <line x1="16" y1="20" x2="21" y2="20" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="37" y1="20" x2="42" y2="20" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="29" y1="6"  x2="29" y2="11" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="29" y1="29" x2="29" y2="34" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Nd:YAG Laser Treatment</span>
+          <span class="e-tech">FOTONA · Nd:YAG 1064nm</span>
+        </div>
+        <div class="e-desc">Nd:YAG laser for pigmentation, vascular lesions, skin toning and collagen stimulation. Superior clearance with minimal thermal collateral damage.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Pigment</span><span class="tag">Vascular</span><span class="tag">Toning</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 900 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- PICOLaser treatment -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#08101C"/>
+          <circle cx="29" cy="20" r="2" fill="#C4A456" opacity="1"/>
+          <line x1="29" y1="20" x2="29" y2="5"  stroke="#7ACC60" stroke-width="1.2" opacity=".7"/>
+          <line x1="29" y1="20" x2="44" y2="10" stroke="#7ACC60" stroke-width="1.2" opacity=".7"/>
+          <line x1="29" y1="20" x2="46" y2="26" stroke="#7ACC60" stroke-width=".8" opacity=".5"/>
+          <line x1="29" y1="20" x2="14" y2="8"  stroke="#CC4444" stroke-width="1.2" opacity=".6"/>
+          <line x1="29" y1="20" x2="12" y2="28" stroke="#CC4444" stroke-width=".8" opacity=".5"/>
+          <line x1="29" y1="20" x2="46" y2="36" stroke="#C4A456" stroke-width="1.2" opacity=".7"/>
+          <line x1="29" y1="20" x2="12" y2="36" stroke="#C4A456" stroke-width="1.2" opacity=".7"/>
+          <line x1="29" y1="20" x2="29" y2="36" stroke="#C4A456" stroke-width="1" opacity=".8"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">PICOLaser Treatment</span>
+          <span class="e-tech">PICOSure · PICOLO · Picore · FOTONA</span>
+        </div>
+        <div class="e-desc">Multi-platform picosecond laser for pigmentation, melasma, nevus of Ota, tattoo removal and skin revitalisation. Targets dermis layer for stubborn pigmented lesions.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Pigment</span><span class="tag">Tattoo</span><span class="tag">Multi-wave</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 1,500 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- Yellow Laser -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="yl-g2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#E8C040" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#A07010" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="58" height="40" fill="#181200"/>
+          <ellipse cx="29" cy="20" rx="24" ry="20" fill="url(#yl-g2)"/>
+          <circle cx="29" cy="20" r="6"  stroke="#E8C040" stroke-width="1.2" fill="none" opacity=".9"/>
+          <circle cx="29" cy="20" r="12" stroke="#E8C040" stroke-width=".6" fill="none" opacity=".5"/>
+          <circle cx="29" cy="20" r="3"  fill="#E8C040" opacity=".95"/>
+          <text x="37" y="16" font-size="6" fill="#E8C040" opacity=".7" font-family="Jost">577</text>
+          <text x="38" y="23" font-size="5" fill="#E8C040" opacity=".5" font-family="Jost">nm</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Yellow Laser Treatment</span>
+          <span class="e-tech">577–589nm · Vascular + Pigment</span>
+        </div>
+        <div class="e-desc">Optimal wavelength targeting oxyhemoglobin — rosacea, telangiectasia, spider veins, melasma, PIH and skin brightening. All Fitzpatrick types safe.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Rosacea</span><span class="tag">Vascular</span><span class="tag">Melasma</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 1,500 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- Needleless skinbooster -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1410"/>
+          <rect x="6" y="17" width="18" height="7" rx="2" fill="#5B8A6A" opacity=".8"/>
+          <polygon points="24,17 34,20 24,23" fill="#5B8A6A" opacity=".8"/>
+          <circle cx="38" cy="18" r="2" fill="#C4A456" opacity=".8"/>
+          <circle cx="44" cy="20" r="1.5" fill="#C4A456" opacity=".65"/>
+          <circle cx="50" cy="17" r="1.5" fill="#C4A456" opacity=".55"/>
+          <circle cx="47" cy="24" r="1.2" fill="#C4A456" opacity=".5"/>
+          <circle cx="53" cy="22" r="1" fill="#C4A456" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Needleless Skinbooster Injection</span>
+          <span class="e-tech">Mirajet · Cura · Synerject</span>
+        </div>
+        <div class="e-desc">Converts pressure energy to inject PDRN, HA and vitamins transdermally without needles. Uniform delivery into dermis. Stretch marks, scars, elasticity and pigmentation improvement.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Needle-free</span><span class="tag">PDRN</span><span class="tag">HA</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 2,500 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <span class="tbl-label">Medifacials — Consultant / Therapist Administered · Maintenance Programmes</span>
+
+      <!-- DERMALOGICA -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1208"/>
+          <path d="M29 5 Q40 16 29 36 Q18 16 29 5Z" fill="#2E7055" opacity=".45"/>
+          <path d="M29 10 Q37 20 29 32 Q21 20 29 10Z" fill="#C4A456" opacity=".2"/>
+          <line x1="29" y1="5"  x2="29" y2="36" stroke="#C4A456" stroke-width=".7" opacity=".5"/>
+          <line x1="29" y1="16" x2="37" y2="22" stroke="#C4A456" stroke-width=".5" opacity=".3"/>
+          <line x1="29" y1="24" x2="22" y2="28" stroke="#C4A456" stroke-width=".5" opacity=".3"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">DERMALOGICA Facial</span>
+          <span class="e-tech">Dermo-Cosmeceutical · Maintenance</span>
+        </div>
+        <div class="e-desc">Professional facial with potent actives customised to skin type and concern. Optimal skin health maintenance between clinical treatments.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Glow</span><span class="tag">Maintenance</span><span class="tag">All types</span></div>
+          <div class="price">RM 499 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- Nano/Microneedling -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0E0A18"/>
+          <g opacity=".7">
+          <line x1="12" y1="4"  x2="12" y2="22" stroke="#C4A456" stroke-width=".8"/><circle cx="12" cy="22" r="1.5" fill="#C4A456"/>
+          <line x1="22" y1="4"  x2="22" y2="26" stroke="#C4A456" stroke-width=".8"/><circle cx="22" cy="26" r="1.5" fill="#C4A456"/>
+          <line x1="32" y1="4"  x2="32" y2="20" stroke="#C4A456" stroke-width=".8"/><circle cx="32" cy="20" r="1.5" fill="#C4A456"/>
+          <line x1="42" y1="4"  x2="42" y2="24" stroke="#C4A456" stroke-width=".8"/><circle cx="42" cy="24" r="1.5" fill="#C4A456"/>
+          </g>
+          <path d="M6 30 Q18 26 29 30 Q40 34 52 30" stroke="#8A5B9A" stroke-width="1.4" fill="none" opacity=".65"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Nano / Microneedling</span>
+          <span class="e-tech">CIT · Collagen Induction Therapy</span>
+        </div>
+        <div class="e-desc">Nano (pain-free nano-probe) or classical micro CIT for skin repair, rejuvenation and enhanced product delivery. Suitable for low pain-tolerance clients.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">CIT</span><span class="tag">Repair</span><span class="tag">Sensitive OK</span></div>
+          <div class="price">RM 599 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- HIFU Medifacial -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#08101C"/>
+          <polygon points="29,4 12,38 46,38" stroke="#C4A456" stroke-width=".9" fill="none" opacity=".5"/>
+          <polygon points="29,4 18,38 40,38" stroke="#C4A456" stroke-width=".6" fill="none" opacity=".35"/>
+          <circle cx="29" cy="32" r="4" fill="#C4A456" opacity=".8"/>
+          <circle cx="29" cy="32" r="7" stroke="#C4A456" stroke-width=".7" fill="none" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name nb-wrap">HIFU Medifacial <span class="nb">New</span></span>
+          <span class="e-tech">Focused Ultrasound · Facial Maintenance</span>
+        </div>
+        <div class="e-desc">Lighter-intensity focused ultrasound facial for maintenance lifting and skin quality between higher-intensity MFUS/HIFU device sessions.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Lifting</span><span class="tag">Maintenance</span><span class="tag">No downtime</span></div>
+          <div class="price">RM 2,200 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- RF EXION Face -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1420"/>
+          <path d="M4 14 C14 6 24 22 34 14 C44 6 52 18 56 14" stroke="#C4A456" stroke-width="1.2" fill="none" opacity=".8"/>
+          <path d="M4 24 C12 16 22 32 32 24 C42 16 50 28 56 24" stroke="#5B8FA8" stroke-width=".9" fill="none" opacity=".6"/>
+          <text x="4" y="37" font-size="5" fill="#5B8FA8" opacity=".5" font-family="Jost">RF</text>
+          <text x="14" y="37" font-size="5" fill="#C4A456" opacity=".5" font-family="Jost">+US</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">RF EXION Face</span>
+          <span class="e-tech">BTL EXION · RF + Targeted Ultrasound</span>
+        </div>
+        <div class="e-desc">Dual modality: RF + targeted ultrasound stimulate intrinsic HA and collagen production simultaneously. Deep lifting and skin quality improvement.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">RF + US</span><span class="tag">HA stim</span><span class="tag">Lifting</span></div>
+          <div class="price">RM 599 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- TitaniumLift -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1018"/>
+          <line x1="8"  y1="38" x2="24" y2="4"  stroke="#C4A456" stroke-width="1" opacity=".7"/>
+          <line x1="18" y1="38" x2="34" y2="4"  stroke="#C4A456" stroke-width="1" opacity=".7"/>
+          <line x1="28" y1="38" x2="44" y2="4"  stroke="#C4A456" stroke-width="1" opacity=".7"/>
+          <line x1="38" y1="38" x2="54" y2="4"  stroke="#C4A456" stroke-width=".7" opacity=".45"/>
+          <polygon points="29,6 26,14 32,14" fill="#C4A456" opacity=".9"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">TitaniumLift Medifacial</span>
+          <span class="e-tech">Diode Laser · Lift + Brighten + Slim</span>
+        </div>
+        <div class="e-desc">Diode laser energy for lifting, brightening, tightening and facial slimming. Suitable for regular maintenance.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Lifting</span><span class="tag">Brightening</span></div>
+          <div class="price">RM 499 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- RF Medifacial (Exilis) -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1220"/>
+          <path d="M4 20 C12 10 20 30 28 20 C36 10 44 30 52 20 C55 16 57 18 57 18" stroke="#5B8FA8" stroke-width="1.4" fill="none" opacity=".75"/>
+          <path d="M4 28 C12 18 20 38 28 28 C36 18 44 38 52 28 C55 24 57 26 57 26" stroke="#5B8FA8" stroke-width=".7" fill="none" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">RF Medifacial (Exilis)</span>
+          <span class="e-tech">Radiofrequency · Rejuvenation</span>
+        </div>
+        <div class="e-desc">Gentle RF for skin rejuvenation and tightening. All skin types, no downtime. Ideal as maintenance treatment between higher-intensity energy device sessions.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Rejuv</span><span class="tag">All skin</span><span class="tag">Maintenance</span></div>
+          <div class="price">RM 499 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- PICOLaser Medifacial -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#08121C"/>
+          <circle cx="29" cy="20" r="4"  fill="#C4A456" opacity=".8"/>
+          <circle cx="29" cy="20" r="10" stroke="#C4A456" stroke-width=".7" fill="none" opacity=".45"/>
+          <circle cx="29" cy="20" r="17" stroke="#C4A456" stroke-width=".5" fill="none" opacity=".22"/>
+          <line x1="29" y1="3"  x2="29" y2="7"  stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="40" y1="7"  x2="43" y2="4"  stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="46" y1="20" x2="50" y2="20" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="40" y1="33" x2="43" y2="36" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="18" y1="33" x2="15" y2="36" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+          <line x1="12" y1="20" x2="8"  y2="20" stroke="#C4A456" stroke-width=".9" opacity=".7"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">PICOLaser Medifacial</span>
+          <span class="e-tech">Picosecond · Brightening + Rejuv</span>
+        </div>
+        <div class="e-desc">Photoacoustic laser energy for pigmentation, brightening and skin rejuvenation. Minimal thermal damage. Suitable for all Fitzpatrick types.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Pigment</span><span class="tag">Brightening</span><span class="tag">All Fitz</span></div>
+          <div class="price">RM 499 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- Bio-Rejuv PRX-T33 -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0C1410"/>
+          <circle cx="29" cy="20" r="5"  fill="#4A6E2E" opacity=".8"/>
+          <circle cx="16" cy="12" r="3"  fill="#C4A456" opacity=".6"/>
+          <circle cx="42" cy="12" r="3"  fill="#C4A456" opacity=".6"/>
+          <circle cx="14" cy="30" r="3"  fill="#C4A456" opacity=".6"/>
+          <circle cx="44" cy="30" r="3"  fill="#C4A456" opacity=".6"/>
+          <line x1="29" y1="15" x2="16" y2="15" stroke="#C4A456" stroke-width=".8" opacity=".4"/>
+          <line x1="29" y1="15" x2="42" y2="15" stroke="#C4A456" stroke-width=".8" opacity=".4"/>
+          <line x1="29" y1="25" x2="14" y2="27" stroke="#C4A456" stroke-width=".8" opacity=".4"/>
+          <line x1="29" y1="25" x2="44" y2="27" stroke="#C4A456" stroke-width=".8" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Bio-Rejuv PRX-T33</span>
+          <span class="e-tech">TCA + BHA + H₂O₂ · No-Peel Peel</span>
+        </div>
+        <div class="e-desc">Biostimulating peel without exfoliation — TCA compound for wrinkles, pigmentation, acne scars. Minimal downtime, combinable with most other modalities in same visit.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Pigment</span><span class="tag">Acne</span><span class="tag">No peeling</span></div>
+          <div class="price">RM 499 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- DERMAMELAN -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#180C06"/>
+          <circle cx="18" cy="14" r="5" fill="#7A4020" opacity=".55"/>
+          <circle cx="34" cy="10" r="4" fill="#7A4020" opacity=".5"/>
+          <circle cx="44" cy="18" r="6" fill="#7A4020" opacity=".55"/>
+          <circle cx="24" cy="28" r="4" fill="#7A4020" opacity=".4"/>
+          <rect x="6" y="6" width="46" height="28" fill="#C4A456" opacity=".04"/>
+          <line x1="6" y1="36" x2="52" y2="36" stroke="#C4A456" stroke-width=".5" opacity=".35"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">DERMAMELAN Medifacial</span>
+          <span class="e-tech">Intensive Depigmentation</span>
+        </div>
+        <div class="e-desc">Single-session intensive pigment reduction — melasma, PIH, post-inflammatory hyperpigmentation. Downtime: 5–7 days.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Melasma</span><span class="tag fl">5–7d downtime</span></div>
+          <div class="price">RM 3,300 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- COSMELAN -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#140E08"/>
+          <circle cx="20" cy="16" r="4" fill="#5A3010" opacity=".5"/>
+          <circle cx="36" cy="12" r="3" fill="#5A3010" opacity=".5"/>
+          <circle cx="44" cy="20" r="5" fill="#5A3010" opacity=".5"/>
+          <circle cx="28" cy="28" r="3" fill="#5A3010" opacity=".4"/>
+          <ellipse cx="29" cy="22" rx="22" ry="15" fill="#C4A456" opacity=".03"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">COSMELAN Medifacial</span>
+          <span class="e-tech">Pigment Control · Milder Alternative</span>
+        </div>
+        <div class="e-desc">Professional pigment control for moderate hyperpigmentation and melasma. Gentler than Dermamelan with shorter downtime.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Pigment</span><span class="tag">Melasma</span><span class="tag">Less DT</span></div>
+          <div class="price">RM 2,200 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <!-- MCCM Peel -->
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1208"/>
+          <path d="M8 34 Q18 26 28 30 Q38 34 48 26 Q52 22 56 24" stroke="#4A6E2E" stroke-width="1.3" fill="none" opacity=".7"/>
+          <path d="M8 26 Q18 18 28 22 Q38 26 48 18 Q52 14 56 16" stroke="#4A6E2E" stroke-width=".9" fill="none" opacity=".5"/>
+          <path d="M8 18 Q18 10 28 14 Q38 18 48 10 Q52 6  56 8"  stroke="#C4A456" stroke-width=".7" fill="none" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">MCCM Medical Peel</span>
+          <span class="e-tech">Multi-Acid · Customisable Depth</span>
+        </div>
+        <div class="e-desc">Medical-grade multi-acid peel for resurfacing, brightening, acne and texture improvement. Depth customisable per skin indication and tolerance level.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Peel</span><span class="tag">Acne</span><span class="tag">Texture</span></div>
+          <div class="price">RM 499 / session</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+    </div><!-- /entries c-en -->
+
+    <div class="sr">
+      <div class="sr-hd">Device / Settings</div>
+      <div class="sr-bd">Device used · energy level · passes · numbing Y/N · session no. · reactions noted</div>
+    </div>
+  </div><!-- /cat-block c-en -->
+
+
+  <!-- ════════════════════════════════════════
+       CHAPTER II — MINIMALLY INVASIVE FACIAL
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-in">
+    <div class="chap">
+      <div class="chap-num">II</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">Minimally Invasive Facial — EXION MTS, Mesotherapy &amp; PRP</span>
+        <span class="chap-pill">Doctor administration required · Lot traceability for all injectables</span>
+      </div>
+    </div>
+
+    <div class="entries">
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#100818"/>
+          <g opacity=".65">
+          <line x1="12" y1="4"  x2="12" y2="20" stroke="#C4A456" stroke-width=".8"/><circle cx="12" cy="20" r="1.5" fill="#C4A456"/>
+          <line x1="22" y1="4"  x2="22" y2="24" stroke="#C4A456" stroke-width=".8"/><circle cx="22" cy="24" r="1.5" fill="#C4A456"/>
+          <line x1="32" y1="4"  x2="32" y2="18" stroke="#C4A456" stroke-width=".8"/><circle cx="32" cy="18" r="1.5" fill="#C4A456"/>
+          <line x1="42" y1="4"  x2="42" y2="22" stroke="#C4A456" stroke-width=".8"/><circle cx="42" cy="22" r="1.5" fill="#C4A456"/>
+          </g>
+          <path d="M6 30 Q18 26 29 32 Q40 38 52 30" stroke="#8A5B9A" stroke-width="1.5" fill="none" opacity=".7"/>
+          <path d="M12 20 Q17 25 22 24" stroke="#C4A456" stroke-width=".5" fill="none" opacity=".4"/>
+          <path d="M22 24 Q27 28 32 18" stroke="#C4A456" stroke-width=".5" fill="none" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name nb-wrap">EXION MTS RF <span class="nb">New</span></span>
+          <span class="e-tech">BTL · Advanced RF Microneedling</span>
+        </div>
+        <div class="e-desc">RF microneedling for lifting, scar revision, pore tightening and deep rejuvenation. 1,000-shot protocol covers approximately 3–4 sessions. Early booking required.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Scars</span><span class="tag">Lifting</span><span class="tag">Pores</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 3,800 / 1,000 shots</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0E0616"/>
+          <rect x="8" y="16" width="22" height="8" rx="3" fill="#8A5B9A" opacity=".8"/>
+          <polygon points="30,16 42,20 30,24" fill="#8A5B9A" opacity=".8"/>
+          <line x1="2" y1="20" x2="8" y2="20" stroke="#8A5B9A" stroke-width="2" opacity=".7"/>
+          <rect x="0" y="16" width="6" height="8" rx="1" fill="#8A5B9A" opacity=".5"/>
+          <ellipse cx="46" cy="18" rx="2.5" ry="3.5" fill="#C4A456" opacity=".8"/>
+          <ellipse cx="52" cy="21" rx="2"   ry="2.8" fill="#C4A456" opacity=".6"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name nb-wrap">Mesotherapy <span class="nb">New</span></span>
+          <span class="e-tech">Microneedling Delivery · Custom Cocktail</span>
+        </div>
+        <div class="e-desc">Microinjection of PDRN (salmon DNA), HA, amino acids, peptides, exosomes or PRP. Fully customised per skin indication. Revitalisation and deep hydration. See product table below.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">PDRN</span><span class="tag">HA</span><span class="tag">Exosomes</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 899 / RM 9,388 ×15</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#160808"/>
+          <circle cx="29" cy="20" r="12" stroke="#8A3A3A" stroke-width=".8" fill="none" opacity=".5"/>
+          <circle cx="29" cy="20" r="7"  stroke="#C4A456" stroke-width=".7" fill="none" opacity=".5"/>
+          <circle cx="29" cy="20" r="3"  fill="#C4A456" opacity=".3"/>
+          <circle cx="29" cy="20" r="1.5" fill="#C4A456" opacity=".9"/>
+          <line x1="29" y1="8"  x2="34" y2="20" stroke="#C4A456" stroke-width=".6" opacity=".4"/>
+          <line x1="41" y1="20" x2="29" y2="26" stroke="#C4A456" stroke-width=".6" opacity=".4"/>
+          <line x1="29" y1="32" x2="24" y2="20" stroke="#C4A456" stroke-width=".6" opacity=".4"/>
+          <line x1="17" y1="20" x2="29" y2="14" stroke="#C4A456" stroke-width=".6" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">PRP Injection</span>
+          <span class="e-tech">Platelet-Rich Plasma · Autologous</span>
+        </div>
+        <div class="e-desc">On-site blood draw, centrifugation, autologous growth factor injection. Face, scalp (hair loss), scar remodelling. Pairs with mesotherapy or laser for synergistic results.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Growth factor</span><span class="tag">Autologous</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 899</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+    </div><!-- /entries c-in -->
+
+    <!-- Injectable sub-products -->
+    <div class="tbl-wrap">
+      <span class="tbl-label">Mesotherapy Injectable Products — Tick product used this session</span>
+      <table class="tx">
+        <thead>
+          <tr class="th-hd" style="background:#2A1040;"><th colspan="6">Injectable Products — All Categories</th></tr>
+          <tr class="th-sub"><th></th><th>Product</th><th>Composition / Type</th><th>Cost</th><th>Rate</th><th style="width:18%">Lot / Batch</th></tr>
+        </thead>
+        <tbody>
+
+          <!-- ── EXOSOMES & STEM CELL MEDIA ── -->
+          <tr class="cat-divider">
+            <td colspan="6" style="padding:5px 8px 4px; background:rgba(138,91,154,0.12); font-size:5.8pt; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#8A5B9A; border-bottom:1px solid rgba(138,91,154,0.25);">
+              🧬 &nbsp;Exosomes &amp; Stem Cell Media
+            </td>
+          </tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">Exosomes (Standard)</td><td class="un">Topical / injectable</td><td class="un">—</td><td class="pr">RM 400</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">EXOSHINE Exosomes</td><td class="un">Injectable</td><td class="un">—</td><td class="pr">RM 550</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">CRYOCORD Exosomes</td><td class="un">Injectable</td><td class="un">—</td><td class="pr">RM 1,100 / 2,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">U NEURON Exosomes</td><td class="un">Injectable</td><td class="un">—</td><td class="pr">RM 1,100</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">Dermalogica Exosome Vials</td><td class="un">Topical</td><td class="un">—</td><td class="pr">RM 700</td><td class="nf"><span class="nl"></span></td></tr>
+
+          <!-- ── HA VIALS & SKIN BOOSTERS ── -->
+          <tr class="cat-divider">
+            <td colspan="6" style="padding:5px 8px 4px; background:rgba(91,143,168,0.12); font-size:5.8pt; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#5B8FA8; border-bottom:1px solid rgba(91,143,168,0.25); border-top:1px solid rgba(91,143,168,0.15);">
+              💧 &nbsp;HA Vials &amp; Skin Boosters
+            </td>
+          </tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">SUISELLE Vials (HA)</td><td class="un">HA · 1 vial</td><td class="un">—</td><td class="pr">RM 250 / 550</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">NCTF Vials (HA)</td><td class="un">HA · 1 vial</td><td class="un">—</td><td class="pr">RM 300 / 600</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">LUHILO (nc-HA)</td><td class="un">nc-HA · Syringe</td><td class="un">RM 500</td><td class="pr">RM 1,199</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">LUHILO SNOW (nc-HA)</td><td class="un">nc-HA · Syringe</td><td class="un">RM 600</td><td class="pr">RM 1,199</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">PROAGE (nc-HA)</td><td class="un">nc-HA · Syringe</td><td class="un">RM 580</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+
+          <!-- ── PN SYRINGES ── -->
+          <tr class="cat-divider">
+            <td colspan="6" style="padding:5px 8px 4px; background:rgba(138,122,91,0.12); font-size:5.8pt; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#C4A456; border-bottom:1px solid rgba(196,164,86,0.22); border-top:1px solid rgba(196,164,86,0.12);">
+              🔬 &nbsp;Polynucleotide (PN) Syringes — PDRN / nc-HA / AA / Collagen Combinations
+            </td>
+          </tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">INTEGRATION</td><td class="un">PN</td><td class="un">RM 300</td><td class="pr">RM 899</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">PLENHYAGE</td><td class="un">PN</td><td class="un">RM 600</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">REJURAN</td><td class="un">PN (PDRN)</td><td class="un">RM 550</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">PLINEST</td><td class="un">PN</td><td class="un">RM 980</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">POLYPHIL</td><td class="un">PN</td><td class="un">RM 980</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">PRODUKTIL</td><td class="un">nc-HA + AA</td><td class="un">RM 580</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">REVOK 50</td><td class="un">nc-HA + AA</td><td class="un">RM 590</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">XELAREDERM</td><td class="un">nc-HA + SA</td><td class="un">RM 980</td><td class="pr">RM 1,899</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">KARISMA</td><td class="un">nc-HA + Collagen</td><td class="un">RM 2,399</td><td class="pr">RM 1,899</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">ELECTRI</td><td class="un">nc-HA + SA</td><td class="un">RM 1,899</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">INBIOTEC AMBER</td><td class="un">nc-HA + SA</td><td class="un">RM 980</td><td class="pr">RM 1,899</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">LINERASE</td><td class="un">Collagen + AA</td><td class="un">RM 580</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">JALUPRO</td><td class="un">nc-HA + AA</td><td class="un">RM 1,080</td><td class="pr">RM 1,899</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">PROFHILO</td><td class="un">HA syringe</td><td class="un">RM 1,300</td><td class="pr">RM 1,899</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">PROFHILO STRUCTURA</td><td class="un">nc-HA syringe</td><td class="un">RM 1,500</td><td class="pr">RM 2,388</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">NEAUVIA</td><td class="un">nc-HA + CaHA</td><td class="un">RM 899</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">TEOSYAL RD1</td><td class="un">nc-HA</td><td class="un">RM 899</td><td class="pr">RM 1,399</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">JUVELOOK 50mg</td><td class="un">PDLLA vial</td><td class="un">RM 980</td><td class="pr">RM 1,788</td><td class="nf"><span class="nl"></span></td></tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div><!-- /cat-block c-in -->
+
+  <div class="notes">Facial treatment notes / product rationale / skin response observed: _______________________________________________________________________</div>
+  <div class="sig-bar">
+    <div class="sl">Consultant Signature</div>
+    <div class="sl">Doctor Sign-Off</div>
+    <div class="sl">Client Acknowledgement</div>
+  </div>
+  <div class="ftr">
+    <span>Canvas Medical Clinic · Penang Island</span>
+    <span>TS-01 · Treatment Selection Sheet · Confidential Medical Record</span>
+    <span>Page 1 of 3</span>
+  </div>
+</div><!-- /folio 1 -->
+
+
+<!-- ███████████████████████████████████████████
+     FOLIO 2 — PHYSICIAN / SCALP / BODY
+███████████████████████████████████████████ -->
+<div class="folio">
+  <div class="masthead">
+    <div class="mh-lines"><div class="mh-line"></div><div class="mh-line" style="opacity:.5"></div></div>
+    <div class="mh-center">
+      <span class="mh-diamond">◆ ◇ ◆</span>
+      <span class="mh-name">CANVAS MEDICAL CLINIC</span>
+      <span class="mh-sub">Treatment Selection Sheet &nbsp;·&nbsp; Page 2 of 3</span>
+    </div>
+    <div class="mh-lines"><div class="mh-line b"></div><div class="mh-line b" style="opacity:.5"></div></div>
+  </div>
+  <div class="doc-row" style="margin-bottom:10px;">
+    <div class="doc-label"><span>Client _________________________________ &nbsp;·&nbsp; Date _________________</span></div>
+    <div class="doc-ref">SOP Ref: TS-01 &nbsp;·&nbsp; Ver 3.0</div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CHAPTER III — PHYSICIAN / BIOSTIMULATORS
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-ph">
+    <div class="chap">
+      <div class="chap-num">III</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">Physician Procedures — Biostimulators &amp; Crosslinked HA</span>
+        <span class="chap-pill">Doctor only · Lot traceability mandatory · Strict injection zone documentation</span>
+      </div>
+    </div>
+
+    <div class="two-col" style="gap:6px; margin-top:8px;">
+      <table class="tx">
+        <thead>
+          <tr class="th-hd" style="background:#1A3030;"><th colspan="5">💉 Crosslinked HA Skin Boosters</th></tr>
+          <tr class="th-sub"><th></th><th>Product</th><th>Vol</th><th>Rate</th><th style="width:22%">Lot No.</th></tr>
+        </thead>
+        <tbody>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">Restylane Vital / Vital Light</td><td class="un">1 ml</td><td class="pr">RM 1,588</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">SkinVIVE</td><td class="un">1 ml</td><td class="pr">RM 1,588</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">BELOTERO REVIVE</td><td class="un">1 ml</td><td class="pr">RM 1,588</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">DEFINISSE Hydrobooster</td><td class="un">1 ml</td><td class="pr">RM 1,588</td><td class="nf"><span class="nl"></span></td></tr>
+        </tbody>
+      </table>
+      <table class="tx">
+        <thead>
+          <tr class="th-hd" style="background:#1A3030;"><th colspan="5">🧪 PLLA &amp; PDLLA Biostimulators</th></tr>
+          <tr class="th-sub"><th></th><th>Product</th><th>Type</th><th>Rate</th><th style="width:22%">Lot No.</th></tr>
+        </thead>
+        <tbody>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">SCULPTRA</td><td class="un">PLLA</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">LANLUMA</td><td class="un">PLLA</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">Aesthefill</td><td class="un">PDLLA</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">JUVELOOK 50mg</td><td class="un">PDLLA</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">LENISNA</td><td class="un">PDLLA</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">POWERFILL</td><td class="un">PDLLA</td><td class="pr">RM 5,988</td><td class="nf"><span class="nl"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col" style="gap:6px; margin-top:6px;">
+      <table class="tx">
+        <thead>
+          <tr class="th-hd" style="background:#1A3030;"><th colspan="5">🦴 CaHA · PCL · PDO Biostimulators</th></tr>
+          <tr class="th-sub"><th></th><th>Product</th><th>Type</th><th>Rate</th><th style="width:22%">Lot No.</th></tr>
+        </thead>
+        <tbody>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">Radiesse</td><td class="un">CaHA</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">NOVUMA</td><td class="un">CaHA</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">ELLANSE</td><td class="un">PCL</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">GOURI</td><td class="un">PCL</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+          <tr onclick="toggleRow(this)"><td><span class="cb"></span></td><td class="pn">ULTRACOL</td><td class="un">PDO</td><td class="pr">RM 2,988</td><td class="nf"><span class="nl"></span></td></tr>
+        </tbody>
+      </table>
+      <div class="inset">
+        <span class="fl-label">Injection Zones</span>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Temples</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Cheeks</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Tear trough</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Nasolabial</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Chin</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Jawline</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Lips</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Nose</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Neck</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Hands</label>
+          <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Body</label>
+        </div>
+        <span class="fl-label">Volume Used (ml)</span><span class="fl-line"></span>
+        <span class="fl-label">Technique</span><span class="fl-line"></span>
+        <span class="fl-label">Doctor Sign</span><span class="fl-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CHAPTER IV — SCALP HEALTH
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-sc">
+    <div class="chap">
+      <div class="chap-num">IV</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">Scalp Health — Minimally Invasive</span>
+        <span class="chap-pill">Doctor / trained therapist · Product lot documented per session</span>
+      </div>
+    </div>
+
+    <div class="entries">
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#180E04"/>
+          <line x1="12" y1="36" x2="10" y2="4"  stroke="#C4A456" stroke-width="1" fill="none" opacity=".7"/><ellipse cx="11" cy="36" rx="3" ry="2" fill="#8A7B5B" opacity=".8"/>
+          <line x1="22" y1="36" x2="20" y2="4"  stroke="#C4A456" stroke-width="1" fill="none" opacity=".7"/><ellipse cx="21" cy="36" rx="3" ry="2" fill="#8A7B5B" opacity=".8"/>
+          <line x1="32" y1="36" x2="30" y2="4"  stroke="#C4A456" stroke-width="1" fill="none" opacity=".7"/><ellipse cx="31" cy="36" rx="3" ry="2" fill="#8A7B5B" opacity=".8"/>
+          <line x1="42" y1="36" x2="40" y2="4"  stroke="#C4A456" stroke-width="1" fill="none" opacity=".7"/><ellipse cx="41" cy="36" rx="3" ry="2" fill="#8A7B5B" opacity=".8"/>
+          <line x1="52" y1="36" x2="50" y2="4"  stroke="#C4A456" stroke-width="1" fill="none" opacity=".7"/><ellipse cx="51" cy="36" rx="3" ry="2" fill="#8A7B5B" opacity=".8"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name nb-wrap">Scalp Mesotherapy <span class="nb">New</span></span>
+          <span class="e-tech">PDRN · AA · Peptides · Exosomes · PRP</span>
+        </div>
+        <div class="e-desc">Microneedling delivery for hair growth and scalp revitalisation. Customised cocktail: PDRN (salmon DNA), amino acids, peptides, exosomes or PRP per session. 15-session programme.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Hair growth</span><span class="tag">PDRN</span><span class="tag">PRP</span></div>
+          <div class="price">RM 699 / RM 8,988 ×15</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#140A04"/>
+          <line x1="16" y1="36" x2="14" y2="4" stroke="#C4A456" stroke-width="1.2" fill="none" opacity=".8"/><ellipse cx="15" cy="36" rx="4" ry="2.5" fill="#8A7B5B" opacity=".9"/>
+          <line x1="30" y1="36" x2="28" y2="4" stroke="#C4A456" stroke-width="1.2" fill="none" opacity=".8"/><ellipse cx="29" cy="36" rx="4" ry="2.5" fill="#8A7B5B" opacity=".9"/>
+          <line x1="44" y1="36" x2="42" y2="4" stroke="#C4A456" stroke-width="1.2" fill="none" opacity=".8"/><ellipse cx="43" cy="36" rx="4" ry="2.5" fill="#8A7B5B" opacity=".9"/>
+          <text x="22" y="20" font-size="8" fill="#C4A456" opacity=".45" font-family="Jost" font-weight="500">PN</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">PLINEST HAIR</span>
+          <span class="e-tech">PN Syringe · Hair Specialised</span>
+        </div>
+        <div class="e-desc">Polynucleotide formulated specifically for scalp — follicle stimulation, repair, and scalp barrier restoration. Injectable protocol. Doctor administration.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">PN</span><span class="tag">Follicle</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 980 / 1,388</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#120C04"/>
+          <circle cx="29" cy="20" r="8" stroke="#C4A456" stroke-width=".7" fill="none" opacity=".5"/>
+          <circle cx="29" cy="20" r="1.5" fill="#C4A456" opacity=".9"/>
+          <g opacity=".65">
+          <line x1="29" y1="12" x2="29" y2="7"/><line x1="36" y1="14" x2="40" y2="10"/><line x1="37" y1="20" x2="42" y2="20"/>
+          <line x1="36" y1="26" x2="40" y2="30"/><line x1="29" y1="28" x2="29" y2="33"/>
+          <line x1="22" y1="26" x2="18" y2="30"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="22" y1="14" x2="18" y2="10"/>
+          </g>
+          <g stroke="#C4A456" stroke-width=".8" fill="none" opacity=".65">
+          <line x1="29" y1="12" x2="29" y2="7"/><line x1="36" y1="14" x2="40" y2="10"/><line x1="37" y1="20" x2="42" y2="20"/>
+          <line x1="36" y1="26" x2="40" y2="30"/><line x1="29" y1="28" x2="29" y2="33"/>
+          <line x1="22" y1="26" x2="18" y2="30"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="22" y1="14" x2="18" y2="10"/>
+          </g>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">DR CYJ Hair Filler</span>
+          <span class="e-tech">7-Peptide Complex · Clinically Validated</span>
+        </div>
+        <div class="e-desc">Clinically validated 7-peptide complex for hair growth, androgenetic alopecia treatment and scalp health restoration. Injectable scalp protocol. Doctor administration.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Alopecia</span><span class="tag">7-peptide</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 880 / 1,388</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ice" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#80CCFF" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="#4080FF" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="58" height="40" fill="#060C14"/>
+          <ellipse cx="29" cy="20" rx="24" ry="18" fill="url(#ice)"/>
+          <line x1="29" y1="4"  x2="29" y2="36" stroke="#80CCFF" stroke-width=".9" opacity=".6"/>
+          <line x1="12" y1="11" x2="46" y2="29" stroke="#80CCFF" stroke-width=".9" opacity=".6"/>
+          <line x1="46" y1="11" x2="12" y2="29" stroke="#80CCFF" stroke-width=".9" opacity=".6"/>
+          <line x1="18" y1="6"  x2="18" y2="12" stroke="#80CCFF" stroke-width=".6" opacity=".5"/>
+          <line x1="40" y1="6"  x2="40" y2="12" stroke="#80CCFF" stroke-width=".6" opacity=".5"/>
+          <circle cx="29" cy="20" r="3" fill="#80CCFF" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">CryoCord Exosomes</span>
+          <span class="e-tech">Cord Blood Exosomes · Scalp</span>
+        </div>
+        <div class="e-desc">Cord blood–derived exosomes for scalp regeneration. Anti-inflammatory, enhanced follicle stimulation, improved hair density. Injectable scalp protocol. Doctor administration.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Exosomes</span><span class="tag">Regenerative</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 1,100 / 2,388</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+    </div>
+
+    <div class="sr"><div class="sr-hd">Scalp Notes</div><div class="sr-bd">Product · lot no. · zones (vertex / temporal / occipital) · needle depth · session no. of programme</div></div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CHAPTER V — BODY AESTHETICS
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-bd">
+    <div class="chap">
+      <div class="chap-num">V</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">Non-Invasive Body Aesthetics</span>
+        <span class="chap-pill">Mark treatment zones in zone selector below</span>
+      </div>
+    </div>
+
+    <div class="entries">
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1208"/>
+          <path d="M4 18 C12 10 20 26 28 18 C36 10 44 26 52 18 C55 14 57 16 57 16" stroke="#5B8A6A" stroke-width="1.3" fill="none" opacity=".8"/>
+          <path d="M4 26 C12 18 20 34 28 26 C36 18 44 34 52 26 C55 22 57 24 57 24" stroke="#C4A456" stroke-width=".8" fill="none" opacity=".5"/>
+          <circle cx="36" cy="32" r="3" fill="#5B8A6A" opacity=".3"/>
+          <circle cx="44" cy="30" r="2.5" fill="#5B8A6A" opacity=".2"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name nb-wrap">EXION Body <span class="nb">New</span></span>
+          <span class="e-tech">BTL · RF + Targeted Ultrasound</span>
+        </div>
+        <div class="e-desc">Selective fat reduction and skin tightening via combined RF and targeted ultrasound. Abdomen, flanks, thighs, arms, submental area. Visible results from session 3–4.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Fat</span><span class="tag">Tightening</span><span class="tag">RF + US</span></div>
+          <div class="price">RM 799 / RM 7,688 ×16</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0C1408"/>
+          <path d="M4 20 C12 12 20 28 28 20 C36 12 44 28 52 20 C55 16 57 18 57 18" stroke="#5B8A6A" stroke-width="1.3" fill="none" opacity=".7"/>
+          <path d="M4 28 C12 20 20 36 28 28 C36 20 44 36 52 28 C55 24 57 26 57 26" stroke="#5B8A6A" stroke-width=".7" fill="none" opacity=".4"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">RF Body</span>
+          <span class="e-tech">Radiofrequency · Fat + Tightening</span>
+        </div>
+        <div class="e-desc">Body fat reduction and skin tightening via radiofrequency. No downtime. Ideal maintenance treatment between EXION or HIFU body sessions. Multiple zone capability.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Fat</span><span class="tag">Tightening</span><span class="tag">Maintenance</span></div>
+          <div class="price">RM 499 / RM 3,588 ×16</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1008"/>
+          <path d="M8 28 Q16 12 24 22 Q32 32 40 14 Q46 6 54 12" stroke="#C4A456" stroke-width="1.3" fill="none" opacity=".7"/>
+          <path d="M6 22 L20 22 L26 8 L32 36 L38 22 L54 22" stroke="#C4A456" stroke-width="1" fill="none" opacity=".75"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">MEDIGYM</span>
+          <span class="e-tech">HIFEM + Contactless RF</span>
+        </div>
+        <div class="e-desc">Lunchtime fat reduction + muscle toning and strengthening simultaneously. Abdomen, glutes (butt lifting), thighs, arms. 30-min sessions. Up to ×24 package available.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Muscle</span><span class="tag">Glute lift</span><span class="tag">Fat</span></div>
+          <div class="price">RM 350 / RM 4,088 ×24</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1208"/>
+          <rect x="10" y="8"  width="38" height="2" rx="1" fill="#C4A456" opacity=".6"/>
+          <rect x="10" y="13" width="38" height="2" rx="1" fill="#C4A456" opacity=".55"/>
+          <rect x="10" y="18" width="38" height="2" rx="1" fill="#C4A456" opacity=".45"/>
+          <rect x="10" y="23" width="38" height="2" rx="1" fill="#5B8A6A" opacity=".5"/>
+          <rect x="10" y="28" width="38" height="2" rx="1" fill="#5B8A6A" opacity=".45"/>
+          <rect x="10" y="33" width="38" height="2" rx="1" fill="#5B8A6A" opacity=".35"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Body Lasers</span>
+          <span class="e-tech">Cool-Diode + BBL · Hair + Rejuv</span>
+        </div>
+        <div class="e-desc">Cool-diode and BBL for body hair removal and skin rejuvenation. Legs, back, arms, bikini line, underarm. Fitzpatrick I–V suitable. Permanent hair reduction programme.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Hair removal</span><span class="tag">BBL</span><span class="tag">Rejuv</span></div>
+          <div class="price">RM 399 / RM 3,588 ×15</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+    </div>
+
+    <div class="zone-row">
+      <span class="zl">Treatment Zones</span>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Abdomen</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Flanks</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Back</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Inner thighs</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Outer thighs</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Upper arms</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Glutes</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Submental</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Underarm</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Legs</label>
+      <label class="zi"><span class="cb" style="width:10px;height:10px;"></span> Bikini line</label>
+    </div>
+    <div class="sr" style="margin-top:5px;"><div class="sr-hd">Body Notes</div><div class="sr-bd">Device · energy settings · applicator · passes · client skin response · session no.</div></div>
+  </div>
+
+  <div class="notes">Page 2 notes — physician / scalp / body: _______________________________________________________________</div>
+  <div class="sig-bar">
+    <div class="sl">Consultant Signature</div>
+    <div class="sl">Doctor Sign-Off</div>
+    <div class="sl">Client Acknowledgement</div>
+  </div>
+  <div class="ftr">
+    <span>Canvas Medical Clinic · Penang Island</span>
+    <span>TS-01 · Treatment Selection Sheet · Confidential Medical Record</span>
+    <span>Page 2 of 3</span>
+  </div>
+</div><!-- /folio 2 -->
+
+
+<!-- ███████████████████████████████████████████
+     FOLIO 3 — INTIMATE / IV / STEM CELL
+███████████████████████████████████████████ -->
+<div class="folio">
+  <div class="masthead">
+    <div class="mh-lines"><div class="mh-line"></div><div class="mh-line" style="opacity:.5"></div></div>
+    <div class="mh-center">
+      <span class="mh-diamond">◆ ◇ ◆</span>
+      <span class="mh-name">CANVAS MEDICAL CLINIC</span>
+      <span class="mh-sub">Treatment Selection Sheet &nbsp;·&nbsp; Page 3 of 3</span>
+    </div>
+    <div class="mh-lines"><div class="mh-line b"></div><div class="mh-line b" style="opacity:.5"></div></div>
+  </div>
+  <div class="doc-row" style="margin-bottom:10px;">
+    <div class="doc-label"><span>Client _________________________________ &nbsp;·&nbsp; Date _________________</span></div>
+    <div class="doc-ref">SOP Ref: TS-01 &nbsp;·&nbsp; Ver 3.0</div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CHAPTER VI — INTIMATE / SEXUAL AESTHETICS
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-it">
+    <div class="chap">
+      <div class="chap-num">VI</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">Sexual Aesthetics &amp; Intimate Care</span>
+        <span class="chap-pill">Private consultation required · Separate consent form · Doctor only</span>
+      </div>
+    </div>
+
+    <div class="entries">
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#12060A"/>
+          <circle cx="29" cy="20" r="12" stroke="#8A5B6A" stroke-width=".9" fill="none" opacity=".55"/>
+          <circle cx="29" cy="20" r="6"  stroke="#C4A456" stroke-width=".7" fill="none" opacity=".5"/>
+          <path d="M4 20 C12 12 20 28 28 20 C36 12 44 28 52 20 C55 16 57 18 57 18" stroke="#8A5B6A" stroke-width="1" fill="none" opacity=".45"/>
+          <circle cx="29" cy="20" r="2" fill="#C4A456" opacity=".8"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name nb-wrap">EXION EMFEMME 360 <span class="nb">New</span></span>
+          <span class="e-tech">RF · Vaginal Tightening + Rejuvenation</span>
+        </div>
+        <div class="e-desc">RF-based female vaginal tightening and rejuvenation. Dryness, laxity, post-partum concerns. Includes 1 complimentary PN private-part mesotherapy per package session.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Female</span><span class="tag">RF</span><span class="tag dr">Doctor only</span></div>
+          <div class="price">RM 2,800 / RM 4,800 ×2</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#100806"/>
+          <circle cx="18" cy="14" r="4" fill="#5A1808" opacity=".5"/>
+          <circle cx="34" cy="10" r="3" fill="#5A1808" opacity=".5"/>
+          <circle cx="42" cy="18" r="5" fill="#5A1808" opacity=".5"/>
+          <circle cx="24" cy="26" r="3" fill="#5A1808" opacity=".4"/>
+          <ellipse cx="29" cy="22" rx="20" ry="14" fill="#C4A456" opacity=".03"/>
+          <line x1="6" y1="36" x2="52" y2="36" stroke="#C4A456" stroke-width=".5" opacity=".35"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">DERMAMELAN Intimate</span>
+          <span class="e-tech">Intimate Pigment Reduction · + PICO</span>
+        </div>
+        <div class="e-desc">Intensive pigment reduction for genital or perineal area. Combined with PICO for brightening. 1 PN mesotherapy included in ×2 package. Separate consent form required.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Pigment</span><span class="tag">Brightening</span><span class="tag fl">Sensitive</span></div>
+          <div class="price">RM 2,300 / RM 3,700 ×2</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#100810"/>
+          <path d="M8 26 Q20 8 29 22 Q38 36 50 18" stroke="#8A5B6A" stroke-width="1.3" fill="none" opacity=".65"/>
+          <path d="M8 32 Q20 14 29 28 Q38 42 50 24" stroke="#8A5B6A" stroke-width=".7" fill="none" opacity=".35"/>
+          <line x1="29" y1="6"  x2="29" y2="36" stroke="#C4A456" stroke-width=".5" opacity=".3"/>
+          <line x1="18" y1="8"  x2="18" y2="34" stroke="#C4A456" stroke-width=".4" opacity=".25"/>
+          <line x1="40" y1="8"  x2="40" y2="34" stroke="#C4A456" stroke-width=".4" opacity=".25"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">EMSELLA</span>
+          <span class="e-tech">HIFEM · Pelvic Floor Strengthening</span>
+        </div>
+        <div class="e-desc">HIFEM pelvic floor strengthening — improves sexual function, urinary incontinence and bladder control. Non-invasive, fully clothed, 30-min sessions. Up to ×32 programme.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Pelvic floor</span><span class="tag">Incontinence</span><span class="tag">Clothed</span></div>
+          <div class="price">RM 150 / RM 2,280 ×16</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0C0608"/>
+          <circle cx="16" cy="20" r="3"  stroke="#C4A456" stroke-width="1.3" fill="none" opacity=".9"/>
+          <circle cx="16" cy="20" r="8"  stroke="#C4A456" stroke-width=".7" fill="none" opacity=".55"/>
+          <circle cx="16" cy="20" r="13" stroke="#C4A456" stroke-width=".4" fill="none" opacity=".25"/>
+          <line x1="30" y1="20" x2="50" y2="20" stroke="#C4A456" stroke-width=".9" opacity=".5"/>
+          <polygon points="50,17 57,20 50,23" fill="#C4A456" opacity=".6"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Shockwave Therapy (ESWT)</span>
+          <span class="e-tech">Male · Penile Blood Flow + Tissue Repair</span>
+        </div>
+        <div class="e-desc">Low-intensity ESWT for penile blood flow improvement, tissue repair, erectile function and stamina enhancement. Lunchtime, 20-minute procedure. Separate consent required.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Male</span><span class="tag">Erectile</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 600 / RM 9,120 ×16</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+    </div>
+
+    <div class="sr"><div class="sr-hd">Intimate Notes</div><div class="sr-bd">Procedure · settings · session no. · complimentary add-on Y/N · product lot · separate consent on file Y/N</div></div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CHAPTER VII — IV THERAPY & WELLNESS
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-iv">
+    <div class="chap">
+      <div class="chap-num">VII</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">IV Therapy &amp; Wellness Drips</span>
+        <span class="chap-pill">Nurse / Doctor · Lot + batch mandatory every session · G6PD check before high-dose Vit C</span>
+      </div>
+    </div>
+
+    <div class="entries">
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0C1408"/>
+          <rect x="22" y="2" width="14" height="18" rx="3" stroke="#6A8A5B" stroke-width=".9" fill="rgba(106,138,91,.15)"/>
+          <line x1="29" y1="20" x2="29" y2="38" stroke="#6A8A5B" stroke-width="1.2" opacity=".8"/>
+          <ellipse cx="29" cy="28" rx="2" ry="3" fill="#C4A456" opacity=".8"/>
+          <ellipse cx="29" cy="35" rx="1.5" ry="2.2" fill="#C4A456" opacity=".6"/>
+          <text x="24" y="13" font-size="5.5" fill="#6A8A5B" opacity=".6" font-family="Jost" font-weight="500">GSH</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Glutathione Drip</span>
+          <span class="e-tech">Brightening · Antioxidant · Liver</span>
+        </div>
+        <div class="e-desc">Systemic skin brightening, oxidative stress reduction, liver detox support. 600–1,200 mg typical dose. Pairs well with high-dose Vitamin C for synergistic brightening effect.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Brightening</span><span class="tag">Antioxidant</span><span class="tag">Liver</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0E1608"/>
+          <rect x="22" y="2" width="14" height="18" rx="3" stroke="#8A9A30" stroke-width=".9" fill="rgba(138,154,48,.12)"/>
+          <line x1="29" y1="20" x2="29" y2="38" stroke="#8A9A30" stroke-width="1.2" opacity=".8"/>
+          <ellipse cx="29" cy="28" rx="2" ry="3" fill="#C4A456" opacity=".8"/>
+          <text x="22" y="12" font-size="5" fill="#8A9A30" opacity=".7" font-family="Jost">Vit C</text>
+          <text x="22" y="18" font-size="4.5" fill="#8A9A30" opacity=".5" font-family="Jost">5–25g</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">High-Dose Vitamin C</span>
+          <span class="e-tech">Ascorbic Acid · 5–25g IV</span>
+        </div>
+        <div class="e-desc">Collagen synthesis, immune enhancement, antioxidant defence. Slow IV push or drip. Always confirm G6PD status before high-dose administration. Pairs with glutathione.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Collagen</span><span class="tag">Immune</span><span class="tag fl">G6PD check</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="nad-g" cx="50%" cy="55%" r="50%">
+              <stop offset="0%" stop-color="#4080FF" stop-opacity=".3"/>
+              <stop offset="100%" stop-color="#2030A0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="58" height="40" fill="#080C18"/>
+          <ellipse cx="29" cy="24" rx="22" ry="16" fill="url(#nad-g)"/>
+          <ellipse cx="29" cy="22" rx="14" ry="8" stroke="#4080C0" stroke-width=".9" fill="none" opacity=".6"/>
+          <path d="M22 18 Q27 22 22 26" stroke="#4080C0" stroke-width=".7" fill="none" opacity=".5"/>
+          <path d="M29 16 Q34 22 29 28" stroke="#4080C0" stroke-width=".7" fill="none" opacity=".5"/>
+          <path d="M36 18 Q41 22 36 26" stroke="#4080C0" stroke-width=".7" fill="none" opacity=".5"/>
+          <text x="22" y="13" font-size="7" fill="#4080C0" opacity=".6" font-family="Jost" font-weight="500">NAD+</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">NAD+ Infusion</span>
+          <span class="e-tech">Anti-Ageing · Energy · Cognitive</span>
+        </div>
+        <div class="e-desc">Mitochondrial repair, cellular energy, cognitive clarity, longevity protocol. Slow infusion 2–4 hours. Warn client about flushing sensation during infusion. Monthly maintenance.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Longevity</span><span class="tag">Energy</span><span class="tag">Cognitive</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1208"/>
+          <rect x="22" y="2" width="14" height="18" rx="3" stroke="#6A8A5B" stroke-width=".9" fill="rgba(106,138,91,.12)"/>
+          <line x1="29" y1="20" x2="29" y2="38" stroke="#6A8A5B" stroke-width="1.2" opacity=".8"/>
+          <ellipse cx="29" cy="30" rx="2" ry="2.8" fill="#6A8A5B" opacity=".8"/>
+          <text x="21" y="11" font-size="4.5" fill="#6A8A5B" opacity=".6" font-family="Jost">Mg</text>
+          <text x="28" y="11" font-size="4.5" fill="#6A8A5B" opacity=".6" font-family="Jost">B12</text>
+          <text x="21" y="17" font-size="4.5" fill="#6A8A5B" opacity=".5" font-family="Jost">Vit C</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Myers' Cocktail</span>
+          <span class="e-tech">Multivitamin IV · Classic Protocol</span>
+        </div>
+        <div class="e-desc">Magnesium, B-complex, B12, Vitamin C. Fatigue, fibromyalgia, migraines, immune support. Well-tolerated, broad indication base. Popular maintenance drip.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Immunity</span><span class="tag">Fatigue</span><span class="tag">B12</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bdrip" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#E8C040" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#A08020" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="58" height="40" fill="#141008"/>
+          <ellipse cx="29" cy="20" rx="24" ry="16" fill="url(#bdrip)"/>
+          <rect x="22" y="2" width="14" height="18" rx="3" stroke="#C4A456" stroke-width=".9" fill="rgba(196,164,86,.08)"/>
+          <line x1="29" y1="20" x2="29" y2="38" stroke="#C4A456" stroke-width="1.2" opacity=".7"/>
+          <ellipse cx="29" cy="28" rx="2" ry="3" fill="#E8C040" opacity=".8"/>
+          <text x="25" y="14" font-size="7" fill="#C4A456" opacity=".7" font-family="Jost">✨</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Beauty / Glow Drip</span>
+          <span class="e-tech">Collagen + Biotin + ALA + Zinc</span>
+        </div>
+        <div class="e-desc">Collagen precursors, biotin, zinc, alpha-lipoic acid. Signature beauty drip for skin, hair and nails. Monthly maintenance recommended. Signature clinic offering.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Skin</span><span class="tag">Hair</span><span class="tag">Nails</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A1208"/>
+          <rect x="22" y="2" width="14" height="18" rx="3" stroke="#2E7055" stroke-width=".9" fill="rgba(46,112,85,.12)"/>
+          <line x1="29" y1="20" x2="29" y2="38" stroke="#2E7055" stroke-width="1.2" opacity=".8"/>
+          <ellipse cx="29" cy="29" rx="2" ry="2.8" fill="#2E7055" opacity=".8"/>
+          <text x="22" y="14" font-size="5.5" fill="#2E7055" opacity=".7" font-family="Jost" font-weight="500">ALA</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Detox / Liver Drip</span>
+          <span class="e-tech">Hepatoprotective · ALA + Silymarin</span>
+        </div>
+        <div class="e-desc">Alpha-lipoic acid, silymarin, phosphatidylcholine. Liver protection, post-event detox, anti-inflammatory and metabolic support. Recommended quarterly.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Detox</span><span class="tag">Liver</span><span class="tag">Metabolic</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0C1408"/>
+          <rect x="12" y="16" width="20" height="8" rx="3" fill="#6A8A5B" opacity=".8"/>
+          <polygon points="32,16 44,20 32,24" fill="#6A8A5B" opacity=".8"/>
+          <line x1="5"  y1="20" x2="12" y2="20" stroke="#6A8A5B" stroke-width="2" opacity=".6"/>
+          <rect x="2"  y="16" width="8" height="8" rx="1" fill="#6A8A5B" opacity=".4"/>
+          <line x1="44" y1="20" x2="54" y2="20" stroke="#C4A456" stroke-width="1.2" opacity=".9"/>
+          <circle cx="55" cy="20" r="2" fill="#C4A456" opacity=".9"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">IM Booster Shots</span>
+          <span class="e-tech">Intramuscular · Quick Add-On</span>
+        </div>
+        <div class="e-desc">B12, glutathione, Vit D3, L-carnitine/MIC fat-burner shots. No IV line required. 5-minute administration. Ideal as add-on to any visit at checkout.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">B12</span><span class="tag">Vit D</span><span class="tag">Quick</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A100C"/>
+          <rect x="22" y="2" width="14" height="18" rx="3" stroke="#C4A456" stroke-width=".9" fill="rgba(196,164,86,.05)"/>
+          <line x1="29" y1="20" x2="29" y2="38" stroke="#C4A456" stroke-width="1.2" opacity=".6"/>
+          <text x="25" y="15" font-size="11" fill="#C4A456" opacity=".4" font-family="Cormorant Garamond,serif" font-style="italic">?</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Bespoke Custom Drip</span>
+          <span class="e-tech">Doctor-Formulated · Prescription Required</span>
+        </div>
+        <div class="e-desc">Tailored IV per doctor prescription. Document all components and concentrations. Signed prescription must be on file before administration. Full formulation log below.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Custom</span><span class="tag dr">Prescription</span><span class="tag dr">Doctor</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+    </div>
+
+    <table class="tx" style="margin-top:6px;">
+      <thead><tr class="th-hd" style="background:#1A2A10;"><th></th><th>Product / Formulation</th><th>Dose</th><th>Route</th><th>Lot No.</th><th>Duration</th><th>Nurse Initials</th></tr></thead>
+      <tbody>
+        <tr><td><span class="cb"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td></tr>
+        <tr><td><span class="cb"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CHAPTER VIII — STEM CELL & REGENERATIVE
+  ════════════════════════════════════════ -->
+  <div class="cat-block c-st">
+    <div class="chap">
+      <div class="chap-num">VIII</div>
+      <div class="chap-vr"></div>
+      <div class="chap-body">
+        <span class="chap-title">Stem Cell &amp; Regenerative Therapy</span>
+        <span class="chap-pill">Cold-chain + lot traceability · Doctor sign-off mandatory every single session</span>
+      </div>
+    </div>
+
+    <div class="entries">
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#06080E"/>
+          <circle cx="18" cy="20" r="8" stroke="#5B6A8A" stroke-width=".9" fill="rgba(91,106,138,.15)" opacity=".8"/>
+          <circle cx="18" cy="20" r="3" fill="#5B6A8A" opacity=".6"/>
+          <circle cx="40" cy="20" r="6" stroke="#C4A456" stroke-width=".8" fill="rgba(196,164,86,.1)" opacity=".8"/>
+          <circle cx="40" cy="20" r="2" fill="#C4A456" opacity=".55"/>
+          <line x1="27" y1="20" x2="33" y2="20" stroke="#C4A456" stroke-width=".8" stroke-dasharray="2,1.5" opacity=".6"/>
+          <polygon points="32,18 37,20 32,22" fill="#C4A456" opacity=".6"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Exosome Therapy</span>
+          <span class="e-tech">Extracellular Vesicles · Topical / Injectable</span>
+        </div>
+        <div class="e-desc">Post-laser topical, microchannelling or injectable. Accelerated skin repair, anti-inflammation, regeneration. Ideal pairing with laser or RF microneedling for enhanced results.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Repair</span><span class="tag">Post-laser</span><span class="tag">Anti-inflam</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#0A0610"/>
+          <!-- DNA helix -->
+          <path d="M14 4 Q29 16 14 28 Q29 40 14 40" stroke="#C4A456" stroke-width=".9" fill="none" opacity=".6"/>
+          <path d="M44 4 Q29 16 44 28 Q29 40 44 40" stroke="#5B6A8A" stroke-width=".9" fill="none" opacity=".6"/>
+          <line x1="18" y1="10" x2="40" y2="10" stroke="#C4A456" stroke-width=".5" opacity=".35"/>
+          <line x1="16" y1="18" x2="42" y2="18" stroke="#C4A456" stroke-width=".5" opacity=".35"/>
+          <line x1="18" y1="26" x2="40" y2="26" stroke="#C4A456" stroke-width=".5" opacity=".35"/>
+          <line x1="16" y1="34" x2="42" y2="34" stroke="#C4A456" stroke-width=".5" opacity=".35"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">PDRN / PN Therapy</span>
+          <span class="e-tech">Polynucleotide · DNA Repair</span>
+        </div>
+        <div class="e-desc">Salmon DNA–derived PN for tissue repair, anti-inflammation, skin regeneration. Rejuran variants for face, periorbital and body zones. Pairs with exosomes for bio-revitalisation.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">DNA repair</span><span class="tag">Rejuran</span><span class="tag">Anti-inflam</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#080610"/>
+          <circle cx="29" cy="20" r="11" stroke="#C4A456" stroke-width=".6" fill="none" opacity=".4"/>
+          <circle cx="29" cy="20" r="1.5" fill="#5B6A8A" opacity=".9"/>
+          <g stroke="#C4A456" stroke-width=".8" fill="none" opacity=".6">
+          <line x1="29" y1="9"  x2="29" y2="5"/>
+          <line x1="37" y1="12" x2="41" y2="9"/>
+          <line x1="40" y1="20" x2="44" y2="20"/>
+          <line x1="37" y1="28" x2="41" y2="31"/>
+          <line x1="29" y1="31" x2="29" y2="35"/>
+          <line x1="21" y1="28" x2="17" y2="31"/>
+          <line x1="18" y1="20" x2="14" y2="20"/>
+          <line x1="21" y1="12" x2="17" y2="9"/>
+          </g>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Placenta / Growth Factor</span>
+          <span class="e-tech">Laennec / Melsmon · GF Extract</span>
+        </div>
+        <div class="e-desc">Human placenta extract — growth factors, anti-ageing, hormonal balance, systemic regeneration. Injectable or IV infusion. Popular longevity protocol. Doctor administration.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Longevity</span><span class="tag">Growth factor</span><span class="tag dr">Doctor</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="sc-g" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#6080FF" stop-opacity=".25"/>
+              <stop offset="100%" stop-color="#2030A0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="58" height="40" fill="#04060E"/>
+          <ellipse cx="29" cy="20" rx="24" ry="18" fill="url(#sc-g)"/>
+          <polygon points="29,12 37,16 37,24 29,28 21,24 21,16" stroke="#6080FF" stroke-width=".8" fill="none" opacity=".6"/>
+          <polygon points="29,16 34,19 34,23 29,26 24,23 24,19" stroke="#C4A456" stroke-width=".5" fill="none" opacity=".4"/>
+          <circle cx="29" cy="20" r="2.5" fill="#6080FF" opacity=".7"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Stem Cell IV Infusion</span>
+          <span class="e-tech">MSC · Umbilical / Adipose-Derived</span>
+        </div>
+        <div class="e-desc">Systemic MSC therapy — anti-ageing, immune modulation, tissue regeneration. Strict cold-chain, chain of custody and medical sign-off required every session.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">MSC</span><span class="tag">Systemic</span><span class="tag fl">Cold chain</span><span class="tag dr">Doctor</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#060810"/>
+          <circle cx="18" cy="20" r="10" stroke="#C4A456" stroke-width=".7" fill="rgba(196,164,86,.05)" opacity=".7"/>
+          <circle cx="30" cy="24" r="10" stroke="#5B6A8A" stroke-width=".7" fill="rgba(91,106,138,.05)" opacity=".7"/>
+          <circle cx="40" cy="18" r="10" stroke="#6A8A5B" stroke-width=".7" fill="rgba(106,138,91,.05)" opacity=".7"/>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">Bio-Revitalisation Programme</span>
+          <span class="e-tech">Combination Regenerative · Multi-Session</span>
+        </div>
+        <div class="e-desc">Structured combination — exosomes + PDRN + PRP or biostimulator sequence. Multi-session programme. Full plan documented on separate protocol sheet. Doctor oversight.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Combination</span><span class="tag">Programme</span><span class="tag dr">Doctor</span></div>
+          <div class="price">—</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+
+      <div class="entry" onclick="toggle(this)">
+        <div class="e-art"><svg viewBox="0 0 58 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="58" height="40" fill="#080A14"/>
+          <circle cx="29" cy="20" r="14" stroke="#C4A456" stroke-width=".6" fill="none" opacity=".25"/>
+          <circle cx="29" cy="20" r="8"  stroke="#5B6A8A" stroke-width=".5" fill="none" opacity=".3"/>
+          <circle cx="29" cy="20" r="2"  fill="#C4A456" opacity=".4"/>
+          <text x="18" y="14" font-size="5" fill="#C4A456" opacity=".5" font-family="Jost">PRP</text>
+          <text x="32" y="28" font-size="5" fill="#5B6A8A" opacity=".5" font-family="Jost">EXO</text>
+        </svg></div>
+        <div class="e-sep"></div>
+        <div class="e-id">
+          <span class="e-name">PRP Injection — Regenerative</span>
+          <span class="e-tech">Autologous · On-Site Preparation</span>
+        </div>
+        <div class="e-desc">On-site blood draw, centrifugation, autologous GF injection for face, scalp and body. Pairs with microneedling, mesotherapy or laser for synergistic regenerative results.</div>
+        <div class="e-meta">
+          <div class="e-tags"><span class="tag">Autologous</span><span class="tag">Growth factor</span><span class="tag dr">Doctor</span></div>
+          <div class="price">RM 899</div>
+        </div>
+        <div class="cb"></div>
+      </div>
+    </div>
+
+    <table class="tx" style="margin-top:6px;">
+      <thead><tr class="th-hd" style="background:#101428;"><th></th><th>Product Name</th><th>Source / Type</th><th>Lot No.</th><th>Expiry</th><th>Dose</th><th>Route</th><th>Doctor Sign</th></tr></thead>
+      <tbody>
+        <tr><td><span class="cb"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td></tr>
+        <tr><td><span class="cb"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td><td class="nf"><span class="nl"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="notes">Overall session notes / combination rationale / follow-up plan / next appointment recommendation: _________________________________________</div>
+  <div class="sig-bar">
+    <div class="sl">Consultant Signature</div>
+    <div class="sl">Doctor Sign-Off</div>
+    <div class="sl">Client Acknowledgement</div>
+  </div>
+  <div class="ftr">
+    <span>Canvas Medical Clinic · Penang Island</span>
+    <span>TS-01 · Treatment Selection Sheet · Confidential Medical Record</span>
+    <span>Page 3 of 3</span>
+  </div>
+</div><!-- /folio 3 -->
+
+<script>
+function toggle(el) { el.classList.toggle('sel'); }
+function toggleRow(tr) { tr.classList.toggle('sel'); }
+function resetAll() {
+  if (!confirm('Reset all selections across all pages?')) return;
+  document.querySelectorAll('.entry.sel, tr.sel').forEach(el => el.classList.remove('sel'));
+}
+</script>
+</body>
+</html>
